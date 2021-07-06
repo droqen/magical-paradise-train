@@ -1,0 +1,62 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://00-core/SubwayStopBoard.gd" type="Script" id=1]
+[ext_resource path="res://navdi2/Node Scripts/Board/NavdiBoardTileMap.gd" type="Script" id=2]
+[ext_resource path="res://navdi2/Node Scripts/Board/NavdiBoardState.gd" type="Script" id=3]
+[ext_resource path="res://01-droqen/overgrown_tunnels_tileset.res" type="TileSet" id=4]
+[ext_resource path="res://01-droqen/overgrown_tunnels_sheet.tres" type="Resource" id=5]
+[ext_resource path="res://art/overgrown_tunnels.png" type="Texture" id=6]
+[ext_resource path="res://navdi2/Node Scripts/Pin/NavdiPinQuickPlayer.gd" type="Script" id=7]
+[ext_resource path="res://navdi2/Node Scripts/NavdiSheetSprite.gd" type="Script" id=8]
+[ext_resource path="res://01-droqen/player.gd" type="Script" id=9]
+[ext_resource path="res://01-droqen/Pickup_Coin3.wav" type="AudioStream" id=10]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 2.9, 2.9 )
+
+[node name="NavdiBoard" type="Node2D"]
+position = Vector2( 40, 40 )
+script = ExtResource( 1 )
+board_view_size = Vector2( 80, 80 )
+show_outline = true
+
+[node name="State" type="Node2D" parent="."]
+script = ExtResource( 3 )
+
+[node name="NavdiBoardTileMap" type="TileMap" parent="State"]
+tile_set = ExtResource( 4 )
+cell_size = Vector2( 8, 8 )
+cell_y_sort = true
+format = 1
+tile_data = PoolIntArray( -327685, 11, 0, -327684, 11, 0, -327683, 11, 0, -327682, 11, 0, -327681, 11, 0, -393216, 11, 0, -393215, 11, 0, -393214, 11, 0, -393213, 11, 0, -393212, 11, 0, -262150, 11, 0, -262149, 0, 0, -262148, 0, 0, -262147, 0, 0, -262146, 0, 0, -262145, 0, 0, -327680, 0, 0, -327679, 0, 0, -327678, 0, 0, -327677, 0, 0, -327676, 0, 0, -327675, 11, 0, -196614, 11, 0, -196613, 0, 0, -196612, 0, 0, -196611, 0, 0, -196610, 0, 0, -196609, 0, 0, -262144, 0, 0, -262143, 0, 0, -262142, 0, 0, -262141, 9, 0, -262140, 0, 0, -262139, 11, 0, -131078, 11, 0, -131077, 0, 0, -131076, 0, 0, -131075, 0, 0, -131074, 0, 0, -131073, 0, 0, -196608, 0, 0, -196607, 0, 0, -196606, 0, 0, -196605, 1, 0, -196604, 1, 0, -196603, 11, 0, -65542, 11, 0, -65541, 0, 0, -65540, 0, 0, -65539, 0, 0, -65538, 0, 0, -65537, 0, 0, -131072, 0, 0, -131071, 0, 0, -131070, 1, 0, -131069, 1, 0, -131068, 1, 0, -131067, 11, 0, -6, 11, 0, -5, 0, 0, -4, 0, 0, -3, 0, 0, -2, 0, 0, -1, 1, 0, -65536, 0, 0, -65535, 0, 0, -65534, 0, 0, -65533, 0, 0, -65532, 1, 0, -65531, 11, 0, 65530, 11, 0, 65531, 0, 0, 65532, 0, 0, 65533, 0, 0, 65534, 0, 0, 65535, 0, 0, 0, 0, 0, 1, 1, 0, 2, 0, 0, 3, 0, 0, 4, 1, 0, 5, 11, 0, 131066, 11, 0, 131067, 0, 0, 131068, 0, 0, 131069, 0, 0, 131070, 0, 0, 131071, 0, 0, 65536, 0, 0, 65537, 0, 0, 65538, 0, 0, 65539, 1, 0, 65540, 1, 0, 65541, 11, 0, 196602, 9, 0, 196603, 0, 0, 196604, 0, 0, 196605, 0, 0, 196606, 0, 0, 196607, 0, 0, 131072, 11, 0, 131073, 10, 0, 131074, 10, 0, 131075, 10, 0, 131076, 10, 0, 262139, 10, 0, 262140, 10, 0, 262141, 10, 0, 262142, 10, 0, 262143, 10, 0, 196608, 10, 0, 196609, 10, 0, 196610, 8, 0, 196611, 8, 0, 196612, 8, 0, 327675, 8, 0, 327676, 8, 0, 327677, 8, 0, 327678, 8, 0, 327679, 8, 0, 262144, 8, 0, 262145, 8, 0, 262146, 8, 0, 262147, 8, 0, 262148, 8, 0 )
+script = ExtResource( 2 )
+refresh_tileset = false
+
+[node name="player" type="KinematicBody2D" parent="."]
+position = Vector2( -36.1548, 19.9022 )
+script = ExtResource( 9 )
+idl_frames = [ 3 ]
+run_frames = [ 3, 4, 5, 6 ]
+air_up_frames = [ 4 ]
+air_nl_frames = [ 5 ]
+air_dn_frames = [ 6 ]
+
+[node name="NavdiSheetSprite" type="Sprite" parent="player"]
+texture = ExtResource( 6 )
+hframes = 10
+vframes = 2
+frame = 5
+script = ExtResource( 8 )
+_frames = [ 3, 4, 5, 6 ]
+_rate = 8.0
+_editor_sheet = ExtResource( 5 )
+
+[node name="NavdiPinQuickPlayer" type="Node" parent="player"]
+script = ExtResource( 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player"]
+position = Vector2( 0, 1 )
+shape = SubResource( 1 )
+
+[node name="get" type="AudioStreamPlayer" parent="player"]
+stream = ExtResource( 10 )

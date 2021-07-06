@@ -1,47 +1,36 @@
 extends Node
 
-var gameboard_loader: ResourceInteractiveLoader = null
-var gameboard_loader_artificial_delay: float = 1.0
-
+var microgame_index = 0
+export(Array, Resource)var microgames = []
+var current_microgame: MicrogameMetadata = null
+var preloaded_microgame: MicrogameMetadata = null
 export(Curve)var viewport_slide_in
 export(Curve)var viewport_slide_out
 var slide_progress = 0
 var sliding_in = false
 var sliding_out = false
 
-var gameboard_index = 0
-var gameboard_paths = [
-	"res://01-droqen/TestPlatformer2.tscn",
-	"res://01-droqen/TestPlatformer.tscn"
-]
+#var gameboard_index = 0
+#var gameboard_paths = [
+#	"res://01-droqen/TestPlatformer2.tscn",
+#	"res://01-droqen/TestPlatformer.tscn"
+#]
 
 func _ready():
-	load_next_gameboard()
+	load_next_microgame()
 	slide_progress = 1
 
-func load_next_gameboard():
-	if load_gameboard_path(gameboard_paths[gameboard_index]):
-		gameboard_index += 1
-		if gameboard_index >= len(gameboard_paths):
-			gameboard_index = 0
+func load_next_microgame():
+	load_microgame(microgames[microgame_index])
+	microgame_index += 1
+	if microgame_index >= len(microgames):
+		microgame_index = 0
 
-func load_gameboard_path(path: String):
-	if gameboard_loader != null:
-		show_error("ALREADY LOADING")
-		return false
-	
-	gameboard_loader_artificial_delay = randf()
-	gameboard_loader = ResourceLoader.load_interactive(path)
-	if gameboard_loader == null:
-		show_error("BAD PATH "+path)
-		return false
-	
-	# play 'loading' animation?
+func load_microgame(mg: MicrogameMetadata):
+	preloaded_microgame = mg
 	sliding_in = false
 	sliding_out = true
 	slide_progress = 0
-	
-	return true
 
 func unload_current_scene():
 	var vpc = $"../MarginContainer/NavdiViewerWindow/ViewportContainer"
@@ -50,58 +39,42 @@ func unload_current_scene():
 	for child in vp.get_children():
 		vp.remove_child(child)
 		child.queue_free()
+	self.current_microgame = null
 
-func assign_packed_scene(packed_scene:PackedScene):
+func set_current_microgame(mg: MicrogameMetadata):
 	unload_current_scene()
+	self.current_microgame = mg
 	var nvw = $"../MarginContainer/NavdiViewerWindow"
 	var vpc = $"../MarginContainer/NavdiViewerWindow/ViewportContainer"
 	var vp = $"../MarginContainer/NavdiViewerWindow/ViewportContainer/Viewport"
-	var scene = packed_scene.instance()
+	var scene = current_microgame.microgame_scene.instance()
 	vp.add_child(scene)
 	scene.owner = vp.owner
 	vpc.show()
 	
-	scene.connect("player_won", self, "load_next_gameboard")
-	scene.connect("player_lost", self, "load_next_gameboard")
+	scene.connect("player_won", self, "load_next_microgame")
+	scene.connect("player_lost", self, "load_next_microgame")
 	
 	nvw.match_board_size()
+	
 
 func _process(delta):
-	if gameboard_loader:
-	
+	if preloaded_microgame:
 		if sliding_out:
 			slide_progress += delta * 0.85
-			_update_slide_position()
 			if slide_progress >= 1:
-				unload_current_scene()
+				set_current_microgame(preloaded_microgame)
 				sliding_out = false
+				sliding_in = true
+				slide_progress = 0
+			_update_slide_position()
 		elif sliding_in:
 			slide_progress += delta * 0.5
 			_update_slide_position()
 			if slide_progress >= 1:
-				gameboard_loader = null
+				preloaded_microgame = null
 				sliding_in = false
-		else:
-			var err = gameboard_loader.poll()
-			if err == ERR_FILE_EOF: # Finished loading.
-				if sliding_out:
-					pass
-				elif gameboard_loader_artificial_delay > 0:
-					gameboard_loader_artificial_delay -= delta
-					pass
-				else:
-					var resource = gameboard_loader.get_resource()
-#					gameboard_loader = null
-					assign_packed_scene(resource)
-					sliding_in = true
-					slide_progress = 0
-					_update_slide_position()
-			elif err == OK:
-				pass#update_progress()
-			else: # Error during loading.
-				show_error("ERROR DURING LOADING")
-				gameboard_loader = null
-	#		break
+#				_update_slide_position()
 
 func _update_slide_position():
 	var nvw = $"../MarginContainer/NavdiViewerWindow"

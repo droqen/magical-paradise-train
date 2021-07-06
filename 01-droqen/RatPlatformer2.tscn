@@ -1,0 +1,62 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://00-core/SubwayStopBoard.gd" type="Script" id=1]
+[ext_resource path="res://navdi2/Node Scripts/Board/NavdiBoardTileMap.gd" type="Script" id=2]
+[ext_resource path="res://navdi2/Node Scripts/Board/NavdiBoardState.gd" type="Script" id=3]
+[ext_resource path="res://01-droqen/overgrown_tunnels_tileset.res" type="TileSet" id=4]
+[ext_resource path="res://01-droqen/overgrown_tunnels_sheet.tres" type="Resource" id=5]
+[ext_resource path="res://art/overgrown_tunnels.png" type="Texture" id=6]
+[ext_resource path="res://navdi2/Node Scripts/Pin/NavdiPinQuickPlayer.gd" type="Script" id=7]
+[ext_resource path="res://navdi2/Node Scripts/NavdiSheetSprite.gd" type="Script" id=8]
+[ext_resource path="res://01-droqen/player.gd" type="Script" id=9]
+[ext_resource path="res://01-droqen/Pickup_Coin3.wav" type="AudioStream" id=10]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 2.9, 2.9 )
+
+[node name="NavdiBoard" type="Node2D"]
+position = Vector2( 80, 40 )
+script = ExtResource( 1 )
+board_view_size = Vector2( 160, 80 )
+show_outline = true
+
+[node name="State" type="Node2D" parent="."]
+script = ExtResource( 3 )
+
+[node name="NavdiBoardTileMap" type="TileMap" parent="State"]
+tile_set = ExtResource( 4 )
+cell_size = Vector2( 8, 8 )
+cell_y_sort = true
+format = 1
+tile_data = PoolIntArray( -327690, 11, 0, -327689, 11, 0, -327688, 11, 0, -327687, 11, 0, -327686, 11, 0, -327685, 11, 0, -327684, 11, 0, -327683, 11, 0, -327682, 11, 0, -327681, 11, 0, -393216, 11, 0, -393215, 11, 0, -393214, 11, 0, -393213, 11, 0, -393212, 11, 0, -393211, 11, 0, -393210, 11, 0, -393209, 11, 0, -393208, 11, 0, -393207, 11, 0, -262155, 11, 0, -262154, 0, 0, -262153, 0, 0, -262152, 0, 0, -262151, 0, 0, -262150, 0, 0, -262149, 0, 0, -262148, 0, 0, -262147, 0, 0, -262146, 0, 0, -262145, 0, 0, -327680, 0, 0, -327679, 0, 0, -327678, 0, 0, -327677, 0, 0, -327676, 0, 0, -327675, 0, 0, -327674, 0, 0, -327673, 0, 0, -327672, 0, 0, -327671, 0, 0, -327670, 11, 0, -196619, 11, 0, -196618, 0, 0, -196617, 0, 0, -196616, 0, 0, -196615, 0, 0, -196614, 0, 0, -196613, 0, 0, -196612, 0, 0, -196611, 0, 0, -196610, 0, 0, -196609, 0, 0, -262144, 0, 0, -262143, 0, 0, -262142, 0, 0, -262141, 0, 0, -262140, 0, 0, -262139, 0, 0, -262138, 0, 0, -262137, 0, 0, -262136, 0, 0, -262135, 0, 0, -262134, 11, 0, -131083, 11, 0, -131082, 0, 0, -131081, 0, 0, -131080, 0, 0, -131079, 0, 0, -131078, 0, 0, -131077, 0, 0, -131076, 0, 0, -131075, 0, 0, -131074, 0, 0, -131073, 0, 0, -196608, 0, 0, -196607, 0, 0, -196606, 0, 0, -196605, 0, 0, -196604, 0, 0, -196603, 0, 0, -196602, 0, 0, -196601, 0, 0, -196600, 0, 0, -196599, 0, 0, -196598, 11, 0, -65547, 11, 0, -65546, 0, 0, -65545, 0, 0, -65544, 0, 0, -65543, 0, 0, -65542, 0, 0, -65541, 0, 0, -65540, 0, 0, -65539, 0, 0, -65538, 0, 0, -65537, 0, 0, -131072, 0, 0, -131071, 0, 0, -131070, 0, 0, -131069, 0, 0, -131068, 0, 0, -131067, 0, 0, -131066, 0, 0, -131065, 0, 0, -131064, 0, 0, -131063, 0, 0, -131062, 11, 0, -11, 11, 0, -10, 0, 0, -9, 0, 0, -8, 0, 0, -7, 0, 0, -6, 0, 0, -5, 0, 0, -4, 0, 0, -3, 0, 0, -2, 0, 0, -1, 0, 0, -65536, 0, 0, -65535, 0, 0, -65534, 0, 0, -65533, 0, 0, -65532, 0, 0, -65531, 0, 0, -65530, 0, 0, -65529, 9, 0, -65528, 0, 0, -65527, 0, 0, -65526, 11, 0, 65525, 11, 0, 65526, 0, 0, 65527, 0, 0, 65528, 0, 0, 65529, 0, 0, 65530, 0, 0, 65531, 0, 0, 65532, 0, 0, 65533, 0, 0, 65534, 0, 0, 65535, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 10, 0, 6, 10, 0, 7, 10, 0, 8, 10, 0, 9, 10, 0, 131061, 11, 0, 131062, 0, 0, 131063, 0, 0, 131064, 0, 0, 131065, 0, 0, 131066, 0, 0, 131067, 0, 0, 131068, 0, 0, 131069, 0, 0, 131070, 0, 0, 131071, 0, 0, 65536, 0, 0, 65537, 0, 0, 65538, 0, 0, 65539, 0, 0, 65540, 11, 0, 65541, 8, 0, 65542, 8, 0, 65543, 8, 0, 65544, 8, 0, 65545, 8, 0, 196598, 10, 0, 196599, 10, 0, 196600, 10, 0, 196601, 10, 0, 196602, 10, 0, 196603, 10, 0, 196604, 10, 0, 196605, 0, 0, 196606, 0, 0, 196607, 0, 0, 131072, 0, 0, 131073, 0, 0, 131074, 0, 0, 131075, 10, 0, 131076, 10, 0, 131077, 8, 0, 131078, 8, 0, 131079, 8, 0, 131080, 8, 0, 131081, 8, 0, 262134, 8, 0, 262135, 8, 0, 262136, 8, 0, 262137, 8, 0, 262138, 8, 0, 262139, 8, 0, 262140, 8, 0, 262141, 11, 0, 262142, 0, 0, 262143, 0, 0, 196608, 0, 0, 196609, 11, 0, 196610, 11, 0, 196611, 8, 0, 196612, 8, 0, 196613, 8, 0, 196614, 8, 0, 196615, 8, 0, 196616, 8, 0, 196617, 8, 0, 327670, 8, 0, 327671, 8, 0, 327672, 8, 0, 327673, 8, 0, 327674, 8, 0, 327675, 8, 0, 327676, 8, 0, 327677, 10, 0, 327678, 10, 0, 327679, 10, 0, 262144, 10, 0, 262145, 10, 0, 262146, 8, 0, 262147, 8, 0, 262148, 8, 0, 262149, 8, 0, 262150, 8, 0, 262151, 8, 0, 262152, 8, 0, 262153, 8, 0 )
+script = ExtResource( 2 )
+refresh_tileset = false
+
+[node name="player" type="KinematicBody2D" parent="."]
+position = Vector2( -35.6548, 11.9022 )
+script = ExtResource( 9 )
+idl_frames = [ 3 ]
+run_frames = [ 3, 4, 5, 6 ]
+air_up_frames = [ 4 ]
+air_nl_frames = [ 5 ]
+air_dn_frames = [ 6 ]
+
+[node name="NavdiSheetSprite" type="Sprite" parent="player"]
+texture = ExtResource( 6 )
+hframes = 10
+vframes = 2
+frame = 4
+script = ExtResource( 8 )
+_frames = [ 3, 4, 5, 6 ]
+_rate = 8.0
+_editor_sheet = ExtResource( 5 )
+
+[node name="NavdiPinQuickPlayer" type="Node" parent="player"]
+script = ExtResource( 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player"]
+position = Vector2( 0, 1 )
+shape = SubResource( 1 )
+
+[node name="get" type="AudioStreamPlayer" parent="player"]
+stream = ExtResource( 10 )

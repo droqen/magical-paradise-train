@@ -1,8 +1,8 @@
 # How to add your own minigame
 
-## 1. Create your own *NavdiBoard* scene
+## 1. Create your own scene
 
-Create a scene with a 'NavdiBoard' at its root, OR duplicate *01-droqen/TestPlatformer.tscn*
+I recommend duplicating *01-droqen/TestPlatformer.tscn* because it already has a desirable structure in place, but the important part is that you have a **SubwayStopBoard.gd** script as the project's **root node**.
 
 Set the *Board View Size* variable to the size you'd like your game to display at (e.g. 160x144 or 80x80) and click *Force Setup* to change the size of the NavdiBoard.
 
@@ -19,6 +19,8 @@ var gameboard_paths = [
   "res://01-droqen/TestPlatformer.tscn"
   
 ]
+
+In order to advance to the next scene, you will need to manually emit the **SubwayStopBoard.gd** node's "player_won" or "player_lost" signal.
 
 ## 3. Run the project.
 

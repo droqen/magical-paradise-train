@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://navdi2/module for Tiled/script/TILED project setup.gd" type="Script" id=1]
+
+[node name="setup" type="Node"]
+script = ExtResource( 1 )
+tiled_project_name = "levels"

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Pickup_Coin3.wav-8627ad1bc895961ec075e8bd75d21d51.sample"
+
+[deps]
+
+source_file="res://01-droqen/Pickup_Coin3.wav"
+dest_files=[ "res://.import/Pickup_Coin3.wav-8627ad1bc895961ec075e8bd75d21d51.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

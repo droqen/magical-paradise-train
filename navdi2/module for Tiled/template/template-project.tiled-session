@@ -1,0 +1,65 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "template-test-map.tmx",
+    "expandedProjectPaths": [
+        "."
+    ],
+    "file.lastUsedOpenFilter": "All Files (*)",
+    "fileStates": {
+        "template-map.tmx": {
+            "scale": 3.505952380952381,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 92.12903225806453,
+                "y": 103.39558573853989
+            }
+        },
+        "template-test-map.tmx": {
+            "scale": 5.0646875,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 79.07694206207195,
+                "y": 70.78422903683592
+            }
+        },
+        "template-tileset.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "tiles.tsx": {
+            "scaleInDock": 1
+        }
+    },
+    "map.fixedSize": true,
+    "map.height": 18,
+    "map.lastUsedExportFilter": "Tiled map files (*.tmx *.xml)",
+    "map.lastUsedFormat": "tmx",
+    "map.layerDataFormat": null,
+    "map.orientation": 1,
+    "map.tileHeight": 8,
+    "map.tileWidth": 8,
+    "map.width": 20,
+    "openFiles": [
+        "template-tileset.tsx",
+        "template-test-map.tmx"
+    ],
+    "project": "template-project.tiled-project",
+    "recentFiles": [
+        "template-tileset.tsx",
+        "template-test-map.tmx",
+        "template-map.tmx"
+    ],
+    "tileset.embedInMap": false,
+    "tileset.margin": 0,
+    "tileset.spacing": 0,
+    "tileset.tileSize": {
+        "height": 8,
+        "width": 8
+    },
+    "tileset.transparentColor": "#000000",
+    "tileset.type": 0,
+    "tileset.useTransparentColor": false
+}

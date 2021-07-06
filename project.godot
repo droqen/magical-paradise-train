@@ -1,0 +1,304 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Control",
+"class": "AllSeeingControl",
+"language": "GDScript",
+"path": "res://navdi2/AllSeeingControl/AllSeeingControl.gd"
+}, {
+"base": "Reference",
+"class": "ChoiceStack",
+"language": "GDScript",
+"path": "res://navdi2/Utility Scripts/ChoiceStack.gd"
+}, {
+"base": "Node",
+"class": "EdTiledLoadToMap",
+"language": "GDScript",
+"path": "res://navdi2/module for Tiled/EdTiledLoadToMap.gd"
+}, {
+"base": "Reference",
+"class": "FlatLevelData",
+"language": "GDScript",
+"path": "res://navdi2/Utility Scripts/NavdiTILEDFlatLevelData.gd"
+}, {
+"base": "Reference",
+"class": "LumpyDictionary",
+"language": "GDScript",
+"path": "res://navdi2/Utility Scripts/LumpyDictionary.gd"
+}, {
+"base": "MarginContainer",
+"class": "MarchingTextContainer",
+"language": "GDScript",
+"path": "res://navdi2/Node Scripts/UI/MarchingTextContainer.gd"
+}, {
+"base": "Reference",
+"class": "MazeObjectData",
+"language": "GDScript",
+"path": "res://navdi2/Node Scripts/Maze/MazeObjectData.gd"
+}, {
+"base": "Node",
+"class": "NavdiBanker",
+"language": "GDScript",
+"path": "res://navdi2/Node Scripts/NavdiBanker.gd"
+}, {
+"base": "Sprite",
+"class": "NavdiBitsySprite",
+"language": "GDScript",
+"path": "res://navdi2/Node Scripts/NavdiBitsySprite.gd"
+}, {
+"base": "Node2D",
+"class": "NavdiBoard",
+"language": "GDScript",
+"path": "res://navdi2/Node Scripts/Board/NavdiBoard.gd"
+}, {
+"base": "AStar2D",
+"class": "NavdiBoardPathstar",
+"language": "GDScript",
+"path": "res://navdi2/Node Scripts/Board/NavdiBoardPathstar.gd"
+}, {
+"base": "Node2D",
+"class": "NavdiBoardState",
+"language": "GDScript",
+"path": "res://navdi2/Node Scripts/Board/NavdiBoardState.gd"
+}, {
+"base": "TileMap",
+"class": "NavdiBoardTileMap",
+"language": "GDScript",
+"path": "res://navdi2/Node Scripts/Board/NavdiBoardTileMap.gd"
+}, {
+"base": "TileSet",
+"class": "NavdiBoardTileSet",
+"language": "GDScript",
+"path": "res://navdi2/Node Scripts/Board/NavdiBoardTileSet.gd"
+}, {
+"base": "Reference",
+"class": "NavdiBrain",
+"language": "GDScript",
+"path": "res://navdi2/Utility Scripts/NavdiBrain.gd"
+}, {
+"base": "Node",
+"class": "NavdiButtonSignalman",
+"language": "GDScript",
+"path": "res://navdi2/Node Scripts/UI/NavdiButtonSignalman.gd"
+}, {
+"base": "Node",
+"class": "NavdiContactCollector",
+"language": "GDScript",
+"path": "res://navdi2/Node Scripts/NavdiContactCollector.gd"
+}, {
+"base": "Node2D",
+"class": "NavdiCursorFollower",
+"language": "GDScript",
+"path": "res://navdi2/Node Scripts/Cursor/NavdiCursorFollower.gd"
+}, {
+"base": "NavdiMazeMaster",
+"class": "NavdiFlagBackingMazeMaster",
+"language": "GDScript",
+"path": "res://navdi2/Node Scripts/Maze/FlagEditor/FlagBackingMazeMaster.gd"
+}, {
+"base": "NavdiMazeMaster",
+"class": "NavdiFlagEditor",
+"language": "GDScript",
+"path": "res://navdi2/Node Scripts/Maze/FlagEditor/FlagEditor.gd"
+}, {
+"base": "NavdiMazeMaster",
+"class": "NavdiFlagMazeMaster",
+"language": "GDScript",
+"path": "res://navdi2/Node Scripts/Maze/FlagEditor/FlagMazeMaster.gd"
+}, {
+"base": "RigidBody2D",
+"class": "NavdiMazeBody",
+"language": "GDScript",
+"path": "res://navdi2/Node Scripts/Maze/Body.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "NavdiMazeKineBody",
+"language": "GDScript",
+"path": "res://navdi2/Node Scripts/Maze/KineBody.gd"
+}, {
+"base": "Node",
+"class": "NavdiMazeLoaderTool",
+"language": "GDScript",
+"path": "res://navdi2/Node Scripts/Maze/^MazeLoaderTool.gd"
+}, {
+"base": "TileMap",
+"class": "NavdiMazeMaster",
+"language": "GDScript",
+"path": "res://navdi2/Node Scripts/Maze/MazeMaster.gd"
+}, {
+"base": "Node2D",
+"class": "NavdiMazeNobody",
+"language": "GDScript",
+"path": "res://navdi2/Node Scripts/Maze/Nobody.gd"
+}, {
+"base": "Node",
+"class": "NavdiPinQuickPlayer",
+"language": "GDScript",
+"path": "res://navdi2/Node Scripts/Pin/NavdiPinQuickPlayer.gd"
+}, {
+"base": "Node",
+"class": "NavdiPinSetup",
+"language": "GDScript",
+"path": "res://navdi2/Node Scripts/Pin/NavdiPinSetup.gd"
+}, {
+"base": "Node",
+"class": "NavdiSettings",
+"language": "GDScript",
+"path": "res://navdi2/Node Scripts/NavdiSettings.gd"
+}, {
+"base": "Resource",
+"class": "NavdiSheet",
+"language": "GDScript",
+"path": "res://navdi2/Utility Scripts/NavdiSheet.gd"
+}, {
+"base": "NavdiBitsySprite",
+"class": "NavdiSheetSprite",
+"language": "GDScript",
+"path": "res://navdi2/Node Scripts/NavdiSheetSprite.gd"
+}, {
+"base": "Reference",
+"class": "NavdiSorter",
+"language": "GDScript",
+"path": "res://navdi2/Utility Scripts/NavdiSorter.gd"
+}, {
+"base": "Node",
+"class": "NavdiSuperCursor",
+"language": "GDScript",
+"path": "res://navdi2/Node Scripts/Cursor/NavdiSuperCursor.gd"
+}, {
+"base": "Reference",
+"class": "NavdiTILEDLevelHandler",
+"language": "GDScript",
+"path": "res://navdi2/Utility Scripts/NavdiTILEDLevelHandler.gd"
+}, {
+"base": "Container",
+"class": "NavdiViewerWindow",
+"language": "GDScript",
+"path": "res://navdi2/Node Scripts/NavdiViewerWindow.gd"
+}, {
+"base": "Reference",
+"class": "PinSingle",
+"language": "GDScript",
+"path": "res://navdi2/Node Scripts/Pin/PinSingle.gd"
+}, {
+"base": "Reference",
+"class": "PyxelLoader",
+"language": "GDScript",
+"path": "res://navdi2/module for PyxelEdit/PyxelLoader.gd"
+}, {
+"base": "Reference",
+"class": "TileZone",
+"language": "GDScript",
+"path": "res://navdi2/Utility Scripts/TileZone.gd"
+}, {
+"base": "Reference",
+"class": "TiledLoader",
+"language": "GDScript",
+"path": "res://navdi2/module for Tiled/TiledLoader.gd"
+}, {
+"base": "Node2D",
+"class": "TiledManager",
+"language": "GDScript",
+"path": "res://navdi2/module for Tiled/TiledManager.gd"
+}, {
+"base": "Reference",
+"class": "TiledMap",
+"language": "GDScript",
+"path": "res://navdi2/module for Tiled/TiledMap.gd"
+}, {
+"base": "Reference",
+"class": "WeightedDeck",
+"language": "GDScript",
+"path": "res://navdi2/Utility Scripts/WeightedDeck.gd"
+} ]
+_global_script_class_icons={
+"AllSeeingControl": "",
+"ChoiceStack": "",
+"EdTiledLoadToMap": "",
+"FlatLevelData": "",
+"LumpyDictionary": "",
+"MarchingTextContainer": "",
+"MazeObjectData": "",
+"NavdiBanker": "",
+"NavdiBitsySprite": "",
+"NavdiBoard": "",
+"NavdiBoardPathstar": "",
+"NavdiBoardState": "",
+"NavdiBoardTileMap": "",
+"NavdiBoardTileSet": "",
+"NavdiBrain": "",
+"NavdiButtonSignalman": "",
+"NavdiContactCollector": "",
+"NavdiCursorFollower": "",
+"NavdiFlagBackingMazeMaster": "",
+"NavdiFlagEditor": "",
+"NavdiFlagMazeMaster": "",
+"NavdiMazeBody": "",
+"NavdiMazeKineBody": "",
+"NavdiMazeLoaderTool": "",
+"NavdiMazeMaster": "",
+"NavdiMazeNobody": "",
+"NavdiPinQuickPlayer": "",
+"NavdiPinSetup": "",
+"NavdiSettings": "",
+"NavdiSheet": "",
+"NavdiSheetSprite": "",
+"NavdiSorter": "",
+"NavdiSuperCursor": "",
+"NavdiTILEDLevelHandler": "",
+"NavdiViewerWindow": "",
+"PinSingle": "",
+"PyxelLoader": "",
+"TileZone": "",
+"TiledLoader": "",
+"TiledManager": "",
+"TiledMap": "",
+"WeightedDeck": ""
+}
+
+[application]
+
+config/name="magical-paradise-train"
+run/main_scene="res://00-core/coreAll.tscn"
+config/icon="res://icon.png"
+
+[debug]
+
+settings/fps/force_fps=60
+
+[display]
+
+window/size/width=1000
+window/size/height=800
+window/size/test_width=1000
+window/size/test_height=800
+
+[dynamic_fonts]
+
+use_oversampling=false
+
+[network]
+
+limits/debugger_stdout/max_errors_per_frame=100
+
+[physics]
+
+common/enable_pause_aware_picking=true
+
+[rendering]
+
+quality/driver/driver_name="GLES2"
+2d/snapping/use_gpu_pixel_snap=true
+vram_compression/import_etc=true
+vram_compression/import_etc2=false
+environment/default_clear_color=Color( 0.0941176, 0.564706, 0.654902, 1 )
+environment/default_environment="res://default_env.tres"
+quality/2d/use_pixel_snap=true

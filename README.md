@@ -11,9 +11,13 @@ This doesn't do much that's very visible, so I recommend enabling *Show Outline*
 ## 2. Add it to the *gameboard_paths* array in *00-core/TrainJamMaster.gd*
 
 var gameboard_paths = [
+
   **"res://02-YourFolderName/YourSceneName.tscn",**
+  
   "res://01-droqen/TestPlatformer2.tscn",
+  
   "res://01-droqen/TestPlatformer.tscn"
+  
 ]
 
 ## 3. Run the project.

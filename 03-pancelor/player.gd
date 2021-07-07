@@ -4,7 +4,7 @@ export(Array,int)var idl_frames
 export(Array,int)var run_frames
 export(Array,int)var slide_frames # TODO: update with new art
 
-const ICE_TILE=16 # TODO: update with new art
+const ICE_TILE=16
 const WIN_TILE=9
 const WALL_TILE=11 # probably want to just check .solid somehow?
 

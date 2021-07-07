@@ -16,6 +16,8 @@ Drag your scene from the previous step into your new Resource's *Microgame Scene
 
 ## 3. Add your game to the *Microgames* array in **00-core/coreAll.tscn**
 
+The array lives in the Script Variables of the TrainJamMaster node (near the Viewport Slide vars)
+
 Just overwrite whatever's in the first slot of the array. Microgames are loaded in a linear order for now.
 
 ## 4. Run the project.

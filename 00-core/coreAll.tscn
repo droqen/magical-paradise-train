@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://navdi2/AllSeeingControl/AllSeeingControl.gd" type="Script" id=1]
 [ext_resource path="res://navdi2/Node Scripts/NavdiSettings.gd" type="Script" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://00-core/StayScaledToScreen.gd" type="Script" id=10]
 [ext_resource path="res://00-core/metromap/droqen_template_minigame.tres" type="Resource" id=11]
 [ext_resource path="res://00-core/metromap/rat_painting.tres" type="Resource" id=12]
+[ext_resource path="res://00-core/metromap/rat_frost.tres" type="Resource" id=13]
 
 [sub_resource type="Curve" id=1]
 _data = [ Vector2( 0, 1 ), 0.0, -5.93296, 0, 0, Vector2( 0.431718, 0.0272727 ), 0.0, 0.0, 0, 0, Vector2( 0.773128, 0.0272727 ), -0.42331, -0.42331, 0, 0, Vector2( 1, 0 ), -0.20133, 0.0, 0, 0 ]
@@ -50,7 +51,7 @@ __meta__ = {
 
 [node name="TrainJamMaster" type="Node" parent="."]
 script = ExtResource( 9 )
-microgames = [ ExtResource( 11 ), ExtResource( 12 ) ]
+microgames = [ ExtResource( 13 ), ExtResource( 12 ), ExtResource( 11 ) ]
 viewport_slide_in = SubResource( 1 )
 viewport_slide_out = SubResource( 2 )
 

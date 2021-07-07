@@ -6,7 +6,31 @@
 [ext_resource path="res://00-core/TrainCar.gd" type="Script" id=4]
 
 [sub_resource type="Animation" id=1]
-resource_name = "DoorsOpening"
+resource_name = "CarRiding"
+length = 2.0
+loop = true
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("DoorLeft:offset:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, -4, -0.25, 0, 0.25, 0, 8, -0.25, 0, 0.25, 0, -2, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5, 1, 1.5, 2.1 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("DoorRight:offset:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, -6, -0.25, 0, 0.25, 0, 6, -0.25, 0, 0.25, 0, -1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.4, 0.9, 1.4, 2 )
+}
+
+[sub_resource type="Animation" id=2]
 tracks/0/type = "bezier"
 tracks/0/path = NodePath("DoorLeft:offset:x")
 tracks/0/interp = 1
@@ -40,43 +64,16 @@ tracks/2/keys = {
 "values": [ Vector2( 1, 1 ), Vector2( 5, 5 ) ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "CarRiding"
-length = 2.0
-loop = true
-tracks/0/type = "bezier"
-tracks/0/path = NodePath("DoorLeft:offset:y")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, -4, -0.25, 0, 0.25, 0, 8, -0.25, 0, 0.25, 0, -2, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 0.5, 1, 1.5, 2.1 )
-}
-tracks/1/type = "bezier"
-tracks/1/path = NodePath("DoorRight:offset:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, -6, -0.25, 0, 0.25, 0, 6, -0.25, 0, 0.25, 0, -1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 0.4, 0.9, 1.4, 2 )
-}
-
 [node name="TrainCar" type="Node2D"]
-position = Vector2( 34, 0 )
+position = Vector2( 638.639, 358.924 )
 script = ExtResource( 4 )
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="DoorsOpening" type="AnimationPlayer" parent="."]
-anims/DoorsOpening = SubResource( 1 )
-
-[node name="CarRiding" type="AnimationPlayer" parent="."]
-anims/CarRiding = SubResource( 2 )
+[node name="DoorAnimations" type="AnimationPlayer" parent="."]
+anims/CarRiding = SubResource( 1 )
+anims/DoorsOpening = SubResource( 2 )
 
 [node name="DoorLeft" type="Sprite" parent="."]
 position = Vector2( -100, 21.413 )

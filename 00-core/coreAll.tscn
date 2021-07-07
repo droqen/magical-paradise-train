@@ -127,7 +127,7 @@ script = ExtResource( 5 )
 script = ExtResource( 6 )
 
 [node name="TrainCar" parent="." instance=ExtResource( 4 )]
-position = Vector2( 496, 368 )
+position = Vector2( 512, 400 )
 
 [node name="NavdiCursorFollower" type="Node2D" parent="."]
 script = ExtResource( 7 )

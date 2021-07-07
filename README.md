@@ -2,17 +2,17 @@
 
 ## 1. Create your own scene
 
-I recommend duplicating **01-droqen/RatPlatformer.tscn** because it already has a desirable structure in place, but the important part is that you have a **SubwayStopBoard.gd** script as the project's **root node**.
+Duplicate **01-droqen/TemplateMinigame.tscn** into your own folder. Give it a new name.
 
-Set the *Board View Size* variable to the size you'd like your game to display at (e.g. 160x144 or 80x80) and click *Force Setup* to change the size of the NavdiBoard.
+In order to signal to the game that you want to advance to the next scene, emit either the **SubwayStopBoard.gd** node's "player_won" or "player_lost" signal. See the node named **when empty, win** for an example.
 
-This doesn't do much that's very visible, so I recommend enabling *Show Outline*. Then hide & show the NavdiBoard node to force it to redraw. It will indicate the area that will be visible in the larger scene.
-
-In order to signal to the game that you want to advance to the next scene, emit either the **SubwayStopBoard.gd** node's "player_won" or "player_lost" signal.
+(!!!) Don't change the script on the root 'NavdiBoard' node or any of its variables, although you may rename it if you like.
 
 ## 2. Create a new **MicrogameMetadata** resource in **00-core/metromap/**
 
-Drag your scene into its *Microgame Scene* variable.
+You can just duplicate **00-core/metromap/droqen_template_minigame.tres**, but then double-check before editing: are you editing the new resource (the one you just made) or the old existing one?
+
+Drag your scene from the previous step into your new Resource's *Microgame Scene* variable.
 
 ## 3. Add your game to the *Microgames* array in **00-core/coreAll.tscn**
 
@@ -25,3 +25,7 @@ Just overwrite whatever's in the first slot of the array. Microgames are loaded 
 ## p.s. the 'navdi2' folder
 
 'Navdi' is my (droqen's) personal game-making and prototyping library. Explaining how any of it works is beyond the scope of this README, but you're free to use it as you see fit. If you dare.
+
+## p.s. use 'NavdiCursorFollower'
+
+It's a node that will always be where the mouse is. You can use it like I do (by adding children to it) or you can just externally track its position, leaving the cursor invisible. It's up to you! You can roll your own cursor solution if you like, but this one is reliable and it will be nice to have it standardized across the whole project.

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/subway_stage.png-abb0d2b6436c08558f8cab83157805b0.stex"
+path="res://.import/pencil shadow.png-baf10688bf7bcd41f7a173fe320e37cf.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/subway_stage.png"
-dest_files=[ "res://.import/subway_stage.png-abb0d2b6436c08558f8cab83157805b0.stex" ]
+source_file="res://02-ashk/pencil shadow.png"
+dest_files=[ "res://.import/pencil shadow.png-baf10688bf7bcd41f7a173fe320e37cf.stex" ]
 
 [params]
 

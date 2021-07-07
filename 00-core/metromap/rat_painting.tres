@@ -1,10 +1,10 @@
 [gd_resource type="Resource" load_steps=3 format=2]
 
 [ext_resource path="res://00-core/MicrogameMetadata.gd" type="Script" id=1]
-[ext_resource path="res://02-ashk/RatPainting.tscn" type="PackedScene" id=2]
+[ext_resource path="res://01-droqen/RatPlatformer2.tscn" type="PackedScene" id=2]
 
 [resource]
 script = ExtResource( 1 )
 microgame_scene = ExtResource( 2 )
-microgame_name = "rat painting"
-author_name = "ash k"
+microgame_name = "Rat Time 2"
+author_name = "droqen"

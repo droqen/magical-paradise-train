@@ -1,0 +1,105 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://00-core/SubwayStopBoard.gd" type="Script" id=1]
+[ext_resource path="res://02-ashk/Manager.gd" type="Script" id=2]
+[ext_resource path="res://navdi2/Node Scripts/Board/NavdiBoardState.gd" type="Script" id=3]
+[ext_resource path="res://02-ashk/pencil.png" type="Texture" id=4]
+[ext_resource path="res://navdi2/Resources/src/roughyfive.tres" type="DynamicFont" id=5]
+[ext_resource path="res://02-ashk/notebook.png" type="Texture" id=6]
+[ext_resource path="res://02-ashk/pencil shadow.png" type="Texture" id=7]
+[ext_resource path="res://02-ashk/done button.png" type="Texture" id=8]
+[ext_resource path="res://02-ashk/Button.gd" type="Script" id=9]
+[ext_resource path="res://02-ashk/pencil sound.ogg" type="AudioStream" id=10]
+[ext_resource path="res://02-ashk/temp_click.wav" type="AudioStream" id=11]
+
+[sub_resource type="CanvasItemMaterial" id=1]
+blend_mode = 3
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 4.69366
+
+[sub_resource type="Curve" id=3]
+max_value = 2.0
+_data = [ Vector2( 0, 0.938776 ), 0.0, -22.549, 0, 0, Vector2( 0.149606, 0.887755 ), 6.91156, 6.91156, 0, 0, Vector2( 0.259843, 1 ), -4.02181, -4.02181, 0, 0, Vector2( 0.461942, 1 ), 1.45791, 1.45791, 0, 0, Vector2( 0.989501, 1 ), 0.0, 0.0, 0, 0 ]
+
+[node name="NavdiBoard" type="Node2D"]
+position = Vector2( 80, 80 )
+script = ExtResource( 1 )
+board_view_size = Vector2( 160, 160 )
+show_outline = true
+
+[node name="Manager" type="Node2D" parent="."]
+script = ExtResource( 2 )
+
+[node name="NoDrawZone" type="Area2D" parent="Manager"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Manager/NoDrawZone"]
+polygon = PoolVector2Array( -48, -56, 48, -56, 54, 80, 80, 80, 80, -80, -80, -80, -80, 80, -80, 91, -24, 90, -14, 66, -17, 57, -25, 60, -40, 80, -47, 80 )
+
+[node name="notebook" type="Sprite" parent="Manager"]
+z_index = -1
+texture = ExtResource( 6 )
+
+[node name="pencil shadow" type="Sprite" parent="Manager"]
+material = SubResource( 1 )
+position = Vector2( 0, 51 )
+rotation = 1.57079
+scale = Vector2( 0.213053, 0.213053 )
+z_index = 1
+texture = ExtResource( 7 )
+offset = Vector2( 0, -239.377 )
+
+[node name="Area2D" type="Area2D" parent="Manager/pencil shadow"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Manager/pencil shadow/Area2D"]
+shape = SubResource( 2 )
+
+[node name="pencil" type="Node2D" parent="Manager"]
+z_index = 2
+
+[node name="pencil" type="Sprite" parent="Manager/pencil"]
+scale = Vector2( 0.213053, 0.213053 )
+texture = ExtResource( 4 )
+offset = Vector2( 0, -236.831 )
+
+[node name="Instructions" type="Label" parent="Manager"]
+margin_left = -78.0
+margin_top = -77.0
+margin_right = 76.0
+margin_bottom = -53.0
+custom_fonts/font = ExtResource( 5 )
+text = "gay rats yea!!!"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Manager"]
+stream = ExtResource( 10 )
+autoplay = true
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="Manager"]
+stream = ExtResource( 11 )
+
+[node name="State" type="Node2D" parent="."]
+script = ExtResource( 3 )
+
+[node name="Button" type="Button" parent="."]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_left = 30.0
+margin_top = 58.0
+margin_right = 77.0
+margin_bottom = 78.0
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+jiggle = SubResource( 3 )
+
+[node name="done button" type="Sprite" parent="Button"]
+position = Vector2( 23, 10 )
+texture = ExtResource( 8 )
+[connection signal="area_entered" from="Manager/NoDrawZone" to="Manager" method="_on_NoDrawZone_area_entered"]
+[connection signal="area_exited" from="Manager/NoDrawZone" to="Manager" method="_on_NoDrawZone_area_exited"]
+[connection signal="pressed" from="Button" to="Manager" method="_on_Button_pressed"]
+[connection signal="pressed" from="Button" to="Button" method="_on_Button_pressed"]

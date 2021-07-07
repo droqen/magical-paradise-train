@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/subway_stage.png-abb0d2b6436c08558f8cab83157805b0.stex"
+path="res://.import/done button.png-825addc3a19a33dd043a35cba8c0cd01.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/subway_stage.png"
-dest_files=[ "res://.import/subway_stage.png-abb0d2b6436c08558f8cab83157805b0.stex" ]
+source_file="res://02-ashk/done button.png"
+dest_files=[ "res://.import/done button.png-825addc3a19a33dd043a35cba8c0cd01.stex" ]
 
 [params]
 

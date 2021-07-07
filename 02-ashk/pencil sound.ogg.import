@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/pencil sound.ogg-3ba28f12f9026b3ba07180e0c9b218f3.oggstr"
+
+[deps]
+
+source_file="res://02-ashk/pencil sound.ogg"
+dest_files=[ "res://.import/pencil sound.ogg-3ba28f12f9026b3ba07180e0c9b218f3.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

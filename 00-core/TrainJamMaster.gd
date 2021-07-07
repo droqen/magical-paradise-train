@@ -14,12 +14,6 @@ var slide_progress = 0
 var sliding_in = false
 var sliding_out = false
 
-#var gameboard_index = 0
-#var gameboard_paths = [
-#	"res://01-droqen/TestPlatformer2.tscn",
-#	"res://01-droqen/TestPlatformer.tscn"
-#]
-
 func _ready():
 	load_next_microgame()
 	slide_progress = 1
@@ -41,6 +35,7 @@ func load_next_microgame():
 
 func load_microgame(mg: MicrogameMetadata):
 	preloaded_microgame = mg
+	$"../TrainCar".close_doors();
 	sliding_in = false
 	sliding_out = true
 	slide_progress = 0
@@ -77,6 +72,7 @@ func _process(delta):
 			slide_progress += delta * 0.85
 			if slide_progress >= 1:
 				set_current_microgame(preloaded_microgame)
+				$"../TrainCar".open_doors();
 				sliding_out = false
 				sliding_in = true
 				slide_progress = 0

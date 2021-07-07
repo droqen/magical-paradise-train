@@ -59,8 +59,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	var pencil_delta = get_global_mouse_position()*0.5-previous_pencil_position
-	$pencil.global_position = get_global_mouse_position()*0.5
+	var pencil_delta = $pencil.global_position-previous_pencil_position
 	if Input.is_action_pressed("left mouse button") and can_draw:
 		$pencil/pencil.position.y = 0
 		volume = lerp(volume, pencil_speed.length()/100, delta*10)
@@ -93,7 +92,7 @@ func _process(delta):
 		$pencil.scale.x = pow(1.1, pencil_speed.y*0.01)
 		$pencil.scale.y = 1/$pencil.scale.x
 		$"pencil shadow".scale.y = sin($pencil/pencil.global_rotation)*$pencil.scale.x*0.213
-	previous_pencil_position = get_global_mouse_position()*0.5
+	previous_pencil_position = $pencil.global_position
 	pass
 
 

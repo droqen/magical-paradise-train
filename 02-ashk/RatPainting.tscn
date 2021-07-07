@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://00-core/SubwayStopBoard.gd" type="Script" id=1]
 [ext_resource path="res://02-ashk/Manager.gd" type="Script" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://02-ashk/Button.gd" type="Script" id=9]
 [ext_resource path="res://02-ashk/pencil sound.ogg" type="AudioStream" id=10]
 [ext_resource path="res://02-ashk/temp_click.wav" type="AudioStream" id=11]
+[ext_resource path="res://navdi2/Node Scripts/Cursor/NavdiCursorFollower.gd" type="Script" id=12]
 
 [sub_resource type="CanvasItemMaterial" id=1]
 blend_mode = 3
@@ -56,6 +57,8 @@ shape = SubResource( 2 )
 
 [node name="pencil" type="Node2D" parent="Manager"]
 z_index = 2
+script = ExtResource( 12 )
+get_cursor_from_group = "SuperCursor"
 
 [node name="pencil" type="Sprite" parent="Manager/pencil"]
 scale = Vector2( 0.213053, 0.213053 )
@@ -99,7 +102,8 @@ jiggle = SubResource( 3 )
 [node name="done button" type="Sprite" parent="Button"]
 position = Vector2( 23, 10 )
 texture = ExtResource( 8 )
+
 [connection signal="area_entered" from="Manager/NoDrawZone" to="Manager" method="_on_NoDrawZone_area_entered"]
 [connection signal="area_exited" from="Manager/NoDrawZone" to="Manager" method="_on_NoDrawZone_area_exited"]
-[connection signal="pressed" from="Button" to="Manager" method="_on_Button_pressed"]
 [connection signal="pressed" from="Button" to="Button" method="_on_Button_pressed"]
+[connection signal="pressed" from="Button" to="Manager" method="_on_Button_pressed"]

@@ -146,7 +146,7 @@ disabled_input_modes = [ 1 ]
 pin_enabled = false
 
 [node name="TrainCar" parent="." instance=ExtResource( 4 )]
-position = Vector2( 496, 368 )
+position = Vector2( 512, 400 )
 
 [node name="NavdiCursorFollower" type="Node2D" parent="."]
 script = ExtResource( 7 )

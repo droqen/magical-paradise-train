@@ -126,6 +126,7 @@ script = ExtResource( 5 )
 script = ExtResource( 6 )
 
 [node name="TrainCar" parent="." instance=ExtResource( 4 )]
+modulate = Color( 1, 1, 1, 0.509804 )
 position = Vector2( 512, 400 )
 
 [node name="NavdiCursorFollower" type="Node2D" parent="."]

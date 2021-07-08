@@ -31,6 +31,10 @@ func go_to_first_scene():
 func go_to_next_scene():
 	load_next_microgame()
 	sliding_in = false
+
+func go_to_next_scene():
+	load_next_microgame()
+	sliding_in = false
 	sliding_out = true
 	chilling_a_bit = false;
 	chill_progress = 0;

@@ -4,7 +4,7 @@
 
 Duplicate **01-droqen/TemplateMinigame.tscn** into your own folder. Give it a new name.
 
-In order to signal to the game that you want to advance to the next scene, emit either the **SubwayStopBoard.gd** node's "player_won" or "player_lost" signal. See the node named **when empty, win** for an example.
+In order to signal to the game that you want to advance to the next scene, emit either the **SubwayStopBoard.gd** node's "player_won" or "player_lost" signal. See the node named "**when empty, win**" for an example.
 
 (!!!) Don't change the script on the root 'NavdiBoard' node or any of its variables, although you may rename it if you like.
 
@@ -46,6 +46,6 @@ If you do use NavdiCursorFollower, make sure that you set the 'Get Cursor From G
 
 A node that provides a customizable and common input solution.
 
-For a commented example use case, see **01-droqen/player using NavdiPin.gd**, used in **01-droqen/RatPlatformer.tscn** on the **player** node.
+For a commented example use case, see "**01-droqen/player using NavdiPin.gd**", used in **01-droqen/RatPlatformer.tscn** on the **player** node.
 
 *See the 'NavdiPinSetup' node in 00-core/coreAll.tscn*

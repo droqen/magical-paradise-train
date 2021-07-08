@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://art/train_car.png" type="Texture" id=1]
-[ext_resource path="res://art/door_right.png" type="Texture" id=2]
-[ext_resource path="res://art/door_left.png" type="Texture" id=3]
+[ext_resource path="res://art/cutaway_train_car.png" type="Texture" id=1]
+[ext_resource path="res://art/cutaway_door_left.png" type="Texture" id=2]
+[ext_resource path="res://art/cutaway_door_right.png" type="Texture" id=3]
 [ext_resource path="res://00-core/TrainCar.gd" type="Script" id=4]
 
 [sub_resource type="Animation" id=1]
@@ -77,11 +77,11 @@ anims/DoorsOpening = SubResource( 2 )
 
 [node name="DoorLeft" type="Sprite" parent="."]
 position = Vector2( -100, 21.413 )
-texture = ExtResource( 3 )
+texture = ExtResource( 2 )
 
 [node name="DoorRight" type="Sprite" parent="."]
 position = Vector2( 50, 24 )
-texture = ExtResource( 2 )
+texture = ExtResource( 3 )
 
 [node name="Car" type="Sprite" parent="."]
 texture = ExtResource( 1 )

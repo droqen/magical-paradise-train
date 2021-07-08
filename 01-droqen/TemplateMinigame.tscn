@@ -6,7 +6,7 @@
 [ext_resource path="res://navdi2/Node Scripts/Cursor/NavdiCursorFollower.gd" type="Script" id=4]
 [ext_resource path="res://navdi2/Node Scripts/NavdiSheetSprite.gd" type="Script" id=5]
 [ext_resource path="res://00-core/SubwayStopBoard.gd" type="Script" id=6]
-[ext_resource path="res://art/overgrown_tunnels.png" type="Texture" id=7]
+[ext_resource path="res://art/pyxeledit/overgrown_tunnels.png" type="Texture" id=7]
 [ext_resource path="res://01-droqen/when empty, win.gd" type="Script" id=8]
 [ext_resource path="res://01-droqen/Pickup_Coin3.wav" type="AudioStream" id=9]
 [ext_resource path="res://01-droqen/overgrown_tunnels_sheet.tres" type="Resource" id=10]

@@ -5,7 +5,7 @@
 [ext_resource path="res://navdi2/Node Scripts/Board/NavdiBoardState.gd" type="Script" id=3]
 [ext_resource path="res://01-droqen/overgrown_tunnels_tileset.res" type="TileSet" id=4]
 [ext_resource path="res://01-droqen/overgrown_tunnels_sheet.tres" type="Resource" id=5]
-[ext_resource path="res://art/overgrown_tunnels.png" type="Texture" id=6]
+[ext_resource path="res://art/pyxeledit/overgrown_tunnels.png" type="Texture" id=6]
 [ext_resource path="res://navdi2/Node Scripts/Pin/NavdiPinQuickPlayer.gd" type="Script" id=7]
 [ext_resource path="res://navdi2/Node Scripts/NavdiSheetSprite.gd" type="Script" id=8]
 [ext_resource path="res://01-droqen/player using NavdiPin.gd" type="Script" id=9]

@@ -1,0 +1,10 @@
+WARNING:
+
+Editing the '.png' files in here is dangerous, as they are likely to be overridden.
+
+(The .png files here are exported outputs from existing pyxeledit projects.
+
+Please copy them out of here and into a different folder or into your own project!
+
+OR, if you have pyxeledit, the source .pyxel files are in this folder; if you edit
+them and export the tileset, there will be no danger of overwriting.

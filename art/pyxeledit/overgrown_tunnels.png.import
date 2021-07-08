@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/paradise_document.png-48c1a7eb44f8bc97e701844e10a7d992.stex"
+path="res://.import/overgrown_tunnels.png-6f14b0f7d1df2e7e07439efbe743ad7f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/paradise_document.png"
-dest_files=[ "res://.import/paradise_document.png-48c1a7eb44f8bc97e701844e10a7d992.stex" ]
+source_file="res://art/pyxeledit/overgrown_tunnels.png"
+dest_files=[ "res://.import/overgrown_tunnels.png-6f14b0f7d1df2e7e07439efbe743ad7f.stex" ]
 
 [params]
 

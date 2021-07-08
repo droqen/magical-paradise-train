@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/aloneinparadise.wav-9521ddd3b571c33d7c292a91604e367b.sample"
+
+[deps]
+
+source_file="res://art/sounds/aloneinparadise.wav"
+dest_files=[ "res://.import/aloneinparadise.wav-9521ddd3b571c33d7c292a91604e367b.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

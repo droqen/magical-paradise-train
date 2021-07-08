@@ -1,19 +1,14 @@
 extends KinematicBody2D
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+# Looking for how to use the NavdiPinQuickPlayer node?
+# Go to the _process function for THREE 'how to use'
+# sections hidden in the comments of this script
 
 export(Array,int)var idl_frames
 export(Array,int)var run_frames
 export(Array,int)var air_up_frames
 export(Array,int)var air_nl_frames
 export(Array,int)var air_dn_frames
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
 
 var velocity:Vector2
 var floorbuf:int
@@ -31,16 +26,27 @@ func _process(delta):
 		$NavdiSheetSprite.rate = 10
 		return
 	
+	# NavdiPinQuickPlayer - how to use
 	var pin = $NavdiPinQuickPlayer
-	pin.process_pins()
+	pin.process_pins() # manually call this 1x/frame, before using it
 	
 	if is_on_floor(): floorbuf = 3
 	elif floorbuf > 0: floorbuf -= 1
-	if (pin.a.just_pressed or pin.up.just_pressed) and floorbuf>0:
+	
+	# NavdiPinQuickPlayer - how to use
+	# reading 'just_pressed' inputs
+	# * pin.a is a 'PinSingle'
+	# * pin.dpad_impulse is a Vector2 that is only nonzero for a frame
+	if (pin.a.just_pressed or pin.dpad_impulse.y < 0) and floorbuf>0:
 		velocity.y=-40-12*power
 		floorbuf=0
+	
 	velocity.y+=100*delta
 	velocity.x=_tow(velocity.x,30*pin.dpad.x,200*delta)
+	
+	# NavdiPinQuickPlayer - how to use
+	# reading 'dpad'
+	# * it's a Vector2 that flattens any analog into -1/0/1 values
 	if pin.dpad.x:
 		$NavdiSheetSprite.flip_h = pin.dpad.x < 0
 	if floorbuf > 0:

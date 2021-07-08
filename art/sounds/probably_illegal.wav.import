@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/probably_illegal.wav-4f2ecdcfc26ce11fc2ace76e560e7a8e.sample"
+
+[deps]
+
+source_file="res://art/sounds/probably_illegal.wav"
+dest_files=[ "res://.import/probably_illegal.wav-4f2ecdcfc26ce11fc2ace76e560e7a8e.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -1,7 +1,11 @@
 extends Node
 
 var microgame_index = 0
+
+export(PackedScene)var test_microgame_scene: PackedScene = null
+export(bool)var test_microgame_repeating = true
 export(Array, Resource)var microgames = []
+
 var current_microgame: MicrogameMetadata = null
 var preloaded_microgame: MicrogameMetadata = null
 export(Curve)var viewport_slide_in
@@ -21,10 +25,19 @@ func _ready():
 	slide_progress = 1
 
 func load_next_microgame():
-	load_microgame(microgames[microgame_index])
-	microgame_index += 1
-	if microgame_index >= len(microgames):
-		microgame_index = 0
+	if test_microgame_scene:
+		var test_microgame = MicrogameMetadata.new()
+		test_microgame.microgame_name = "Test"
+		test_microgame.microgame_name = "YOU"
+		test_microgame.microgame_scene = test_microgame_scene
+		if not test_microgame_repeating:
+			test_microgame_scene = null
+		load_microgame(test_microgame)
+	else:
+		load_microgame(microgames[microgame_index])
+		microgame_index += 1
+		if microgame_index >= len(microgames):
+			microgame_index = 0
 
 func load_microgame(mg: MicrogameMetadata):
 	preloaded_microgame = mg

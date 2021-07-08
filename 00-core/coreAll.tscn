@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://navdi2/AllSeeingControl/AllSeeingControl.gd" type="Script" id=1]
 [ext_resource path="res://navdi2/Node Scripts/NavdiSettings.gd" type="Script" id=2]
@@ -9,7 +9,8 @@
 [ext_resource path="res://navdi2/Node Scripts/Cursor/NavdiCursorFollower.gd" type="Script" id=7]
 [ext_resource path="res://art/temp_cursor.png" type="Texture" id=8]
 [ext_resource path="res://00-core/TrainJamMaster.gd" type="Script" id=9]
-[ext_resource path="res://01-droqen/TemplateMinigame.tscn" type="PackedScene" id=10]
+[ext_resource path="res://04_Gabe/PetTheCat/PetTheCat.tscn" type="PackedScene" id=10]
+[ext_resource path="res://00-core/metromap/PetTheCat.tres" type="Resource" id=11]
 
 [sub_resource type="Curve" id=1]
 _data = [ Vector2( 0, 1 ), 0.0, -5.93296, 0, 0, Vector2( 0.431718, 0.0272727 ), 0.0, 0.0, 0, 0, Vector2( 0.773128, 0.0272727 ), -0.42331, -0.42331, 0, 0, Vector2( 1, 0 ), -0.20133, 0.0, 0, 0 ]
@@ -51,6 +52,7 @@ __meta__ = {
 [node name="TrainJamMaster" type="Node" parent="."]
 script = ExtResource( 9 )
 test_microgame_scene = ExtResource( 10 )
+microgames = [ ExtResource( 11 ) ]
 viewport_slide_in = SubResource( 1 )
 viewport_slide_out = SubResource( 2 )
 
@@ -119,11 +121,22 @@ UI_stretch_mode = true
 
 [node name="NavdiPinSetup" type="Node" parent="."]
 script = ExtResource( 5 )
+preset = 1
+tool_start_device0_vib = false
+tool_stop_device0_vib = false
 
 [node name="NavdiSuperCursor" type="Node" parent="." groups=[
 "SuperCursor",
 ]]
 script = ExtResource( 6 )
+joypad_time_to_cross_view = 2.0
+joypad_time_to_full_speed = 0.1
+mouse_locked = false
+mouse_locked_sens = 300.0
+mouse_offset = Vector2( -1, -3 )
+input_mode = 0
+disabled_input_modes = [ 1 ]
+pin_enabled = false
 
 [node name="TrainCar" parent="." instance=ExtResource( 4 )]
 position = Vector2( 512, 400 )

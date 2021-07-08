@@ -4,11 +4,11 @@
 [ext_resource path="res://navdi2/Node Scripts/Maze/FlagEditor/FlagBackingMazeMaster.gd" type="Script" id=2]
 [ext_resource path="res://navdi2/Node Scripts/Maze/FlagEditor/FlagEditor.gd" type="Script" id=3]
 [ext_resource path="res://navdi2/Node Scripts/Maze/FlagEditor/flags_sprites.png" type="Texture" id=4]
-[ext_resource path="res://art/paradise_document.png" type="Texture" id=5]
+[ext_resource path="res://art/pyxeledit/paradise_document.png" type="Texture" id=5]
 [ext_resource path="res://navdi2/Node Scripts/Board/NavdiBoardTileSet.gd" type="Script" id=6]
 [ext_resource path="res://01-droqen/paradise_document_tileset.res" type="TileSet" id=7]
 [ext_resource path="res://01-droqen/overgrown_tunnels_tileset.res" type="TileSet" id=8]
-[ext_resource path="res://art/overgrown_tunnels.png" type="Texture" id=9]
+[ext_resource path="res://art/pyxeledit/overgrown_tunnels.png" type="Texture" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 8 )

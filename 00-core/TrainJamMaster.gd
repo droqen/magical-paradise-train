@@ -136,7 +136,7 @@ func set_microgame_state(state):
 	stateTimer = 0.0
 	match microgameState:
 		MgState.GameSlidingIn:
-			stateDuration = 2.0
+			stateDuration = 3.0
 		MgState.DoorsOpening:
 			train_car.open_doors();
 			stateDuration = 0.25 # how long is the animation?

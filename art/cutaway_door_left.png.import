@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/overgrown_tunnels.png-01530c566b07a0e69eacef7b63746234.stex"
+path="res://.import/cutaway_door_left.png-5c1900f8be181061cc95c380b4ebc288.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/overgrown_tunnels.png"
-dest_files=[ "res://.import/overgrown_tunnels.png-01530c566b07a0e69eacef7b63746234.stex" ]
+source_file="res://art/cutaway_door_left.png"
+dest_files=[ "res://.import/cutaway_door_left.png-5c1900f8be181061cc95c380b4ebc288.stex" ]
 
 [params]
 

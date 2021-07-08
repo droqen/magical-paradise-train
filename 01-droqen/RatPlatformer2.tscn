@@ -5,13 +5,15 @@
 [ext_resource path="res://navdi2/Node Scripts/Board/NavdiBoardState.gd" type="Script" id=3]
 [ext_resource path="res://01-droqen/overgrown_tunnels_tileset.res" type="TileSet" id=4]
 [ext_resource path="res://01-droqen/overgrown_tunnels_sheet.tres" type="Resource" id=5]
-[ext_resource path="res://art/overgrown_tunnels.png" type="Texture" id=6]
 [ext_resource path="res://navdi2/Node Scripts/Pin/NavdiPinQuickPlayer.gd" type="Script" id=7]
 [ext_resource path="res://navdi2/Node Scripts/NavdiSheetSprite.gd" type="Script" id=8]
 [ext_resource path="res://01-droqen/player using NavdiPin.gd" type="Script" id=9]
 [ext_resource path="res://01-droqen/Pickup_Coin3.wav" type="AudioStream" id=10]
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="StreamTexture" id=3]
+load_path = "res://.import/overgrown_tunnels.png-01530c566b07a0e69eacef7b63746234.stex"
+
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 2.9, 2.9 )
 
 [node name="NavdiBoard" type="Node2D"]
@@ -42,7 +44,7 @@ air_nl_frames = [ 5 ]
 air_dn_frames = [ 6 ]
 
 [node name="NavdiSheetSprite" type="Sprite" parent="player"]
-texture = ExtResource( 6 )
+texture = SubResource( 3 )
 hframes = 10
 vframes = 2
 frame = 4
@@ -56,7 +58,7 @@ script = ExtResource( 7 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="player"]
 position = Vector2( 0, 1 )
-shape = SubResource( 1 )
+shape = SubResource( 4 )
 
 [node name="get" type="AudioStreamPlayer" parent="player"]
 stream = ExtResource( 10 )

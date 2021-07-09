@@ -97,8 +97,8 @@ func _process(delta):
 			_update_slide_position()
 			if stateTimer > stateDuration:
 				set_microgame_state(MgState.PlayingTheGame)
-				print(current_microgame)
-				microgame_instance.emit_signal("game_start")
+				print(microgame_instance.name)
+				microgame_instance.on_game_start()
 		MgState.PlayingTheGame:
 			# do nothing. wait for the game to end itself.
 			pass

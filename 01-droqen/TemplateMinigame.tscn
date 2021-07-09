@@ -43,9 +43,9 @@ script = ExtResource( 1 )
 
 [node name="NavdiSheetSprite" type="Sprite" parent="State/NavdiCursorFollower/rat"]
 texture = SubResource( 1 )
-vframes = 2
 hframes = 10
-frame = 5
+vframes = 2
+frame = 6
 script = ExtResource( 5 )
 _frames = [ 3, 4, 5, 6 ]
 _rate = 8.0
@@ -66,8 +66,8 @@ position = Vector2( 53.7401, 43.6638 )
 
 [node name="NavdiSheetSprite" type="Sprite" parent="when empty, win/rat_money"]
 texture = SubResource( 1 )
-vframes = 2
 hframes = 10
+vframes = 2
 frame = 15
 script = ExtResource( 5 )
 _frames = [ 12, 13, 14, 15, 15, 15, 15, 15 ]
@@ -82,8 +82,8 @@ position = Vector2( -57.9828, 50.2046 )
 
 [node name="NavdiSheetSprite" type="Sprite" parent="when empty, win/rat_money2"]
 texture = SubResource( 1 )
-vframes = 2
 hframes = 10
+vframes = 2
 frame = 15
 script = ExtResource( 5 )
 _frames = [ 12, 13, 14, 15, 15, 15, 15, 15 ]
@@ -98,8 +98,8 @@ position = Vector2( -48.7904, 35.8857 )
 
 [node name="NavdiSheetSprite" type="Sprite" parent="when empty, win/rat_money3"]
 texture = SubResource( 1 )
-vframes = 2
 hframes = 10
+vframes = 2
 frame = 15
 script = ExtResource( 5 )
 _frames = [ 12, 13, 14, 15, 15, 15, 15, 15 ]
@@ -114,8 +114,8 @@ position = Vector2( -41.189, -49.4975 )
 
 [node name="NavdiSheetSprite" type="Sprite" parent="when empty, win/rat_money4"]
 texture = SubResource( 1 )
-vframes = 2
 hframes = 10
+vframes = 2
 frame = 15
 script = ExtResource( 5 )
 _frames = [ 12, 13, 14, 15, 15, 15, 15, 15 ]
@@ -124,4 +124,5 @@ _editor_sheet = ExtResource( 10 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="when empty, win/rat_money4"]
 shape = SubResource( 3 )
+
 [connection signal="area_entered" from="State/NavdiCursorFollower/rat" to="State/NavdiCursorFollower/rat" method="_on_rat_area_entered"]

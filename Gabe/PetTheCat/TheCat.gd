@@ -12,23 +12,25 @@ var canPet : bool = false
 
 var catTween : Tween
 
-
+var catSounds : AudioStreamPlayer
 
 func _ready():
 	$ClosedEyes.show()
-	var _err = $StartTimer.connect("timeout",self,"OnStartTimeout")
+
+	catSounds  = $CatSounds
 
 	catTween = Tween.new()
 	add_child(catTween)
 
 func OnStartTimeout():
+	pass
 	
-	$ClosedEyes.hide()
 	
 	
 func OnGameStart():
 	canPet = true
-
+	print("pet the cat game start")
+	$ClosedEyes.hide()
 
 func MoveCatButt(moveAmount):
 	$CatTop.global_position += moveAmount
@@ -43,16 +45,17 @@ func OnCatPet(_area):
 	if catTween.is_active():
 		return
 	
-	catTween.interpolate_method(self, "MoveCatButt",
+	var _val = catTween.interpolate_method(self, "MoveCatButt",
 		Vector2.ZERO, buttMoveAmount, .25,
 		Tween.TRANS_ELASTIC, Tween.EASE_OUT)
-	catTween.start()
+	var _start = catTween.start()
 	
 	
 	
 	$CatTop/CatTail.rotation_degrees += tailRotationAmount
 	currentPets += 1
-	$CatSounds.PlayCatPurr()
+	
+	catSounds.PlayCatPurr()
 	
 	if currentPets >= maxPets:
 		canPet = false

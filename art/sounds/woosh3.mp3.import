@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/woosh3.mp3-765c6daf37aa9a76c932ff3adcafff5f.mp3str"
+
+[deps]
+
+source_file="res://art/sounds/woosh3.mp3"
+dest_files=[ "res://.import/woosh3.mp3-765c6daf37aa9a76c932ff3adcafff5f.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

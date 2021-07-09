@@ -11,6 +11,8 @@ signal scale_changed(scale)
 
 onready var arm = get_parent().get_node("arm")
 
+var overlap_ratio = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -83,6 +85,7 @@ func _on_arm_arm_moved():
 	var sun_area = get_sun_area()
 	
 	var ratio = overlap_area / sun_area
+	overlap_ratio = ratio
 	
 	if overlap_area == 0:
 		var dist = compute_shortest_distance()
@@ -91,7 +94,7 @@ func _on_arm_arm_moved():
 		var scale = MIN_IDLE_SCALE+ratio
 		$glare.scale = Vector2(scale,scale)
 	else :
-		var scale = scale_curve.interpolate(ratio*ratio)
+		var scale = scale_curve.interpolate(ratio)
 		$glare.scale = Vector2(scale,scale)
 		
 	emit_signal("scale_changed", $glare.scale.x)

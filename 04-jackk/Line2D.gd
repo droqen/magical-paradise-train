@@ -1,11 +1,10 @@
-extends Node2D
+extends Line2D
 
 
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
 
-signal rot_changed(delta)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -16,13 +15,19 @@ func _ready():
 #func _process(delta):
 #	pass
 
+var t = 0
+
 func _on_NavdiCursorFollower_cursor_updated():
 	var cursor_pos = get_parent().get_node("NavdiCursorFollower").cursor_position
-	var new_rot = -PI/6 + (cursor_pos.x/90.0 * PI/2)
-	new_rot = min(PI/2*1.1,new_rot)
-	new_rot = max(PI/2/9,new_rot)
-	var rot_delta = new_rot - rotation
-	if abs(rot_delta) > 0.0001:
-		rotation = new_rot
-		emit_signal("rot_changed", rot_delta)
+	var sun_ratio = get_parent().get_node("sun").overlap_ratio
 	
+	#var a = 30 + cursor_pos.y
+	#var b = 60 + cursor_pos.x
+	#var t = (a+b)/5000.0
+	t += randf()/5
+	#var r = int(a+b) % 40 + 30
+	var r = 70
+	var weird_position = Vector2(80+r*sin(t), 80+r*cos(t))
+	var good_pos = Vector2(120,85)
+	
+	global_position = weird_position.linear_interpolate(good_pos, sun_ratio)

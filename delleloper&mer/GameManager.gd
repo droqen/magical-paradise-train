@@ -44,9 +44,14 @@ func onGameStart():
 
 func finished(result):
 	if result:
+		$Particles2D.emitting = true
+		timer.disconnect("timeout",self,"gameLost")
 		for p in pockets:
 				p.gameover = true
+		animator.play("open")
 		yield(get_tree().create_timer(1.5),"timeout")
+		animator.play("trainStarts")
+		yield(animator,"animation_finished")
 		get_parent().emit_signal("player_won")
 	else:
 		lives -= 1
@@ -54,7 +59,6 @@ func finished(result):
 			timer.stop()
 			yield(get_tree().create_timer(1.2),"timeout")
 			gameLost()
-
 
 func gameLost():
 	for p in pockets:

@@ -112,14 +112,14 @@ tracks/2/keys = {
 }
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 32.75, 8.44123 )
+extents = Vector2( 32.75, 7.42534 )
 
 [node name="Pocket" type="Area2D"]
 script = ExtResource( 2 )
 
 [node name="item" type="Node2D" parent="."]
 show_behind_parent = true
-position = Vector2( 0, -10 )
+position = Vector2( 0, -6.431 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Slide = SubResource( 1 )
@@ -137,7 +137,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -3.8147e-06, 0.471937 )
+position = Vector2( 0.44595, 2.92106 )
 shape = SubResource( 4 )
 
 [connection signal="area_entered" from="." to="." method="_on_Pocket_area_entered"]

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/keanu.png-d1ff09b1bfc860646be87245566cb626.stex"
+path="res://.import/Fondo_fondo_.png-0479662cab3dbbd735e580b77127a431.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://delleloper&mer/assets/keanu.png"
-dest_files=[ "res://.import/keanu.png-d1ff09b1bfc860646be87245566cb626.stex" ]
+source_file="res://delleloper&mer/assets/Fondo_fondo_.png"
+dest_files=[ "res://.import/Fondo_fondo_.png-0479662cab3dbbd735e580b77127a431.stex" ]
 
 [params]
 

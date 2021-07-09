@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Gabe/PetTheCat/CatSounds.gd" type="Script" id=1]
+[ext_resource path="res://Gabe/sfx/CatPurrs/cat_purr-01.wav" type="AudioStream" id=2]
+
+[node name="CatSounds" type="AudioStreamPlayer"]
+stream = ExtResource( 2 )
+script = ExtResource( 1 )

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/beachgoers-and-surf.mp3-72788fa72fd0cf65fbd54dc535ae5893.mp3str"
+
+[deps]
+
+source_file="res://art/sounds/beachgoers-and-surf.mp3"
+dest_files=[ "res://.import/beachgoers-and-surf.mp3-72788fa72fd0cf65fbd54dc535ae5893.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

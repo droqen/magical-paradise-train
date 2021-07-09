@@ -1,7 +1,9 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://art/sewers.tres" type="TileSet" id=1]
 [ext_resource path="res://art/sewers.png" type="Texture" id=2]
+[ext_resource path="res://03-pancelor/cheese.gd" type="Script" id=3]
+[ext_resource path="res://03-pancelor/Generator.gd" type="Script" id=4]
 [ext_resource path="res://navdi2/Node Scripts/Board/NavdiBoardTileMap.gd" type="Script" id=5]
 [ext_resource path="res://navdi2/Node Scripts/Pin/NavdiPinQuickPlayer.gd" type="Script" id=6]
 [ext_resource path="res://00-core/SubwayStopBoard.gd" type="Script" id=7]
@@ -10,7 +12,7 @@
 [ext_resource path="res://navdi2/Node Scripts/NavdiSheetSprite.gd" type="Script" id=12]
 [ext_resource path="res://03-pancelor/player.gd" type="Script" id=13]
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 2.9, 2.9 )
 
 [node name="NavdiBoard" type="Node2D"]
@@ -19,11 +21,11 @@ script = ExtResource( 7 )
 board_view_size = Vector2( 160, 160 )
 show_outline = true
 
+[node name="Generator" type="Node" parent="."]
+script = ExtResource( 4 )
+
 [node name="State" type="Node2D" parent="."]
 script = ExtResource( 8 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="NavdiBoardTileMap" type="TileMap" parent="State"]
 tile_set = ExtResource( 1 )
@@ -58,7 +60,7 @@ _rate = 8.0
 _editor_sheet = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="player"]
-shape = SubResource( 4 )
+shape = SubResource( 1 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -71,12 +73,12 @@ stream = ExtResource( 11 )
 
 [node name="cheese" type="KinematicBody2D" parent="."]
 position = Vector2( -19.4446, 12.1696 )
+script = ExtResource( 3 )
 
 [node name="NavdiSheetSprite" type="Sprite" parent="cheese"]
 texture = ExtResource( 2 )
 hframes = 10
 vframes = 2
-frame = 1
 script = ExtResource( 12 )
 __meta__ = {
 "_edit_lock_": true
@@ -85,7 +87,7 @@ _rate = 0.75
 _editor_sheet = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="cheese"]
-shape = SubResource( 4 )
+shape = SubResource( 1 )
 __meta__ = {
 "_edit_lock_": true
 }

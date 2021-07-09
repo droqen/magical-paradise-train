@@ -9,6 +9,8 @@ var preloaded_microgame: MicrogameMetadata = null
 export(Curve)var viewport_slide_in
 export(Curve)var viewport_slide_out
 
+var microgame_instance = null
+
 onready var train_car = $"../TrainCar"
 
 enum MgState{
@@ -57,6 +59,7 @@ func unload_current_scene():
 		vp.remove_child(child)
 		child.queue_free()
 	self.current_microgame = null
+	self.microgame_instance = null
 
 func set_current_microgame(mg: MicrogameMetadata):
 	unload_current_scene()
@@ -64,13 +67,13 @@ func set_current_microgame(mg: MicrogameMetadata):
 	var nvw = $"../MarginContainer/NavdiViewerWindow"
 	var vpc = $"../MarginContainer/NavdiViewerWindow/ViewportContainer"
 	var vp = $"../MarginContainer/NavdiViewerWindow/ViewportContainer/Viewport"
-	var scene = current_microgame.microgame_scene.instance()
-	vp.add_child(scene)
-	scene.owner = vp.owner
+	microgame_instance = current_microgame.microgame_scene.instance()
+	vp.add_child(microgame_instance)
+	microgame_instance.owner = vp.owner
 	vpc.show()
 	
-	scene.connect("player_won", self, "set_microgame_state", [MgState.DoorsClosing])
-	scene.connect("player_lost", self, "set_microgame_state", [MgState.DoorsClosing])
+	microgame_instance.connect("player_won", self, "set_microgame_state", [MgState.DoorsClosing])
+	microgame_instance.connect("player_lost", self, "set_microgame_state", [MgState.DoorsClosing])
 	
 	nvw.match_board_size()
 	
@@ -92,6 +95,8 @@ func _process(delta):
 			_update_slide_position()
 			if stateTimer > stateDuration:
 				set_microgame_state(MgState.PlayingTheGame)
+				print(microgame_instance.name)
+				microgame_instance.on_game_start()
 		MgState.PlayingTheGame:
 			# do nothing. wait for the game to end itself.
 			pass

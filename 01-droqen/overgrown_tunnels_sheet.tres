@@ -3,6 +3,7 @@
 [ext_resource path="res://navdi2/Utility Scripts/NavdiSheet.gd" type="Script" id=1]
 
 [sub_resource type="StreamTexture" id=1]
+flags = 4
 load_path = "res://.import/overgrown_tunnels.png-01530c566b07a0e69eacef7b63746234.stex"
 
 [resource]

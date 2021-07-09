@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/cat_purr-02.wav-fbe0e0612ce3277c240b8e83424d1d6e.sample"
+
+[deps]
+
+source_file="res://Gabe/sfx/CatPurrs/cat_purr-02.wav"
+dest_files=[ "res://.import/cat_purr-02.wav-fbe0e0612ce3277c240b8e83424d1d6e.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

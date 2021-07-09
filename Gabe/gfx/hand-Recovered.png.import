@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/CatTop.png-f713b153c4a9a8150b8ae36898e4afe2.stex"
+path="res://.import/hand-Recovered.png-98a09d39543a457a1e4ba11059c4952d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://04_Gabe/gfx/CatTop.png"
-dest_files=[ "res://.import/CatTop.png-f713b153c4a9a8150b8ae36898e4afe2.stex" ]
+source_file="res://Gabe/gfx/hand-Recovered.png"
+dest_files=[ "res://.import/hand-Recovered.png-98a09d39543a457a1e4ba11059c4952d.stex" ]
 
 [params]
 

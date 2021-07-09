@@ -1,23 +1,25 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
-[ext_resource path="res://04_Gabe/gfx/PetTheCatBG.png" type="Texture" id=1]
+[ext_resource path="res://Gabe/gfx/PetTheCatBG.png" type="Texture" id=1]
 [ext_resource path="res://navdi2/Node Scripts/Board/NavdiBoardState.gd" type="Script" id=2]
-[ext_resource path="res://04_Gabe/gfx/hand-Recovered.png" type="Texture" id=3]
+[ext_resource path="res://Gabe/gfx/hand-Recovered.png" type="Texture" id=3]
 [ext_resource path="res://navdi2/Node Scripts/Cursor/NavdiCursorFollower.gd" type="Script" id=4]
-[ext_resource path="res://04_Gabe/Shaders/BlackOutlineMaterial.tres" type="Material" id=5]
+[ext_resource path="res://Gabe/Shaders/BlackOutlineMaterial.tres" type="Material" id=5]
 [ext_resource path="res://00-core/SubwayStopBoard.gd" type="Script" id=6]
-[ext_resource path="res://04_Gabe/PetTheCat/CatBodyPolygon2D.gd" type="Script" id=7]
-[ext_resource path="res://04_Gabe/gfx/CatLeg.png" type="Texture" id=8]
-[ext_resource path="res://04_Gabe/gfx/CatTop.png" type="Texture" id=9]
-[ext_resource path="res://04_Gabe/gfx/CatFront.png" type="Texture" id=10]
-[ext_resource path="res://04_Gabe/PetTheCat/TheCat.gd" type="Script" id=11]
-[ext_resource path="res://04_Gabe/gfx/CatTail.png" type="Texture" id=12]
-[ext_resource path="res://04_Gabe/PetTheCat/PetTheCatGame.gd" type="Script" id=13]
+[ext_resource path="res://Gabe/PetTheCat/CatBodyPolygon2D.gd" type="Script" id=7]
+[ext_resource path="res://Gabe/gfx/CatLeg.png" type="Texture" id=8]
+[ext_resource path="res://Gabe/gfx/CatTop.png" type="Texture" id=9]
+[ext_resource path="res://Gabe/gfx/CatFront.png" type="Texture" id=10]
+[ext_resource path="res://Gabe/PetTheCat/TheCat.gd" type="Script" id=11]
+[ext_resource path="res://Gabe/gfx/CatTail.png" type="Texture" id=12]
+[ext_resource path="res://Gabe/PetTheCat/PetTheCatGame.gd" type="Script" id=13]
+[ext_resource path="res://Gabe/PetTheCat/CatSounds.gd" type="Script" id=14]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 18.8103, 10.3745 )
+extents = Vector2( 13.4042, 6.6338 )
 
 [sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 7.80413, 11.1493 )
 
 [node name="PetTheCatNavdiBoard" type="Node2D"]
 position = Vector2( 80, 80 )
@@ -39,7 +41,7 @@ script = ExtResource( 11 )
 
 [node name="CatBodyPolygon2D" type="Polygon2D" parent="PetTheCatGame/TheCat"]
 color = Color( 0.545098, 0.329412, 0.160784, 1 )
-polygon = PoolVector2Array( -14.2572, 9.82291, -13.2561, 35.5186, -37.7838, 36.3529, -46.6271, 8.65493 )
+polygon = PoolVector2Array( -14.2044, 6.28936, -8.17113, 36.3152, -44.5108, 35.6137, -45.493, 9.65675 )
 script = ExtResource( 7 )
 Width = 3.0
 
@@ -71,6 +73,34 @@ position = Vector2( 6.01357, 10.0226 )
 position = Vector2( -9.01357, 27.9774 )
 texture = ExtResource( 12 )
 
+[node name="ClosedEyes" type="Polygon2D" parent="PetTheCatGame/TheCat"]
+position = Vector2( 0, -0.0468216 )
+color = Color( 0.545098, 0.329412, 0.160784, 1 )
+polygon = PoolVector2Array( 40.0947, -1.00665, 57.072, -1.00665, 57.5995, 4.30947, 40.656, 4.74597 )
+
+[node name="Line2D" type="Line2D" parent="PetTheCatGame/TheCat/ClosedEyes"]
+points = PoolVector2Array( 41.8672, 2.15565, 45.0511, 2.15565 )
+width = 2.0
+default_color = Color( 0, 0, 0, 1 )
+
+[node name="Line2D2" type="Line2D" parent="PetTheCatGame/TheCat/ClosedEyes"]
+position = Vector2( 9.87946, 0 )
+points = PoolVector2Array( 41.8672, 2.15565, 45.0511, 2.15565 )
+width = 2.0
+default_color = Color( 0, 0, 0, 1 )
+
+[node name="CatSounds" type="AudioStreamPlayer" parent="PetTheCatGame/TheCat"]
+script = ExtResource( 14 )
+
+[node name="StartTimer" type="Timer" parent="PetTheCatGame/TheCat"]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[node name="EndGameTimer" type="Timer" parent="PetTheCatGame"]
+wait_time = 1.5
+one_shot = true
+
 [node name="NavdiCursorFollower" type="Node2D" parent="."]
 position = Vector2( -29.2601, -40.3506 )
 script = ExtResource( 4 )
@@ -84,4 +114,6 @@ texture = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NavdiCursorFollower/Area2D"]
 shape = SubResource( 2 )
-[connection signal="area_entered" from="PetTheCatGame/TheCat/CatTop/Area2D" to="PetTheCatGame/TheCat" method="OnCatPet"]
+
+[connection signal="game_start" from="." to="PetTheCatGame/TheCat" method="OnGameStart"]
+[connection signal="area_exited" from="PetTheCatGame/TheCat/CatTop/Area2D" to="PetTheCatGame/TheCat" method="OnCatPet"]

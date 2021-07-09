@@ -1,10 +1,41 @@
-[gd_resource type="Resource" load_steps=3 format=2]
+[gd_resource type="Resource" load_steps=18 format=2]
 
 [ext_resource path="res://00-core/MicrogameMetadata.gd" type="Script" id=1]
-[ext_resource path="res://04_Gabe/PetTheCat/PetTheCat.tscn" type="PackedScene" id=2]
+[ext_resource path="res://00-core/SubwayStopBoard.gd" type="Script" id=2]
+[ext_resource path="res://Gabe/PetTheCat/TheCat.gd" type="Script" id=3]
+[ext_resource path="res://navdi2/Node Scripts/Board/NavdiBoardState.gd" type="Script" id=4]
+[ext_resource path="res://Gabe/PetTheCat/PetTheCatGame.gd" type="Script" id=5]
+[ext_resource path="res://navdi2/Node Scripts/Cursor/NavdiCursorFollower.gd" type="Script" id=6]
+[ext_resource path="res://Gabe/PetTheCat/CatBodyPolygon2D.gd" type="Script" id=7]
+[ext_resource path="res://Gabe/gfx/CatLeg.png" type="Texture" id=8]
+[ext_resource path="res://Gabe/gfx/hand-Recovered.png" type="Texture" id=9]
+[ext_resource path="res://Gabe/gfx/CatTail.png" type="Texture" id=10]
+[ext_resource path="res://Gabe/gfx/CatTop.png" type="Texture" id=11]
+[ext_resource path="res://Gabe/gfx/CatFront.png" type="Texture" id=12]
+[ext_resource path="res://Gabe/Shaders/BlackOutlineMaterial.tres" type="Material" id=13]
+[ext_resource path="res://Gabe/gfx/PetTheCatBG.png" type="Texture" id=14]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 13.4042, 6.6338 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 7.80413, 11.1493 )
+
+[sub_resource type="PackedScene" id=3]
+_bundled = {
+"conn_count": 1,
+"conns": PoolIntArray( 1073741845, 1073741844, 85, 84, 2, 0 ),
+"editable_instances": [  ],
+"names": PoolStringArray( "PetTheCatNavdiBoard", "Node2D", "position", "script", "board_view_size", "show_outline", "State", "Node2D", "script", "PetTheCatGame", "Node2D", "script", "BG", "Sprite", "texture", "TheCat", "Node2D", "script", "CatBodyPolygon2D", "Polygon2D", "color", "polygon", "script", "Width", "CatFront", "Sprite", "position", "texture", "centered", "CatLeg", "Sprite", "position", "texture", "centered", "CatTop", "Sprite", "position", "texture", "centered", "Area2D", "Area2D", "CollisionShape2D", "CollisionShape2D", "position", "shape", "CatTail", "Node2D", "position", "Sprite", "Sprite", "position", "texture", "ClosedEyes", "Polygon2D", "position", "color", "polygon", "Line2D", "Line2D", "points", "width", "default_color", "Line2D2", "Line2D", "position", "points", "width", "default_color", "EndGameTimer", "Timer", "NavdiCursorFollower", "Node2D", "position", "script", "get_cursor_from_group", "Sprite", "Sprite", "material", "texture", "Area2D", "Area2D", "CollisionShape2D", "CollisionShape2D", "shape", "OnCatPet", "area_exited" ),
+"node_count": 21,
+"node_paths": [ NodePath("."), NodePath("."), NodePath("./PetTheCatGame"), NodePath("./PetTheCatGame"), NodePath("./PetTheCatGame/TheCat"), NodePath("./PetTheCatGame/TheCat"), NodePath("./PetTheCatGame/TheCat"), NodePath("./PetTheCatGame/TheCat"), NodePath("./PetTheCatGame/TheCat/CatTop"), NodePath("./PetTheCatGame/TheCat/CatTop/Area2D"), NodePath("./PetTheCatGame/TheCat/CatTop"), NodePath("./PetTheCatGame/TheCat/CatTop/CatTail"), NodePath("./PetTheCatGame/TheCat"), NodePath("./PetTheCatGame/TheCat/ClosedEyes"), NodePath("./PetTheCatGame/TheCat/ClosedEyes"), NodePath("./PetTheCatGame"), NodePath("."), NodePath("./NavdiCursorFollower"), NodePath("./NavdiCursorFollower"), NodePath("./NavdiCursorFollower/Area2D"), NodePath("PetTheCatGame/TheCat"), NodePath("PetTheCatGame/TheCat/CatTop/Area2D") ],
+"nodes": PoolIntArray( -1, -1, 1, 0, -1, 4, 2, 0, 3, 1, 4, 2, 5, 3, 0, 1073741824, 0, 7, 6, -1, 1, 8, 4, 0, 1073741825, 0, 10, 9, -1, 1, 11, 5, 0, 1073741826, 0, 13, 12, -1, 1, 14, 6, 0, 1073741827, 0, 16, 15, -1, 1, 17, 7, 0, 1073741828, 0, 19, 18, -1, 4, 20, 8, 21, 9, 22, 10, 23, 11, 0, 1073741829, 0, 25, 24, -1, 3, 26, 12, 27, 13, 28, 14, 0, 1073741830, 0, 30, 29, -1, 3, 31, 15, 32, 16, 33, 17, 0, 1073741831, 0, 35, 34, -1, 3, 36, 18, 37, 19, 38, 20, 0, 1073741832, 0, 40, 39, -1, 0, 0, 1073741833, 0, 42, 41, -1, 2, 43, 21, 44, 22, 0, 1073741834, 0, 46, 45, -1, 1, 47, 23, 0, 1073741835, 0, 49, 48, -1, 2, 50, 24, 51, 25, 0, 1073741836, 0, 53, 52, -1, 3, 54, 26, 55, 27, 56, 28, 0, 1073741837, 0, 58, 57, -1, 3, 59, 29, 60, 30, 61, 31, 0, 1073741838, 0, 63, 62, -1, 4, 64, 32, 65, 33, 66, 34, 67, 35, 0, 1073741839, 0, 69, 68, -1, 0, 0, 1073741840, 0, 71, 70, -1, 3, 72, 36, 73, 37, 74, 38, 0, 1073741841, 0, 76, 75, -1, 2, 77, 39, 78, 40, 0, 1073741842, 0, 80, 79, -1, 0, 0, 1073741843, 0, 82, 81, -1, 1, 83, 41, 0 ),
+"variants": [ Vector2( 80, 80 ), ExtResource( 2 ), Vector2( 160, 160 ), true, ExtResource( 4 ), ExtResource( 5 ), ExtResource( 14 ), ExtResource( 3 ), Color( 0.545098, 0.329412, 0.160784, 1 ), PoolVector2Array( -14.2044, 6.28936, -8.17113, 36.3152, -44.5108, 35.6137, -45.493, 9.65675 ), ExtResource( 7 ), 3.0, Vector2( -14, -20 ), ExtResource( 12 ), false, Vector2( -43.3549, 22.8328 ), ExtResource( 8 ), false, Vector2( -48, 1 ), ExtResource( 11 ), false, Vector2( 14.0317, 6.45901 ), SubResource( 1 ), Vector2( 6.01357, 10.0226 ), Vector2( -9.01357, 27.9774 ), ExtResource( 10 ), Vector2( 0, -0.0468216 ), Color( 0.545098, 0.329412, 0.160784, 1 ), PoolVector2Array( 40.0947, -1.00665, 57.072, -1.00665, 57.5995, 4.30947, 40.656, 4.74597 ), PoolVector2Array( 41.8672, 2.15565, 45.0511, 2.15565 ), 2.0, Color( 0, 0, 0, 1 ), Vector2( 9.87946, 0 ), PoolVector2Array( 41.8672, 2.15565, 45.0511, 2.15565 ), 2.0, Color( 0, 0, 0, 1 ), Vector2( -29.2601, -40.3506 ), ExtResource( 6 ), "SuperCursor", ExtResource( 13 ), ExtResource( 9 ), SubResource( 2 ) ],
+"version": 2
+}
 
 [resource]
 script = ExtResource( 1 )
-microgame_scene = ExtResource( 2 )
+microgame_scene = SubResource( 3 )
 microgame_name = "Pet The Cat"
 author_name = "Gab"

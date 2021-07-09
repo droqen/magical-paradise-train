@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/CatLeg.png-045957256358ba15a7aafdc6f1b78d3e.stex"
+path="res://.import/CatFront.png-881e5d5587c866eef5b5a97848a5b743.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://04_Gabe/gfx/CatLeg.png"
-dest_files=[ "res://.import/CatLeg.png-045957256358ba15a7aafdc6f1b78d3e.stex" ]
+source_file="res://Gabe/gfx/CatFront.png"
+dest_files=[ "res://.import/CatFront.png-881e5d5587c866eef5b5a97848a5b743.stex" ]
 
 [params]
 

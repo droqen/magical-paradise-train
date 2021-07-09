@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/PetTheCatBG.png-73e0a6f03a70191e7972967f986a5582.stex"
+path="res://.import/lumpy_rocks_strip-Recovered.png-640105f1f7a3a7a94f3a0c7383b8fa7d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://04_Gabe/gfx/PetTheCatBG.png"
-dest_files=[ "res://.import/PetTheCatBG.png-73e0a6f03a70191e7972967f986a5582.stex" ]
+source_file="res://Gabe/gfx/lumpy_rocks_strip-Recovered.png"
+dest_files=[ "res://.import/lumpy_rocks_strip-Recovered.png-640105f1f7a3a7a94f3a0c7383b8fa7d.stex" ]
 
 [params]
 

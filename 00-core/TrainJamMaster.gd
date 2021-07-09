@@ -1,10 +1,8 @@
 extends Node
 
-var microgame_index = 0
-
 export(PackedScene)var test_microgame_scene: PackedScene = null
-export(bool)var test_microgame_repeating = true
-export(Array, Resource)var microgames = []
+export(Array, Resource)var all_microgames = [] # a list of all available microgames
+var microgame_stack: Array = [] # pop from this to get the next microgame
 
 var current_microgame: MicrogameMetadata = null
 var preloaded_microgame: MicrogameMetadata = null
@@ -41,14 +39,14 @@ func preload_next_microgame():
 		test_microgame.microgame_name = "Test"
 		test_microgame.microgame_name = "YOU"
 		test_microgame.microgame_scene = test_microgame_scene
-		if not test_microgame_repeating:
-			test_microgame_scene = null
 		preload_microgame(test_microgame)
 	else:
-		preload_microgame(microgames[microgame_index])
-		microgame_index += 1
-		if microgame_index >= len(microgames):
-			microgame_index = 0
+		if len(microgame_stack)==0:
+			microgame_stack=all_microgames.duplicate()
+			microgame_stack.shuffle()
+		var mg=microgame_stack.pop_back()
+		assert(mg, "TrainJamMaster.all_microgames is empty; add some!")
+		preload_microgame(mg)
 
 func preload_microgame(mg: MicrogameMetadata):
 	preloaded_microgame = mg
@@ -105,7 +103,7 @@ func _process(delta):
 		MgState.DoorsClosing:
 			_update_slide_position()
 			if stateTimer > stateDuration:
-				print("yep ",stateTimer, " > ",stateDuration)
+#				print("yep ",stateTimer, " > ",stateDuration)
 				set_microgame_state(MgState.GameSlidingOut)
 		MgState.GameSlidingOut:
 			_update_slide_position()

@@ -1,0 +1,175 @@
+[gd_scene load_steps=22 format=2]
+
+[ext_resource path="res://delleloper&mer/assets/Mano_Mouse.png" type="Texture" id=1]
+[ext_resource path="res://navdi2/Node Scripts/Board/NavdiBoardState.gd" type="Script" id=2]
+[ext_resource path="res://delleloper&mer/GameManager.gd" type="Script" id=3]
+[ext_resource path="res://navdi2/Node Scripts/Cursor/NavdiCursorFollower.gd" type="Script" id=4]
+[ext_resource path="res://delleloper&mer/Pocket.tscn" type="PackedScene" id=5]
+[ext_resource path="res://00-core/SubwayStopBoard.gd" type="Script" id=6]
+[ext_resource path="res://delleloper&mer/assets/Wombat.png" type="Texture" id=7]
+[ext_resource path="res://delleloper&mer/assets/forro.png" type="Texture" id=8]
+[ext_resource path="res://delleloper&mer/assets/Tarjetero_base.png" type="Texture" id=9]
+[ext_resource path="res://delleloper&mer/assets/Fondo.png" type="Texture" id=10]
+[ext_resource path="res://delleloper&mer/assets/keanu_peque.png" type="Texture" id=11]
+[ext_resource path="res://delleloper&mer/assets/cucaracha.png" type="Texture" id=12]
+[ext_resource path="res://delleloper&mer/assets/TheGame.png" type="Texture" id=13]
+[ext_resource path="res://delleloper&mer/assets/Paradise.png" type="Texture" id=14]
+[ext_resource path="res://delleloper&mer/assets/CienPesos.png" type="Texture" id=15]
+[ext_resource path="res://delleloper&mer/assets/instructions.png" type="Texture" id=16]
+[ext_resource path="res://delleloper&mer/assets/subte.png" type="Texture" id=17]
+
+[sub_resource type="Animation" id=1]
+resource_name = "show"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Wallet:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 0.8 ),
+"transitions": PoolRealArray( -2, -2, -2 ),
+"update": 0,
+"values": [ Vector2( -1.994, 126.776 ), Vector2( -1.994, 20 ), Vector2( -1.99368, 31.8628 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../instructions:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.2, 0.5, 0.8, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 100.051 ), Vector2( 0, -40.136 ), Vector2( 0, -33.569 ), Vector2( 0, -33.569 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../instructions:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5, 0.7, 0.8, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.1, 0.1 ), Vector2( 1.1, 1.1 ), Vector2( 1, 1 ), Vector2( 1, 1 ), Vector2( 2.5, 2.5 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("../instructions:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.8, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "trainArrive"
+tracks/0/type = "value"
+tracks/0/path = NodePath("../subte:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4, 1 ),
+"transitions": PoolRealArray( -2, -2, -2 ),
+"update": 0,
+"values": [ Vector2( -162.281, -42.0024 ), Vector2( 5.30331, -42.0024 ), Vector2( 0, -42.002 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "trainStarts"
+tracks/0/type = "value"
+tracks/0/path = NodePath("../subte:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 1 ),
+"transitions": PoolRealArray( -2, -2, -2 ),
+"update": 0,
+"values": [ Vector2( 0, -42.002 ), Vector2( -1.974, -42.002 ), Vector2( 163.189, -42.002 ) ]
+}
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 4.29516
+
+[node name="NavdiBoard" type="Node2D"]
+position = Vector2( 80, 80 )
+script = ExtResource( 6 )
+board_view_size = Vector2( 160, 160 )
+show_outline = true
+
+[node name="Fondo" type="Sprite" parent="."]
+texture = ExtResource( 10 )
+
+[node name="subte" type="Sprite" parent="."]
+position = Vector2( 0, -42.002 )
+texture = ExtResource( 17 )
+
+[node name="State" type="Node2D" parent="."]
+script = ExtResource( 2 )
+
+[node name="GameManager" type="Node2D" parent="."]
+script = ExtResource( 3 )
+textures = [ ExtResource( 12 ), ExtResource( 8 ), ExtResource( 7 ), ExtResource( 11 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ) ]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GameManager"]
+anims/show = SubResource( 1 )
+anims/trainArrive = SubResource( 3 )
+anims/trainStarts = SubResource( 4 )
+
+[node name="Wallet" type="Sprite" parent="GameManager"]
+position = Vector2( -1.994, 126.776 )
+texture = ExtResource( 9 )
+
+[node name="Pocket" parent="GameManager/Wallet" instance=ExtResource( 5 )]
+position = Vector2( -36.759, -17.4429 )
+
+[node name="Pocket2" parent="GameManager/Wallet" instance=ExtResource( 5 )]
+position = Vector2( 35.3492, -17.8968 )
+
+[node name="Pocket3" parent="GameManager/Wallet" instance=ExtResource( 5 )]
+position = Vector2( -37.579, 3.18793 )
+
+[node name="Pocket4" parent="GameManager/Wallet" instance=ExtResource( 5 )]
+position = Vector2( 36.1272, 1.48304 )
+
+[node name="Pocket5" parent="GameManager/Wallet" instance=ExtResource( 5 )]
+position = Vector2( -37.0208, 23.0862 )
+
+[node name="Pocket6" parent="GameManager/Wallet" instance=ExtResource( 5 )]
+position = Vector2( 35.6552, 22.5422 )
+
+[node name="Timer" type="Timer" parent="GameManager"]
+
+[node name="instructions" type="Sprite" parent="."]
+position = Vector2( 0, 100.051 )
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 16 )
+
+[node name="Cursor" type="Node2D" parent="."]
+script = ExtResource( 4 )
+get_cursor_from_group = "SuperCursor"
+
+[node name="pointer" type="Area2D" parent="Cursor"]
+position = Vector2( 10.6787, 14.0158 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cursor/pointer"]
+shape = SubResource( 2 )
+
+[node name="icon" type="Sprite" parent="Cursor"]
+position = Vector2( 49.5717, 65.8456 )
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 1 )
+
+[connection signal="timeout" from="GameManager/Timer" to="GameManager" method="gameLost"]

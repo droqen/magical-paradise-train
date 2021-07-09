@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://00-core/MicrogameMetadata.gd" type="Script" id=1]
+[ext_resource path="res://delleloper&mer/delleloperGame.tscn" type="PackedScene" id=2]
+
+[resource]
+script = ExtResource( 1 )
+microgame_scene = ExtResource( 2 )
+microgame_name = "Where'smysube"
+author_name = "Delleloper and Mer"

@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://delleloper&mer/assets/black.png" type="Texture" id=1]
+[ext_resource path="res://delleloper&mer/assets/forro.png" type="Texture" id=2]
+[ext_resource path="res://delleloper&mer/Card.gd" type="Script" id=3]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform sampler2D mask_texture;
+
+void fragment() {
+    vec4 colour = texture(TEXTURE, UV);
+    colour.a *= texture(mask_texture, UV).a;
+    COLOR = colour;
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/mask_texture = ExtResource( 1 )
+
+[node name="Node2D" type="Sprite"]
+material = SubResource( 2 )
+position = Vector2( 0.25, -5.25 )
+texture = ExtResource( 2 )
+offset = Vector2( 0.304, 20.038 )
+script = ExtResource( 3 )
+correct = false

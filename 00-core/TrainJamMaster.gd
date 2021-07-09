@@ -30,8 +30,17 @@ func _ready():
 	load_first_game()
 
 func load_first_game():
-	set_microgame_state(MgState.ChillingABit)
-	stateTimer = stateDuration # instantly slide in
+	if test_microgame_scene:
+		load_next_microgame()
+		set_microgame_state(MgState.DoorsOpening)
+	else:
+		set_microgame_state(MgState.ChillingABit)
+		stateTimer = stateDuration # instantly slide in
+
+func load_next_microgame():
+	preload_next_microgame()
+	set_current_microgame(preloaded_microgame)
+	preloaded_microgame = null
 
 func preload_next_microgame():
 	if test_microgame_scene:
@@ -83,9 +92,7 @@ func _process(delta):
 	match microgameState:
 		MgState.ChillingABit:
 			if stateTimer > stateDuration:
-				preload_next_microgame()
-				set_current_microgame(preloaded_microgame)
-				preloaded_microgame = null
+				load_next_microgame()
 				set_microgame_state(MgState.GameSlidingIn)
 		MgState.GameSlidingIn:
 			_update_slide_position()

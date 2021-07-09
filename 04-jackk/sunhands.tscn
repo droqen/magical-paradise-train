@@ -1,0 +1,168 @@
+[gd_scene load_steps=24 format=2]
+
+[ext_resource path="res://navdi2/Node Scripts/Cursor/NavdiCursorFollower.gd" type="Script" id=1]
+[ext_resource path="res://00-core/SubwayStopBoard.gd" type="Script" id=2]
+[ext_resource path="res://navdi2/Node Scripts/Board/NavdiBoardState.gd" type="Script" id=3]
+[ext_resource path="res://art/images/beachwater-small.png" type="Texture" id=4]
+[ext_resource path="res://art/images/arm-small.png" type="Texture" id=5]
+[ext_resource path="res://art/images/sun.png" type="Texture" id=6]
+[ext_resource path="res://art/images/sunglare.png" type="Texture" id=7]
+[ext_resource path="res://04-jackk/sun.gd" type="Script" id=8]
+[ext_resource path="res://04-jackk/arm.gd" type="Script" id=9]
+[ext_resource path="res://04-jackk/armwave.gd" type="Script" id=10]
+[ext_resource path="res://art/images/rattube.png" type="Texture" id=11]
+[ext_resource path="res://04-jackk/wincheck.gd" type="Script" id=12]
+[ext_resource path="res://01-droqen/Pickup_Coin3.wav" type="AudioStream" id=13]
+[ext_resource path="res://art/sounds/ahhh.wav" type="AudioStream" id=14]
+[ext_resource path="res://04-jackk/beach.gd" type="Script" id=15]
+[ext_resource path="res://art/sounds/beachgoers-and-surf.mp3" type="AudioStream" id=16]
+[ext_resource path="res://art/sounds/woosh3.mp3" type="AudioStream" id=20]
+[ext_resource path="res://04-jackk/Line2D.gd" type="Script" id=21]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 11 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 11 )
+region = Rect2( 16, 0, 16, 16 )
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ) ],
+"loop": true,
+"name": "default",
+"speed": 8.0
+} ]
+
+[sub_resource type="Curve" id=4]
+min_value = 0.2
+max_value = 2.5
+_data = [ Vector2( 0.00072569, 2.47699 ), 0.0, 0.314233, 0, 0, Vector2( 0.498549, 2.18558 ), -0.797549, -0.797549, 0, 0, Vector2( 0.939768, 1.05368 ), -5.71231, -5.71231, 0, 0, Vector2( 0.980406, 0.2 ), -15.1196, 0.0, 0, 0 ]
+
+[sub_resource type="CircleShape2D" id=5]
+radius = 15.0
+
+[node name="NavdiBoard" type="Node2D"]
+position = Vector2( 80, 80 )
+script = ExtResource( 2 )
+board_view_size = Vector2( 160, 160 )
+show_outline = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = -80.0
+margin_top = -80.0
+margin_right = 80.0
+margin_bottom = 80.0
+color = Color( 0.662745, 0.866667, 1, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="beach" type="Sprite" parent="."]
+position = Vector2( 0, 28 )
+texture = ExtResource( 4 )
+script = ExtResource( 15 )
+
+[node name="ambientsounds" type="AudioStreamPlayer" parent="beach"]
+stream = ExtResource( 16 )
+volume_db = -16.0
+
+[node name="State" type="Node2D" parent="."]
+script = ExtResource( 3 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 33.8609, 13.6566 )
+frames = SubResource( 3 )
+playing = true
+
+[node name="wincheck" type="Node2D" parent="."]
+script = ExtResource( 12 )
+
+[node name="NavdiCursorFollower" type="Node2D" parent="wincheck"]
+script = ExtResource( 1 )
+get_cursor_from_group = "SuperCursor"
+
+[node name="sun" type="Node2D" parent="wincheck"]
+position = Vector2( -15.9315, -74.4721 )
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_group_": true
+}
+scale_curve = SubResource( 4 )
+
+[node name="glare" type="Sprite" parent="wincheck/sun"]
+rotation = -2.8532
+scale = Vector2( 3, 3 )
+texture = ExtResource( 7 )
+
+[node name="orb" type="Sprite" parent="wincheck/sun"]
+rotation = -2.8532
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 6 )
+
+[node name="Area2D" type="Area2D" parent="wincheck/sun"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="wincheck/sun/Area2D"]
+shape = SubResource( 5 )
+
+[node name="waver" type="Node2D" parent="wincheck"]
+position = Vector2( -94.7322, 79.29 )
+rotation = 0.122173
+script = ExtResource( 10 )
+
+[node name="arm2" type="Sprite" parent="wincheck/waver"]
+position = Vector2( -15.1852, -50.2547 )
+rotation = -1.5708
+scale = Vector2( 1, -1 )
+texture = ExtResource( 5 )
+
+[node name="arm" type="Sprite" parent="wincheck"]
+position = Vector2( 142.306, 28.282 )
+rotation = -2.8532
+texture = ExtResource( 5 )
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Area2D" type="Area2D" parent="wincheck/arm"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="wincheck/arm/Area2D"]
+polygon = PoolVector2Array( 19.1882, 8.42969, 38.4368, 15.1237, 73.2607, 9.85783, 78.3616, -10.5243, 52.0383, -12.1336, 56.0183, -17.914, 53.9435, -23.4313, 22.1655, -12.1971, -61.2922, -14.4177, -65.5266, 11.7812 )
+
+[node name="get" type="AudioStreamPlayer" parent="wincheck"]
+stream = ExtResource( 13 )
+volume_db = -5.0
+
+[node name="mid" type="AudioStreamPlayer" parent="wincheck"]
+stream = ExtResource( 13 )
+volume_db = -5.0
+pitch_scale = 0.75
+
+[node name="low" type="AudioStreamPlayer" parent="wincheck"]
+stream = ExtResource( 13 )
+volume_db = -5.0
+pitch_scale = 0.6
+
+[node name="ahh" type="AudioStreamPlayer" parent="wincheck"]
+stream = ExtResource( 14 )
+
+[node name="woosh3" type="AudioStreamPlayer" parent="wincheck"]
+stream = ExtResource( 20 )
+
+[node name="Line2D" type="Line2D" parent="wincheck"]
+position = Vector2( 3.56976, -15.329 )
+points = PoolVector2Array( -34.2961, 4.1155, -33.2462, -1.97411, -27.7865, -9.74363, -19.807, -16.8832, -10.1476, -18.3531, 0.351715, -17.5131, 8.5412, -11.4235, 15.0508, -2.1841, 14.8408, 10.4151, 7.70126, 24.6942, -2.5881, 31.2038, -18.3371, 30.7838, -29.2564, 22.3844, -34.2961, 14.1949, -34.0861, 2.22562 )
+width = 7.0
+default_color = Color( 0.4, 0.501961, 1, 1 )
+joint_mode = 2
+script = ExtResource( 21 )
+
+[connection signal="cursor_updated" from="wincheck/NavdiCursorFollower" to="wincheck/arm" method="_on_NavdiCursorFollower_cursor_updated"]
+[connection signal="cursor_updated" from="wincheck/NavdiCursorFollower" to="wincheck/sun" method="_on_NavdiCursorFollower_cursor_updated"]
+[connection signal="cursor_updated" from="wincheck/NavdiCursorFollower" to="wincheck/waver" method="_on_NavdiCursorFollower_cursor_updated"]
+[connection signal="cursor_updated" from="wincheck/NavdiCursorFollower" to="wincheck/Line2D" method="_on_NavdiCursorFollower_cursor_updated"]
+[connection signal="scale_changed" from="wincheck/sun" to="wincheck" method="_on_sun_scale_changed"]
+[connection signal="rot_changed" from="wincheck/waver" to="wincheck" method="_on_waver_rot_changed"]
+[connection signal="arm_moved" from="wincheck/arm" to="wincheck/sun" method="_on_arm_arm_moved"]

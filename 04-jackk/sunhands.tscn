@@ -159,10 +159,10 @@ default_color = Color( 0.4, 0.501961, 1, 1 )
 joint_mode = 2
 script = ExtResource( 21 )
 
-[connection signal="cursor_updated" from="wincheck/NavdiCursorFollower" to="wincheck/arm" method="_on_NavdiCursorFollower_cursor_updated"]
-[connection signal="cursor_updated" from="wincheck/NavdiCursorFollower" to="wincheck/sun" method="_on_NavdiCursorFollower_cursor_updated"]
-[connection signal="cursor_updated" from="wincheck/NavdiCursorFollower" to="wincheck/waver" method="_on_NavdiCursorFollower_cursor_updated"]
 [connection signal="cursor_updated" from="wincheck/NavdiCursorFollower" to="wincheck/Line2D" method="_on_NavdiCursorFollower_cursor_updated"]
+[connection signal="cursor_updated" from="wincheck/NavdiCursorFollower" to="wincheck/arm" method="_on_NavdiCursorFollower_cursor_updated"]
+[connection signal="cursor_updated" from="wincheck/NavdiCursorFollower" to="wincheck/waver" method="_on_NavdiCursorFollower_cursor_updated"]
+[connection signal="cursor_updated" from="wincheck/NavdiCursorFollower" to="wincheck/sun" method="_on_NavdiCursorFollower_cursor_updated"]
 [connection signal="scale_changed" from="wincheck/sun" to="wincheck" method="_on_sun_scale_changed"]
 [connection signal="rot_changed" from="wincheck/waver" to="wincheck" method="_on_waver_rot_changed"]
 [connection signal="arm_moved" from="wincheck/arm" to="wincheck/sun" method="_on_arm_arm_moved"]

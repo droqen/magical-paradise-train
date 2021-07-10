@@ -9,7 +9,7 @@
 [ext_resource path="res://navdi2/Node Scripts/Cursor/NavdiCursorFollower.gd" type="Script" id=7]
 [ext_resource path="res://art/temp_cursor.png" type="Texture" id=8]
 [ext_resource path="res://00-core/TrainJamMaster.gd" type="Script" id=9]
-[ext_resource path="res://01-droqen/TemplateMinigame.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Gabe/PetTheCat/PetTheCat.tscn" type="PackedScene" id=10]
 [ext_resource path="res://00-core/metromap/rat_frost.tres" type="Resource" id=11]
 [ext_resource path="res://00-core/metromap/rat_painting.tres" type="Resource" id=12]
 
@@ -130,6 +130,7 @@ script = ExtResource( 5 )
 [node name="NavdiSuperCursor" type="Node" parent="." groups=[
 "SuperCursor",
 ]]
+pause_mode = 1
 script = ExtResource( 6 )
 
 [node name="TrainCar" parent="." instance=ExtResource( 4 )]
@@ -137,7 +138,7 @@ position = Vector2( 512, 400 )
 
 [node name="NavdiCursorFollower" type="Node2D" parent="."]
 script = ExtResource( 7 )
-path_to_cursor = NodePath("../NavdiSuperCursor")
+path_to_cursor = NodePath("../NavdiSuperCursor(Unpausable)")
 
 [node name="temp_cursor" type="Sprite" parent="NavdiCursorFollower"]
 visible = false
@@ -149,3 +150,8 @@ script = SubResource( 3 )
 
 [node name="hide_curso" type="Node" parent="."]
 script = SubResource( 4 )
+
+[node name="NavdiSuperCursor(Unpausable)" type="Node" parent="." groups=[
+"SuperCursorUnpausable",
+]]
+script = ExtResource( 6 )

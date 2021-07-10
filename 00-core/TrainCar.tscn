@@ -74,7 +74,6 @@ tracks/3/keys = {
 
 [node name="TrainCar" type="Node2D"]
 position = Vector2( 638.639, 358.924 )
-scale = Vector2( 5, 5 )
 script = ExtResource( 4 )
 __meta__ = {
 "_edit_group_": true
@@ -87,12 +86,10 @@ anims/DoorsOpening = SubResource( 2 )
 [node name="DoorLeft" type="Sprite" parent="."]
 position = Vector2( -100, 21.413 )
 texture = ExtResource( 2 )
-offset = Vector2( -160, 0 )
 
 [node name="DoorRight" type="Sprite" parent="."]
 position = Vector2( 50, 24 )
 texture = ExtResource( 3 )
-offset = Vector2( 160, 0 )
 
 [node name="Car" type="Sprite" parent="."]
 texture = ExtResource( 1 )

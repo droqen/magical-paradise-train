@@ -95,6 +95,7 @@ func _on_waver_rot_changed(delta):
 	last_rot_delta = delta
 
 func wait_to_win():
+	print('win')
 	yield(get_tree().create_timer(1.0), "timeout")
 	get_parent().emit_signal("player_won")
 	

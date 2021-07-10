@@ -9,7 +9,7 @@
 [ext_resource path="res://navdi2/Node Scripts/Cursor/NavdiCursorFollower.gd" type="Script" id=7]
 [ext_resource path="res://art/temp_cursor.png" type="Texture" id=8]
 [ext_resource path="res://00-core/TrainJamMaster.gd" type="Script" id=9]
-[ext_resource path="res://01-droqen/TemplateMinigame.tscn" type="PackedScene" id=10]
+[ext_resource path="res://01-droqen/mg_MurderMystery/MurderMysteryMicrogame.tscn" type="PackedScene" id=10]
 
 [sub_resource type="Curve" id=1]
 _data = [ Vector2( 0, 1 ), 0.0, -5.93296, 0, 0, Vector2( 0.431718, 0.0272727 ), 0.0, 0.0, 0, 0, Vector2( 0.773128, 0.0272727 ), -0.42331, -0.42331, 0, 0, Vector2( 1, 0 ), -0.20133, 0.0, 0, 0 ]

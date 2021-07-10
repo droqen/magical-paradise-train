@@ -91,20 +91,24 @@ func _process(delta):
 	stateTimer += delta # current state: advance timer
 	match microgameState:
 		MgState.ChillingABit:
+			get_tree().paused = true
 			if stateTimer > stateDuration:
 				load_next_microgame()
 				set_microgame_state(MgState.GameSlidingIn)
 		MgState.GameSlidingIn:
+			get_tree().paused = true
 			_update_slide_position()
 			if stateTimer > stateDuration:
 				set_microgame_state(MgState.DoorsOpening)
 		MgState.DoorsOpening:
+			get_tree().paused = true
 			_update_slide_position()
 			if stateTimer > stateDuration:
 				set_microgame_state(MgState.PlayingTheGame)
 				print(microgame_instance.name)
 				microgame_instance.on_game_start()
 		MgState.PlayingTheGame:
+			get_tree().paused = false
 			# do nothing. wait for the game to end itself.
 			pass
 		MgState.DoorsClosing:
@@ -113,6 +117,7 @@ func _process(delta):
 #				print("yep ",stateTimer, " > ",stateDuration)
 				set_microgame_state(MgState.GameSlidingOut)
 		MgState.GameSlidingOut:
+			get_tree().paused = true
 			_update_slide_position()
 			if stateTimer > stateDuration:
 				unload_current_scene()
@@ -149,7 +154,7 @@ func set_microgame_state(state):
 			stateDuration = 3.0
 		MgState.DoorsOpening:
 			train_car.open_doors();
-			stateDuration = 0.25 # how long is the animation?
+			stateDuration = 0.6 # time before game starts
 		MgState.PlayingTheGame:
 			stateDuration = -1
 		MgState.DoorsClosing:

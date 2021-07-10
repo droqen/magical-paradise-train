@@ -19,6 +19,8 @@ func _process(delta):
 	
 	prev_global_pos = global_position
 
+	print("player alive ",randf())
+
 
 func _on_rat_area_entered(area):
 	area.queue_free()

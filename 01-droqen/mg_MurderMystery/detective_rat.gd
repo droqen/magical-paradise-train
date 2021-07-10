@@ -26,7 +26,3 @@ func _process(delta):
 					if try_move(Vector2.RIGHT*sign(to_curs.x)): break
 				if axis==YAXIS: if abs(to_curs.y):
 					if try_move(Vector2.DOWN*sign(to_curs.y)): break
-func try_move(dir):
-	if .try_move(dir):
-		print(dir)
-		return true

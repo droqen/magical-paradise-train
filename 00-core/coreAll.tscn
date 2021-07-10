@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://navdi2/AllSeeingControl/AllSeeingControl.gd" type="Script" id=1]
 [ext_resource path="res://navdi2/Node Scripts/NavdiSettings.gd" type="Script" id=2]
@@ -10,6 +10,8 @@
 [ext_resource path="res://art/temp_cursor.png" type="Texture" id=8]
 [ext_resource path="res://00-core/TrainJamMaster.gd" type="Script" id=9]
 [ext_resource path="res://01-droqen/mg_MurderMystery/MurderMysteryMicrogame.tscn" type="PackedScene" id=10]
+[ext_resource path="res://00-core/metromap/rat_frost.tres" type="Resource" id=11]
+[ext_resource path="res://00-core/metromap/rat_painting.tres" type="Resource" id=12]
 
 [sub_resource type="Curve" id=1]
 _data = [ Vector2( 0, 1 ), 0.0, -5.93296, 0, 0, Vector2( 0.431718, 0.0272727 ), 0.0, 0.0, 0, 0, Vector2( 0.773128, 0.0272727 ), -0.42331, -0.42331, 0, 0, Vector2( 1, 0 ), -0.20133, 0.0, 0, 0 ]
@@ -41,6 +43,7 @@ func _process(_delta):
 "
 
 [node name="trainJamCore" type="Control"]
+pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
@@ -51,32 +54,35 @@ __meta__ = {
 [node name="TrainJamMaster" type="Node" parent="."]
 script = ExtResource( 9 )
 test_microgame_scene = ExtResource( 10 )
+all_microgames = [ ExtResource( 12 ), ExtResource( 11 ) ]
 viewport_slide_in = SubResource( 1 )
 viewport_slide_out = SubResource( 2 )
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 192.0
-margin_top = 232.0
-margin_right = -220.0
-margin_bottom = -198.0
+custom_constants/margin_right = 50
+custom_constants/margin_top = 50
+custom_constants/margin_left = 50
+custom_constants/margin_bottom = 50
 __meta__ = {
 "_edit_group_": true,
 "_edit_use_anchors_": false
 }
 
 [node name="NavdiViewerWindow" type="Container" parent="MarginContainer"]
-margin_right = 588.0
-margin_bottom = 370.0
+margin_left = 50.0
+margin_top = 50.0
+margin_right = 950.0
+margin_bottom = 750.0
 script = ExtResource( 3 )
-viewport_scale = 2
+viewport_scale = 4
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/NavdiViewerWindow"]
-margin_left = 134.0
-margin_top = 41.0
-margin_right = 454.0
-margin_bottom = 329.0
+margin_left = 130.0
+margin_top = 62.0
+margin_right = 770.0
+margin_bottom = 638.0
 custom_constants/margin_right = -1
 custom_constants/margin_top = -1
 custom_constants/margin_left = -1
@@ -85,28 +91,29 @@ custom_constants/margin_bottom = -1
 [node name="ColorRect" type="ColorRect" parent="MarginContainer/NavdiViewerWindow/MarginContainer"]
 margin_left = -1.0
 margin_top = -1.0
-margin_right = 321.0
-margin_bottom = 289.0
+margin_right = 641.0
+margin_bottom = 577.0
 color = Color( 0.894118, 0.811765, 0.0745098, 1 )
 
 [node name="ViewportContainer" type="ViewportContainer" parent="MarginContainer/NavdiViewerWindow"]
-margin_left = 134.0
-margin_top = 41.0
-margin_right = 454.0
-margin_bottom = 329.0
+margin_left = 130.0
+margin_top = 62.0
+margin_right = 770.0
+margin_bottom = 638.0
 stretch = true
-stretch_shrink = 2
+stretch_shrink = 4
 
 [node name="Viewport" type="Viewport" parent="MarginContainer/NavdiViewerWindow/ViewportContainer"]
+pause_mode = 1
 size = Vector2( 160, 144 )
 handle_input_locally = false
 render_target_update_mode = 3
 
 [node name="DecorContainer" type="Container" parent="MarginContainer/NavdiViewerWindow"]
-margin_left = 134.0
-margin_top = 41.0
-margin_right = 454.0
-margin_bottom = 329.0
+margin_left = 130.0
+margin_top = 62.0
+margin_right = 770.0
+margin_bottom = 638.0
 
 [node name="NavdiSettings" type="Node" parent="."]
 script = ExtResource( 2 )
@@ -123,6 +130,7 @@ script = ExtResource( 5 )
 [node name="NavdiSuperCursor" type="Node" parent="." groups=[
 "SuperCursor",
 ]]
+pause_mode = 1
 script = ExtResource( 6 )
 
 [node name="TrainCar" parent="." instance=ExtResource( 4 )]
@@ -130,7 +138,7 @@ position = Vector2( 512, 400 )
 
 [node name="NavdiCursorFollower" type="Node2D" parent="."]
 script = ExtResource( 7 )
-path_to_cursor = NodePath("../NavdiSuperCursor")
+path_to_cursor = NodePath("../NavdiSuperCursor(Unpausable)")
 
 [node name="temp_cursor" type="Sprite" parent="NavdiCursorFollower"]
 visible = false
@@ -142,3 +150,8 @@ script = SubResource( 3 )
 
 [node name="hide_curso" type="Node" parent="."]
 script = SubResource( 4 )
+
+[node name="NavdiSuperCursor(Unpausable)" type="Node" parent="." groups=[
+"SuperCursorUnpausable",
+]]
+script = ExtResource( 6 )

@@ -1,15 +1,15 @@
 extends Node
 
-var microgame_index = 0
-
 export(PackedScene)var test_microgame_scene: PackedScene = null
-export(bool)var test_microgame_repeating = true
-export(Array, Resource)var microgames = []
+export(Array, Resource)var all_microgames = [] # a list of all available microgames
+var microgame_stack: Array = [] # pop from this to get the next microgame
 
 var current_microgame: MicrogameMetadata = null
 var preloaded_microgame: MicrogameMetadata = null
 export(Curve)var viewport_slide_in
 export(Curve)var viewport_slide_out
+
+var microgame_instance = null
 
 onready var train_car = $"../TrainCar"
 
@@ -30,8 +30,17 @@ func _ready():
 	load_first_game()
 
 func load_first_game():
-	set_microgame_state(MgState.ChillingABit)
-	stateTimer = stateDuration # instantly slide in
+	if test_microgame_scene:
+		load_next_microgame()
+		set_microgame_state(MgState.DoorsOpening)
+	else:
+		set_microgame_state(MgState.ChillingABit)
+		stateTimer = stateDuration # instantly slide in
+
+func load_next_microgame():
+	preload_next_microgame()
+	set_current_microgame(preloaded_microgame)
+	preloaded_microgame = null
 
 func preload_next_microgame():
 	if test_microgame_scene:
@@ -39,14 +48,14 @@ func preload_next_microgame():
 		test_microgame.microgame_name = "Test"
 		test_microgame.microgame_name = "YOU"
 		test_microgame.microgame_scene = test_microgame_scene
-		if not test_microgame_repeating:
-			test_microgame_scene = null
 		preload_microgame(test_microgame)
 	else:
-		preload_microgame(microgames[microgame_index])
-		microgame_index += 1
-		if microgame_index >= len(microgames):
-			microgame_index = 0
+		if len(microgame_stack)==0:
+			microgame_stack=all_microgames.duplicate()
+			microgame_stack.shuffle()
+		var mg=microgame_stack.pop_back()
+		assert(mg, "TrainJamMaster.all_microgames is empty; add some!")
+		preload_microgame(mg)
 
 func preload_microgame(mg: MicrogameMetadata):
 	preloaded_microgame = mg
@@ -59,6 +68,7 @@ func unload_current_scene():
 		vp.remove_child(child)
 		child.queue_free()
 	self.current_microgame = null
+	self.microgame_instance = null
 
 func set_current_microgame(mg: MicrogameMetadata):
 	unload_current_scene()
@@ -66,13 +76,13 @@ func set_current_microgame(mg: MicrogameMetadata):
 	var nvw = $"../MarginContainer/NavdiViewerWindow"
 	var vpc = $"../MarginContainer/NavdiViewerWindow/ViewportContainer"
 	var vp = $"../MarginContainer/NavdiViewerWindow/ViewportContainer/Viewport"
-	var scene = current_microgame.microgame_scene.instance()
-	vp.add_child(scene)
-	scene.owner = vp.owner
+	microgame_instance = current_microgame.microgame_scene.instance()
+	vp.add_child(microgame_instance)
+	microgame_instance.owner = vp.owner
 	vpc.show()
 	
-	scene.connect("player_won", self, "set_microgame_state", [MgState.DoorsClosing])
-	scene.connect("player_lost", self, "set_microgame_state", [MgState.DoorsClosing])
+	microgame_instance.connect("player_won", self, "set_microgame_state", [MgState.DoorsClosing])
+	microgame_instance.connect("player_lost", self, "set_microgame_state", [MgState.DoorsClosing])
 	
 	nvw.match_board_size()
 	
@@ -81,28 +91,33 @@ func _process(delta):
 	stateTimer += delta # current state: advance timer
 	match microgameState:
 		MgState.ChillingABit:
+			get_tree().paused = true
 			if stateTimer > stateDuration:
-				preload_next_microgame()
-				set_current_microgame(preloaded_microgame)
-				preloaded_microgame = null
+				load_next_microgame()
 				set_microgame_state(MgState.GameSlidingIn)
 		MgState.GameSlidingIn:
+			get_tree().paused = true
 			_update_slide_position()
 			if stateTimer > stateDuration:
 				set_microgame_state(MgState.DoorsOpening)
 		MgState.DoorsOpening:
+			get_tree().paused = true
 			_update_slide_position()
 			if stateTimer > stateDuration:
 				set_microgame_state(MgState.PlayingTheGame)
+				print(microgame_instance.name)
+				microgame_instance.on_game_start()
 		MgState.PlayingTheGame:
+			get_tree().paused = false
 			# do nothing. wait for the game to end itself.
 			pass
 		MgState.DoorsClosing:
 			_update_slide_position()
 			if stateTimer > stateDuration:
-				print("yep ",stateTimer, " > ",stateDuration)
+#				print("yep ",stateTimer, " > ",stateDuration)
 				set_microgame_state(MgState.GameSlidingOut)
 		MgState.GameSlidingOut:
+			get_tree().paused = true
 			_update_slide_position()
 			if stateTimer > stateDuration:
 				unload_current_scene()
@@ -139,7 +154,7 @@ func set_microgame_state(state):
 			stateDuration = 3.0
 		MgState.DoorsOpening:
 			train_car.open_doors();
-			stateDuration = 0.25 # how long is the animation?
+			stateDuration = 0.6 # time before game starts
 		MgState.PlayingTheGame:
 			stateDuration = -1
 		MgState.DoorsClosing:

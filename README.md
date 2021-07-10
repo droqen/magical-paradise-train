@@ -22,11 +22,13 @@ Note that you should do this *with the scene itself,* not with a MicrogameMetada
 
 'Test Microgame Scene' is a variable in the aforementioned **TrainJamMaster** node.
 
+If you'd rather play the whole game, clear the 'Test Microgame Scene' variable.
+
 ### 3b. If you created a **MicrogameMetadata** resource, add it to 'Microgames'
 
 'Microgames' is a variable (an array) in the **TrainJamMaster** node.
 
-Just overwrite whatever's in the first slot of the array. Microgames are loaded in a linear order for now.
+Add a new slot at the end and stick your microgame resource in there.
 
 ## 4. Run the project.
 

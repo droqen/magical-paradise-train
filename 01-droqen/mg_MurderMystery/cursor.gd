@@ -1,21 +1,33 @@
 extends NavdiMazeNobody
 
 onready var ncf = $"../NavdiCursorFollower"
-onready var nbtm = $"../NavdiBoardTileMap"
 
 var nudged: Vector2
 var nudge_frames: int = 0
 var interest:bool = false
 var was_interest:bool = false
+var locked:bool = false
+var locked_until_next_press:bool = false
 
 func _ready():
-	setup(nbtm, nbtm.world_to_map(ncf.position))
+	setup($"../State/NavdiBoardTileMap",
+		$"../State/NavdiBoardTileMap".world_to_map(ncf.position))
 	
 func is_cell_interesting(cell):
 	for child in maze.get_registered(cell):
 		if child.get('IsInterest'): return true
-	
+
+#func is_cell_solid(cell):
+#	return (maze.get_cellv_flag(cell) ==
+#		NavdiBoardTileMap.Flag.SolidWall)
+
 func _process(delta):
+	if locked or locked_until_next_press:
+		position += vector_to_center()
+		if ncf.just_pressed:
+			locked_until_next_press = false
+		return
+	
 	var target_cell = maze.world_to_map(ncf.position)
 	if (target_cell != _cell
 	and ncf.position.distance_squared_to(position) < 8*8

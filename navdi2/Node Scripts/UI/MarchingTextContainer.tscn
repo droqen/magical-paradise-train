@@ -3,10 +3,6 @@
 [ext_resource path="res://navdi2/Resources/roughyfive.theme" type="Theme" id=1]
 [ext_resource path="res://navdi2/Node Scripts/UI/MarchingTextContainer.gd" type="Script" id=2]
 
-
-
-
-
 [node name="MarchingTextContainer" type="MarginContainer"]
 margin_right = 80.0
 margin_bottom = 40.0

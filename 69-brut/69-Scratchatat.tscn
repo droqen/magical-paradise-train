@@ -1,14 +1,14 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://navdi2/Resources/src/roughyfive.tres" type="DynamicFont" id=1]
 [ext_resource path="res://00-core/SubwayStopBoard.gd" type="Script" id=2]
 [ext_resource path="res://navdi2/Node Scripts/Board/NavdiBoardState.gd" type="Script" id=3]
 [ext_resource path="res://navdi2/Node Scripts/Cursor/NavdiCursorFollower.gd" type="Script" id=4]
 [ext_resource path="res://02-ashk/temp_click.wav" type="AudioStream" id=5]
+[ext_resource path="res://69-brut/hand.png" type="Texture" id=6]
 [ext_resource path="res://02-ashk/notebook.png" type="Texture" id=7]
+[ext_resource path="res://69-brut/unshaded.tres" type="Material" id=8]
 [ext_resource path="res://02-ashk/pencil sound.ogg" type="AudioStream" id=9]
-[ext_resource path="res://02-ashk/pencil.png" type="Texture" id=10]
-[ext_resource path="res://02-ashk/pencil shadow.png" type="Texture" id=11]
 [ext_resource path="res://69-brut/ScratchManager2.gd" type="Script" id=12]
 [ext_resource path="res://69-brut/hibutbetter.png" type="Texture" id=13]
 
@@ -19,7 +19,6 @@ light_mode = 1
 light_mode = 2
 
 [sub_resource type="CanvasItemMaterial" id=3]
-blend_mode = 3
 
 [sub_resource type="CircleShape2D" id=4]
 radius = 4.69366
@@ -29,6 +28,9 @@ viewport_path = NodePath("Viewport")
 
 [sub_resource type="ViewportTexture" id=6]
 viewport_path = NodePath("Viewport")
+
+[sub_resource type="CanvasItemMaterial" id=7]
+light_mode = 2
 
 [node name="NavdiBoard" type="Node2D"]
 position = Vector2( 80, 80 )
@@ -41,6 +43,8 @@ material = SubResource( 1 )
 script = ExtResource( 12 )
 
 [node name="NoDrawZone" type="Area2D" parent="ScratchManager"]
+collision_layer = 0
+collision_mask = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ScratchManager/NoDrawZone"]
 polygon = PoolVector2Array( -48, -56, 48, -56, 54, 80, 80, 80, 80, -80, -80, -80, -80, 80, -80, 91, -24, 90, -14, 66, -17, 57, -25, 60, -40, 80, -47, 80 )
@@ -53,18 +57,27 @@ z_index = -1
 texture = ExtResource( 7 )
 
 [node name="pencil shadow" type="Sprite" parent="ScratchManager"]
+modulate = Color( 0, 0, 0, 0.403922 )
 material = SubResource( 3 )
-position = Vector2( 0, 51 )
-rotation = 1.57079
-scale = Vector2( 0.213053, 0.213053 )
 z_index = 1
-texture = ExtResource( 11 )
-offset = Vector2( 0, -239.377 )
+
+[node name="pencil shadow" type="Sprite" parent="ScratchManager/pencil shadow"]
+modulate = Color( 0, 0, 0, 0.403922 )
+material = SubResource( 3 )
+position = Vector2( 26.6535, 73.1502 )
+rotation = 0.303687
+scale = Vector2( 1.11167, 1.24499 )
+z_index = 1
+texture = ExtResource( 6 )
+
+[node name="Node2D" type="Node2D" parent="ScratchManager/pencil shadow/pencil shadow"]
 
 [node name="Area2D" type="Area2D" parent="ScratchManager/pencil shadow"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ScratchManager/pencil shadow/Area2D"]
 shape = SubResource( 4 )
+
+[node name="Node2D" type="Node2D" parent="ScratchManager/pencil shadow"]
 
 [node name="pencil" type="Node2D" parent="ScratchManager"]
 z_index = 2
@@ -72,9 +85,10 @@ script = ExtResource( 4 )
 get_cursor_from_group = "SuperCursor"
 
 [node name="pencil" type="Sprite" parent="ScratchManager/pencil"]
-scale = Vector2( 0.213053, 0.213053 )
-texture = ExtResource( 10 )
-offset = Vector2( 0, -236.831 )
+material = ExtResource( 8 )
+position = Vector2( 0, 94.886 )
+scale = Vector2( 1.20339, 1.20339 )
+texture = ExtResource( 6 )
 
 [node name="Instructions" type="Label" parent="ScratchManager"]
 margin_left = -78.0
@@ -109,7 +123,14 @@ render_target_v_flip = true
 
 [node name="Line2D" type="Line2D" parent="Viewport"]
 position = Vector2( 80, 80 )
-default_color = Color( 0.898039, 0.407843, 0.92549, 1 )
+default_color = Color( 0.752941, 0.286275, 0.615686, 1 )
+texture_mode = 1
+joint_mode = 2
+begin_cap_mode = 1
+end_cap_mode = 2
+sharp_limit = 20.0
+round_precision = 80
+antialiased = true
 
 [node name="preview" type="Sprite" parent="."]
 position = Vector2( 64.1699, 65.4074 )
@@ -118,6 +139,7 @@ z_index = 10
 texture = SubResource( 6 )
 
 [node name="hibutbetter" type="Sprite" parent="."]
+material = SubResource( 7 )
 texture = ExtResource( 13 )
 
 [connection signal="area_entered" from="ScratchManager/NoDrawZone" to="ScratchManager" method="_on_NoDrawZone_area_entered"]

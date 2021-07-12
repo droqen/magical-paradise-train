@@ -64,24 +64,18 @@ func _ready():
 func _process(delta):
 	var pencil_delta = $pencil.global_position-previous_pencil_position
 	if Input.is_action_pressed("left mouse button") and can_draw:
-		$pencil/pencil.position.y = 0
+		$pencil/pencil.position.y = 30
 		volume = lerp(volume, pencil_speed.length()/100, delta*10)
 		if not was_drawing:
 			var new_line = line2d
-			#new_line.default_color = Color.black
-			new_line.antialiased = false
-			new_line.end_cap_mode = Line2D.LINE_CAP_ROUND
-			new_line.begin_cap_mode = Line2D.LINE_CAP_ROUND
-			new_line.joint_mode = Line2D.LINE_JOINT_ROUND
-			new_line.width = 3
-			add_child(new_line)
+			#add_child(new_line)
 			current_line = new_line
 		current_line.add_point($pencil.position)
 #		points += 1
 #		print(current_line.points)
 		was_drawing = true
 	else:
-		$pencil/pencil.position.y = lerp($pencil/pencil.position.y, -10, delta*10)
+		$pencil/pencil.position.y = lerp($pencil/pencil.position.y, -10, delta*10) # mouse is not down
 		volume = lerp(volume, 0.0, delta*10)
 #		if was_drawing:
 #			print(points)
@@ -94,7 +88,9 @@ func _process(delta):
 		$pencil/pencil.rotation_degrees = 30 + pencil_speed.x*0.1
 		$pencil.scale.x = pow(1.1, pencil_speed.y*0.01)
 		$pencil.scale.y = 1/$pencil.scale.x
-		$"pencil shadow".scale.y = sin($pencil/pencil.global_rotation)*$pencil.scale.x*0.213
+		var _x = sin($pencil/pencil.global_rotation)*$pencil.scale.x
+		$"pencil shadow".scale.y = _x
+		print(_x)
 	previous_pencil_position = $pencil.global_position
 	pass
 

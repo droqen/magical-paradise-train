@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://00-core/SubwayStopBoard.gd" type="Script" id=1]
 [ext_resource path="res://Gabe/TrolleyProblem/tracksBG.png" type="Texture" id=2]
@@ -12,9 +12,11 @@
 [ext_resource path="res://navdi2/Node Scripts/Board/NavdiBoardState.gd" type="Script" id=10]
 [ext_resource path="res://Gabe/TrolleyProblem/TextureButton.gd" type="Script" id=11]
 [ext_resource path="res://Gabe/bits/BombButtonDisabled.png" type="Texture" id=12]
+[ext_resource path="res://Gabe/TrolleyProblem/audio_trainLoop.wav" type="AudioStream" id=13]
+[ext_resource path="res://Gabe/TrolleyProblem/TrainDirectionArea.tscn" type="PackedScene" id=14]
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 3.26095, 10 )
+extents = Vector2( 6.86913, 2.5982 )
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 9 )
@@ -53,6 +55,14 @@ position = Vector2( -80, -27 )
 texture = ExtResource( 2 )
 centered = false
 
+[node name="TrainDirectionArea2" parent="." instance=ExtResource( 14 )]
+position = Vector2( -0.525558, -30.4027 )
+newDir = Vector2( 1, 0 )
+
+[node name="CollisionShape2D" parent="TrainDirectionArea2" index="0"]
+position = Vector2( 8.72685, 5.55241 )
+shape = SubResource( 4 )
+
 [node name="VariableTrack" type="Node2D" parent="."]
 position = Vector2( 0, 21 )
 script = ExtResource( 4 )
@@ -64,11 +74,11 @@ centered = false
 region_enabled = true
 region_rect = Rect2( 0, 10, 16, 20 )
 
-[node name="Area2D" type="Area2D" parent="VariableTrack"]
+[node name="TrainDirectionArea" parent="VariableTrack" instance=ExtResource( 14 )]
+position = Vector2( 3, 0 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="VariableTrack/Area2D"]
-position = Vector2( 8.62175, 10.7029 )
-shape = SubResource( 4 )
+[node name="CollisionShape2D" parent="VariableTrack/TrainDirectionArea" index="0"]
+position = Vector2( 13.1416, 10.7029 )
 
 [node name="Train" type="Node2D" parent="."]
 position = Vector2( -80.4942, -27.4597 )
@@ -125,28 +135,36 @@ position = Vector2( 33.2931, -17.0968 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="UnfortunateSouls"]
 frames = SubResource( 3 )
+frame = 1
 playing = true
 
 [node name="AnimatedSprite2" type="AnimatedSprite" parent="UnfortunateSouls"]
 position = Vector2( 8, 0 )
 frames = SubResource( 3 )
+frame = 1
 playing = true
 
 [node name="AnimatedSprite3" type="AnimatedSprite" parent="UnfortunateSouls"]
 position = Vector2( 16, 0 )
 frames = SubResource( 3 )
-frame = 1
 playing = true
 
 [node name="AnimatedSprite4" type="AnimatedSprite" parent="UnfortunateSouls"]
 position = Vector2( 16, 48 )
 frames = SubResource( 3 )
-frame = 1
 playing = true
 
 [node name="State" type="Node2D" parent="."]
 position = Vector2( -80.5192, -79.4597 )
 script = ExtResource( 10 )
 
+[node name="TrainLoop" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 13 )
+pitch_scale = 0.95
+autoplay = true
+
 [connection signal="TRACK_ENTERED" from="VariableTrack" to="TextureButton" method="OnTrackEnter"]
 [connection signal="pressed" from="TextureButton" to="VariableTrack" method="IncrementTrackState"]
+
+[editable path="TrainDirectionArea2"]
+[editable path="VariableTrack/TrainDirectionArea"]

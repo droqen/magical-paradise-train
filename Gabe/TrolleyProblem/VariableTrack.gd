@@ -17,7 +17,7 @@ func _ready():
 	add_child(tween)
 	UpdateTrack()
 	
-	$Area2D.connect("body_entered",self,"OnTrackEnter")
+	$TrainDirectionArea.connect("body_entered",self,"OnTrackEnter")
 
 func _input(event):
 	if Input.is_key_pressed(KEY_0):

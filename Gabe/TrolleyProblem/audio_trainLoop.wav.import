@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/audio_trainLoop.wav-916f14993de1b7dc4a7c7118b32c65cf.sample"
+
+[deps]
+
+source_file="res://Gabe/TrolleyProblem/audio_trainLoop.wav"
+dest_files=[ "res://.import/audio_trainLoop.wav-916f14993de1b7dc4a7c7118b32c65cf.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=true
+compress/mode=0

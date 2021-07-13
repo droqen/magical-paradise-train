@@ -6,13 +6,20 @@ var moveSpeed : float = 20
 
 export var isLocomotive : bool = false
 
+var followerScene = "res://Gabe/TrolleyProblem/TrainCarFollower.tscn"
+
 func _ready():
-	SetSprite()
-
-
-func SetSprite():
+	call_deferred("SpawnFollower")
+	
+func SpawnFollower():
+	var t = load(followerScene).instance()
+	get_parent().add_child(t)
+	t.SetTrainFront(self)
 	if isLocomotive:
-		$Sprite.texture = load("res://Gabe/TrolleyProblem/locomotive.png")
+		t.SetAsLocomotive()
+
+	t.global_position = global_position + Vector2(-32,0)
+
 
 func _physics_process(delta):
 	move_and_slide(moveDir * moveSpeed)

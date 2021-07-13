@@ -1,0 +1,152 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://00-core/SubwayStopBoard.gd" type="Script" id=1]
+[ext_resource path="res://Gabe/TrolleyProblem/tracksBG.png" type="Texture" id=2]
+[ext_resource path="res://Gabe/TrolleyProblem/TrainCar.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Gabe/TrolleyProblem/VariableTrack.gd" type="Script" id=4]
+[ext_resource path="res://Gabe/TrolleyProblem/track_single_straight.png" type="Texture" id=5]
+[ext_resource path="res://Gabe/bits/BombButtonPressed.png" type="Texture" id=6]
+[ext_resource path="res://Gabe/bits/9patch/ship-screen-9-patch.png" type="Texture" id=7]
+[ext_resource path="res://Gabe/bits/BombButtonReady.png" type="Texture" id=8]
+[ext_resource path="res://Gabe/TrolleyProblem/rat.png" type="Texture" id=9]
+[ext_resource path="res://navdi2/Node Scripts/Board/NavdiBoardState.gd" type="Script" id=10]
+[ext_resource path="res://Gabe/TrolleyProblem/TextureButton.gd" type="Script" id=11]
+[ext_resource path="res://Gabe/bits/BombButtonDisabled.png" type="Texture" id=12]
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 3.26095, 10 )
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 9 )
+region = Rect2( 0, 0, 7, 8 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 9 )
+region = Rect2( 7, 0, 7, 8 )
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[node name="TrolleyProblemGame" type="Node2D"]
+position = Vector2( 80, 80 )
+script = ExtResource( 1 )
+board_view_size = Vector2( 160, 160 )
+show_outline = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = -80.0
+margin_top = -80.0
+margin_right = 80.0
+margin_bottom = 80.0
+color = Color( 0.537255, 0.537255, 0.537255, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tracks" type="Sprite" parent="."]
+position = Vector2( -80, -27 )
+texture = ExtResource( 2 )
+centered = false
+
+[node name="VariableTrack" type="Node2D" parent="."]
+position = Vector2( 0, 21 )
+script = ExtResource( 4 )
+
+[node name="Sprite" type="Sprite" parent="VariableTrack"]
+position = Vector2( 0, 1 )
+texture = ExtResource( 5 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 10, 16, 20 )
+
+[node name="Area2D" type="Area2D" parent="VariableTrack"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VariableTrack/Area2D"]
+position = Vector2( 8.62175, 10.7029 )
+shape = SubResource( 4 )
+
+[node name="Train" type="Node2D" parent="."]
+position = Vector2( -80.4942, -27.4597 )
+
+[node name="TrainCar" parent="Train" instance=ExtResource( 3 )]
+position = Vector2( 20.3753, 59.666 )
+isLocomotive = true
+
+[node name="TrainCar2" parent="Train" instance=ExtResource( 3 )]
+position = Vector2( -13.6247, 59.666 )
+
+[node name="TrainCar3" parent="Train" instance=ExtResource( 3 )]
+position = Vector2( -47.6247, 59.666 )
+
+[node name="TrainCar4" parent="Train" instance=ExtResource( 3 )]
+position = Vector2( -81.6247, 59.666 )
+
+[node name="TrainCar5" parent="Train" instance=ExtResource( 3 )]
+position = Vector2( -115.625, 59.666 )
+
+[node name="Creatures" type="Node2D" parent="."]
+position = Vector2( -0.493835, 8.20592 )
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+margin_left = -80.0
+margin_top = -80.0
+margin_right = 80.0
+margin_bottom = 80.0
+texture = ExtResource( 7 )
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton" type="TextureButton" parent="."]
+margin_left = -77.5226
+margin_top = -76.8377
+margin_right = -13.5226
+margin_bottom = -12.8377
+toggle_mode = true
+texture_normal = ExtResource( 8 )
+texture_pressed = ExtResource( 6 )
+texture_disabled = ExtResource( 12 )
+script = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UnfortunateSouls" type="Node2D" parent="."]
+position = Vector2( 33.2931, -17.0968 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="UnfortunateSouls"]
+frames = SubResource( 3 )
+playing = true
+
+[node name="AnimatedSprite2" type="AnimatedSprite" parent="UnfortunateSouls"]
+position = Vector2( 8, 0 )
+frames = SubResource( 3 )
+playing = true
+
+[node name="AnimatedSprite3" type="AnimatedSprite" parent="UnfortunateSouls"]
+position = Vector2( 16, 0 )
+frames = SubResource( 3 )
+frame = 1
+playing = true
+
+[node name="AnimatedSprite4" type="AnimatedSprite" parent="UnfortunateSouls"]
+position = Vector2( 16, 48 )
+frames = SubResource( 3 )
+frame = 1
+playing = true
+
+[node name="State" type="Node2D" parent="."]
+position = Vector2( -80.5192, -79.4597 )
+script = ExtResource( 10 )
+
+[connection signal="TRACK_ENTERED" from="VariableTrack" to="TextureButton" method="OnTrackEnter"]
+[connection signal="pressed" from="TextureButton" to="VariableTrack" method="IncrementTrackState"]

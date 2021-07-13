@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://23-johnlee-flooded/scripts/floater.gd" type="Script" id=1]
+[ext_resource path="res://23-johnlee-flooded/sprites/plank.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 7.89985, 3.86792 )
+
+[node name="floater" type="KinematicBody2D"]
+script = ExtResource( 1 )
+accel = 10.0
+deAccel = 10.0
+maxSpeed = 30.0
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 2.00226 )
+shape = SubResource( 1 )

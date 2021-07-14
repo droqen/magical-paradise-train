@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://navdi2/Resources/src/roughyfive.tres" type="DynamicFont" id=1]
 [ext_resource path="res://00-core/SubwayStopBoard.gd" type="Script" id=2]
@@ -6,31 +6,34 @@
 [ext_resource path="res://navdi2/Node Scripts/Cursor/NavdiCursorFollower.gd" type="Script" id=4]
 [ext_resource path="res://02-ashk/temp_click.wav" type="AudioStream" id=5]
 [ext_resource path="res://69-brut/hand.png" type="Texture" id=6]
-[ext_resource path="res://02-ashk/notebook.png" type="Texture" id=7]
+[ext_resource path="res://69-brut/beauty_scratched.png" type="Texture" id=7]
 [ext_resource path="res://69-brut/unshaded.tres" type="Material" id=8]
 [ext_resource path="res://02-ashk/pencil sound.ogg" type="AudioStream" id=9]
+[ext_resource path="res://69-brut/beauty_unscratched.png" type="Texture" id=10]
+[ext_resource path="res://69-brut/scratchables/scratched_bat.png" type="Texture" id=11]
 [ext_resource path="res://69-brut/ScratchManager2.gd" type="Script" id=12]
-[ext_resource path="res://69-brut/hibutbetter.png" type="Texture" id=13]
+[ext_resource path="res://69-brut/scratchables/scratchables.png" type="Texture" id=13]
 
 [sub_resource type="CanvasItemMaterial" id=1]
 light_mode = 1
-
-[sub_resource type="CanvasItemMaterial" id=2]
-light_mode = 2
 
 [sub_resource type="CanvasItemMaterial" id=3]
 
 [sub_resource type="CircleShape2D" id=4]
 radius = 4.69366
 
+[sub_resource type="Gradient" id=8]
+offsets = PoolRealArray( 0.864103, 1 )
+colors = PoolColorArray( 0.8, 0.8, 0.8, 1, 0.8, 0.8, 0.8, 0 )
+
+[sub_resource type="CanvasItemMaterial" id=7]
+light_mode = 2
+
 [sub_resource type="ViewportTexture" id=5]
 viewport_path = NodePath("Viewport")
 
 [sub_resource type="ViewportTexture" id=6]
 viewport_path = NodePath("Viewport")
-
-[sub_resource type="CanvasItemMaterial" id=7]
-light_mode = 2
 
 [node name="NavdiBoard" type="Node2D"]
 position = Vector2( 80, 80 )
@@ -41,6 +44,14 @@ show_outline = true
 [node name="ScratchManager" type="Node2D" parent="."]
 material = SubResource( 1 )
 script = ExtResource( 12 )
+images = {
+"rat": ExtResource( 11 )
+}
+particleTarget = ExtResource( 10 )
+scratchColor = Color( 1, 1, 1, 1 )
+
+[node name="Timer" type="Timer" parent="ScratchManager"]
+wait_time = 4.0
 
 [node name="NoDrawZone" type="Area2D" parent="ScratchManager"]
 collision_layer = 0
@@ -50,11 +61,9 @@ collision_mask = 0
 polygon = PoolVector2Array( -48, -56, 48, -56, 54, 80, 80, 80, 80, -80, -80, -80, -80, 80, -80, 91, -24, 90, -14, 66, -17, 57, -25, 60, -40, 80, -47, 80 )
 
 [node name="notebook" type="Sprite" parent="ScratchManager"]
-material = SubResource( 2 )
-position = Vector2( 15.0129, 7.71691 )
-scale = Vector2( 1.18766, 1.09646 )
+material = ExtResource( 8 )
 z_index = -1
-texture = ExtResource( 7 )
+texture = ExtResource( 10 )
 
 [node name="pencil shadow" type="Sprite" parent="ScratchManager"]
 modulate = Color( 0, 0, 0, 0.403922 )
@@ -90,7 +99,29 @@ position = Vector2( 0, 94.886 )
 scale = Vector2( 1.20339, 1.20339 )
 texture = ExtResource( 6 )
 
+[node name="particles" type="CPUParticles2D" parent="ScratchManager/pencil/pencil"]
+position = Vector2( -16.3808, -24.6873 )
+emitting = false
+amount = 40
+lifetime = 3.0
+randomness = 1.0
+lifetime_randomness = 0.09
+local_coords = false
+emission_shape = 1
+emission_sphere_radius = 2.41
+direction = Vector2( -1, 1 )
+spread = 119.16
+gravity = Vector2( 0, 20 )
+initial_velocity = 32.86
+initial_velocity_random = 0.27
+damping = 48.35
+damping_random = 0.2
+angle_random = 1.0
+scale_amount_random = 1.0
+color_ramp = SubResource( 8 )
+
 [node name="Instructions" type="Label" parent="ScratchManager"]
+material = ExtResource( 8 )
 margin_left = -78.0
 margin_top = -77.0
 margin_right = 76.0
@@ -109,6 +140,17 @@ autoplay = true
 [node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="ScratchManager"]
 stream = ExtResource( 5 )
 
+[node name="ScratchPrize" type="Sprite" parent="ScratchManager"]
+material = SubResource( 7 )
+texture = ExtResource( 13 )
+hframes = 10
+frame = 1
+
+[node name="ScratchBG" type="Sprite" parent="ScratchManager"]
+material = SubResource( 7 )
+z_index = -1
+texture = ExtResource( 7 )
+
 [node name="State" type="Node2D" parent="."]
 script = ExtResource( 3 )
 
@@ -119,11 +161,12 @@ mode = 2
 [node name="Viewport" type="Viewport" parent="."]
 size = Vector2( 160, 160 )
 transparent_bg = true
+usage = 0
 render_target_v_flip = true
 
 [node name="Line2D" type="Line2D" parent="Viewport"]
 position = Vector2( 80, 80 )
-default_color = Color( 0.752941, 0.286275, 0.615686, 1 )
+default_color = Color( 1, 1, 1, 1 )
 texture_mode = 1
 joint_mode = 2
 begin_cap_mode = 1
@@ -138,9 +181,6 @@ scale = Vector2( 0.197876, 0.182408 )
 z_index = 10
 texture = SubResource( 6 )
 
-[node name="hibutbetter" type="Sprite" parent="."]
-material = SubResource( 7 )
-texture = ExtResource( 13 )
-
+[connection signal="timeout" from="ScratchManager/Timer" to="ScratchManager" method="_on_Timer_timeout"]
 [connection signal="area_entered" from="ScratchManager/NoDrawZone" to="ScratchManager" method="_on_NoDrawZone_area_entered"]
 [connection signal="area_exited" from="ScratchManager/NoDrawZone" to="ScratchManager" method="_on_NoDrawZone_area_exited"]

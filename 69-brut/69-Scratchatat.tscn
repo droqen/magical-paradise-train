@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://navdi2/Resources/src/roughyfive.tres" type="DynamicFont" id=1]
 [ext_resource path="res://00-core/SubwayStopBoard.gd" type="Script" id=2]
@@ -14,6 +14,8 @@
 [ext_resource path="res://69-brut/ScratchManager2.gd" type="Script" id=12]
 [ext_resource path="res://69-brut/scratchables/scratchables.png" type="Texture" id=13]
 [ext_resource path="res://69-brut/scratchables/scratchables_targets.png" type="Texture" id=14]
+[ext_resource path="res://69-brut/BombSetup.tscn" type="PackedScene" id=15]
+[ext_resource path="res://navdi2/Resources/src/droqenserif.ttf" type="DynamicFontData" id=16]
 
 [sub_resource type="CanvasItemMaterial" id=1]
 light_mode = 1
@@ -32,6 +34,10 @@ colors = PoolColorArray( 0.8, 0.8, 0.8, 1, 0.8, 0.8, 0.8, 0 )
 
 [sub_resource type="CanvasItemMaterial" id=14]
 light_mode = 2
+
+[sub_resource type="DynamicFont" id=17]
+outline_size = 2
+font_data = ExtResource( 16 )
 
 [sub_resource type="ViewportTexture" id=15]
 viewport_path = NodePath("Viewport")
@@ -66,7 +72,7 @@ differencePath = NodePath("Debug")
 timeAfterLoss = 2.0
 
 [node name="Timer" type="Timer" parent="ScratchManager"]
-wait_time = 4.0
+wait_time = 6.0
 
 [node name="NoDrawZone" type="Area2D" parent="ScratchManager"]
 collision_layer = 0
@@ -135,33 +141,6 @@ angle_random = 1.0
 scale_amount_random = 1.0
 color_ramp = SubResource( 13 )
 
-[node name="Instructions" type="Label" parent="ScratchManager"]
-material = ExtResource( 8 )
-margin_left = -78.0
-margin_top = -77.0
-margin_right = 76.0
-margin_bottom = -53.0
-custom_fonts/font = ExtResource( 1 )
-text = "gay rats yea!!!"
-autowrap = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Score" type="Label" parent="ScratchManager"]
-material = ExtResource( 8 )
-margin_left = -78.0
-margin_top = -22.0
-margin_right = 75.0
-margin_bottom = 22.0
-custom_fonts/font = ExtResource( 1 )
-custom_colors/font_color = Color( 0.129412, 0.803922, 0.219608, 1 )
-autowrap = true
-uppercase = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="ScratchManager"]
 stream = ExtResource( 9 )
 autoplay = true
@@ -181,6 +160,38 @@ frame = 1
 material = SubResource( 14 )
 z_index = -1
 texture = ExtResource( 7 )
+
+[node name="BombSetup" parent="ScratchManager" instance=ExtResource( 15 )]
+
+[node name="Instructions" type="Label" parent="ScratchManager"]
+material = ExtResource( 8 )
+margin_left = -78.0
+margin_top = -77.0
+margin_right = 76.0
+margin_bottom = -53.0
+custom_fonts/font = ExtResource( 1 )
+text = "gay rats yea!!!"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Score" type="Label" parent="ScratchManager"]
+material = ExtResource( 8 )
+margin_left = -78.0
+margin_top = -22.0
+margin_right = 75.0
+margin_bottom = 22.0
+custom_fonts/font = SubResource( 17 )
+custom_colors/font_color = Color( 1, 0, 1, 1 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+align = 1
+valign = 1
+autowrap = true
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="State" type="Node2D" parent="."]
 script = ExtResource( 3 )
@@ -214,3 +225,5 @@ texture = SubResource( 16 )
 [connection signal="timeout" from="ScratchManager/Timer" to="ScratchManager" method="_on_Timer_timeout"]
 [connection signal="area_entered" from="ScratchManager/NoDrawZone" to="ScratchManager" method="_on_NoDrawZone_area_entered"]
 [connection signal="area_exited" from="ScratchManager/NoDrawZone" to="ScratchManager" method="_on_NoDrawZone_area_exited"]
+[connection signal="tween_all_completed" from="ScratchManager/BombSetup" to="ScratchManager" method="_on_BombSetup_tween_all_completed"]
+[connection signal="tween_completed" from="ScratchManager/BombSetup" to="ScratchManager" method="_on_BombSetup_tween_completed"]

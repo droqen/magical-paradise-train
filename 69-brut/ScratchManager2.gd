@@ -87,6 +87,7 @@ func _ready():
 	var t = ImageTexture.new()
 	t.create_from_image(differenceImage)
 	differenceNode.set_texture(t)
+
 	
 
 func _on_Timer_timeout():
@@ -127,7 +128,7 @@ func compare_scratch():
 			else:
 				score += 1
 
-	$Score.text = "YOUR SCORE IS " + str(score)
+	$Score.text = "YOUR SCORE IS \n" + str(score)
 
 	scratchImage.unlock()
 	differenceImage.unlock()
@@ -142,10 +143,13 @@ func _input(event):
 			compare_scratch()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
+var has_started = false
 func _process(delta):
 	var pencil_delta = $pencil.global_position-previous_pencil_position
 	if Input.is_action_pressed("left mouse button") and can_draw:
-		if($Timer.is_stopped()):
+		if(!has_started):
+			has_started = true
+			$BombSetup.do_the_tween()
 			$Timer.start()
 		particles.emitting = true
 		$pencil/pencil.position.y = 30
@@ -206,3 +210,8 @@ func _on_Button_pressed():
 	get_parent().emit_signal("player_won")
 	$AudioStreamPlayer2.play()
 	pass # Replace with function body.
+
+
+func _on_BombSetup_tween_completed(object, key):
+	pass # Replace with function body.
+

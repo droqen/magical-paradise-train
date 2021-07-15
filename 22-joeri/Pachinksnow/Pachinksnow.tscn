@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://navdi2/Node Scripts/Board/NavdiBoardState.gd" type="Script" id=1]
 [ext_resource path="res://22-joeri/Pachinksnow/FrogSpace.gd" type="Script" id=2]
@@ -8,14 +8,9 @@
 [ext_resource path="res://22-joeri/Pachinksnow/EatingFrog.tscn" type="PackedScene" id=6]
 [ext_resource path="res://22-joeri/Pachinksnow/Pachinksnow.gd" type="Script" id=7]
 [ext_resource path="res://22-joeri/Pachinksnow/SnowSpace.gd" type="Script" id=8]
-
-[sub_resource type="AtlasTexture" id=10]
-atlas = ExtResource( 3 )
-region = Rect2( 0, 0, 160, 24 )
-
-[sub_resource type="AtlasTexture" id=11]
-atlas = ExtResource( 3 )
-region = Rect2( 480, 0, 160, 24 )
+[ext_resource path="res://22-joeri/Pachinksnow/assets/slapface.ttf" type="DynamicFontData" id=9]
+[ext_resource path="res://22-joeri/Pachinksnow/assets/snowflake.png" type="Texture" id=10]
+[ext_resource path="res://22-joeri/Pachinksnow/ScoreBoard.gd" type="Script" id=11]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 3 )
@@ -23,49 +18,77 @@ region = Rect2( 0, 0, 160, 24 )
 
 [sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 3 )
-region = Rect2( 160, 0, 160, 24 )
+region = Rect2( 480, 0, 160, 24 )
 
 [sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 3 )
-region = Rect2( 320, 0, 160, 24 )
+region = Rect2( 0, 0, 160, 24 )
 
 [sub_resource type="AtlasTexture" id=4]
 atlas = ExtResource( 3 )
-region = Rect2( 480, 0, 160, 24 )
+region = Rect2( 160, 0, 160, 24 )
 
 [sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 3 )
-region = Rect2( 480, 0, 160, 24 )
+region = Rect2( 320, 0, 160, 24 )
 
 [sub_resource type="AtlasTexture" id=6]
 atlas = ExtResource( 3 )
-region = Rect2( 640, 0, 160, 24 )
+region = Rect2( 480, 0, 160, 24 )
 
 [sub_resource type="AtlasTexture" id=7]
 atlas = ExtResource( 3 )
-region = Rect2( 800, 0, 160, 24 )
+region = Rect2( 480, 0, 160, 24 )
 
 [sub_resource type="AtlasTexture" id=8]
 atlas = ExtResource( 3 )
+region = Rect2( 640, 0, 160, 24 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 3 )
+region = Rect2( 800, 0, 160, 24 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 3 )
 region = Rect2( 0, 0, 160, 24 )
 
-[sub_resource type="SpriteFrames" id=9]
+[sub_resource type="SpriteFrames" id=11]
 animations = [ {
-"frames": [ SubResource( 10 ), SubResource( 11 ) ],
+"frames": [ SubResource( 1 ), SubResource( 2 ) ],
 "loop": true,
 "name": "turn_on",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
+"frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ) ],
 "loop": false,
 "name": "get_cloudy",
 "speed": 2.0
 }, {
-"frames": [ SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ],
+"frames": [ SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ) ],
 "loop": false,
 "name": "clear_up",
 "speed": 2.0
 } ]
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 10 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 10 )
+region = Rect2( 16, 0, 16, 16 )
+
+[sub_resource type="SpriteFrames" id=14]
+animations = [ {
+"frames": [ SubResource( 12 ), SubResource( 13 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="DynamicFont" id=15]
+size = 13
+font_data = ExtResource( 9 )
 
 [node name="Pachinksnow" type="Node2D"]
 position = Vector2( 80, 80 )
@@ -78,12 +101,18 @@ script = ExtResource( 1 )
 
 [node name="Clouds" type="AnimatedSprite" parent="."]
 position = Vector2( 0, -68 )
-frames = SubResource( 9 )
+frames = SubResource( 11 )
 animation = "turn_on"
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="SnowSpace" type="Node2D" parent="."]
 position = Vector2( 0, -8 )
 script = ExtResource( 8 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="Snowflake0-0" parent="SnowSpace" instance=ExtResource( 5 )]
 position = Vector2( -64, -48 )
@@ -250,6 +279,9 @@ position = Vector2( 64, 32 )
 [node name="FrogSpace" type="Node2D" parent="."]
 position = Vector2( -16, 56 )
 script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="EatingFrog0" parent="FrogSpace" instance=ExtResource( 6 )]
 position = Vector2( -48, -8 )
@@ -298,5 +330,86 @@ position = Vector2( 80, -8 )
 left_frog = NodePath("../../../Pachinksnow/FrogSpace/WalkingFrog3")
 snowflake_to_eat = NodePath("../../../Pachinksnow/SnowSpace/Snowflake5-4")
 
+[node name="Floor" type="Node2D" parent="."]
+position = Vector2( 0, 64 )
+
+[node name="FloorFront" type="ColorRect" parent="Floor"]
+visible = false
+margin_left = -78.0
+margin_right = 79.0
+margin_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FloorShadow" type="ColorRect" parent="Floor"]
+margin_left = -79.0
+margin_top = 1.0
+margin_right = 78.0
+margin_bottom = 2.0
+color = Color( 0, 0, 0, 0.0784314 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="SnowSpawn" type="Timer" parent="."]
 wait_time = 0.75
+
+[node name="ScoreBoard" type="Node2D" parent="."]
+position = Vector2( -80, 64 )
+script = ExtResource( 11 )
+
+[node name="Label" type="Node2D" parent="ScoreBoard"]
+position = Vector2( 3, 2 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="LabelSnowflake" type="AnimatedSprite" parent="ScoreBoard/Label"]
+position = Vector2( 59, 6 )
+frames = SubResource( 14 )
+
+[node name="LabelFront" type="Label" parent="ScoreBoard/Label"]
+visible = false
+margin_left = 1.0
+margin_top = -1.0
+margin_right = 74.0
+margin_bottom = 16.0
+custom_fonts/font = SubResource( 15 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "catch 3   "
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LabelShadow" type="Label" parent="ScoreBoard/Label"]
+anchor_bottom = 1.0
+margin_right = 72.0
+margin_bottom = 16.0
+custom_fonts/font = SubResource( 15 )
+custom_colors/font_color = Color( 0, 0, 0, 0.0784314 )
+text = "catch 3   "
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SnowCounter" type="Node2D" parent="ScoreBoard"]
+
+[node name="SnowflakeScore0" type="AnimatedSprite" parent="ScoreBoard/SnowCounter"]
+position = Vector2( 152, 8 )
+frames = SubResource( 14 )
+
+[node name="SnowflakeScore1" type="AnimatedSprite" parent="ScoreBoard/SnowCounter"]
+position = Vector2( 136, 8 )
+frames = SubResource( 14 )
+
+[node name="SnowflakeScore2" type="AnimatedSprite" parent="ScoreBoard/SnowCounter"]
+position = Vector2( 120, 8 )
+frames = SubResource( 14 )
+
+[node name="SnowflakeScore3" type="AnimatedSprite" parent="ScoreBoard/SnowCounter"]
+position = Vector2( 104, 8 )
+frames = SubResource( 14 )

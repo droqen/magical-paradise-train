@@ -1,5 +1,11 @@
 extends Node2D
 
+signal snowflake_eaten
+
+func _ready():
+	for frog in self.get_children():
+		frog.connect("snowflake_eaten", self, "_on_snowflake_eaten")
+
 func _process(_delta):
 	var current_frog
 	for frog in self.get_children():
@@ -20,3 +26,6 @@ func _process(_delta):
 	if to_frog:
 		current_frog.current_state = current_frog.STATE.off
 		to_frog.current_state = to_frog.STATE.on
+
+func _on_snowflake_eaten():
+	emit_signal("snowflake_eaten")

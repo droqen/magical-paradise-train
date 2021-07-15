@@ -1,5 +1,7 @@
 extends "res://22-joeri/Pachinksnow/Frog.gd"
 
+signal snowflake_eaten
+
 enum STATE {
 	booting_up,
 	off,
@@ -35,6 +37,7 @@ func eat(snowflake: Snowflake):
 	snowflake.eat()
 	$AnimatedSprite.play("eat")
 	yield($AnimatedSprite, "animation_finished")
+	emit_signal("snowflake_eaten")
 	snowflake.turn_off()
 	$AnimatedSprite.play("retract")
 	yield($AnimatedSprite, "animation_finished")

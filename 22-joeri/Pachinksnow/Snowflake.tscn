@@ -27,6 +27,7 @@ frames = SubResource( 3 )
 speed_scale = 1.5
 
 [node name="OnTimer" type="Timer" parent="."]
+wait_time = 0.5
 
 [node name="MeltTimer" type="Timer" parent="."]
-wait_time = 0.75
+wait_time = 0.5

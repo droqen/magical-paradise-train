@@ -1,0 +1,302 @@
+[gd_scene load_steps=20 format=2]
+
+[ext_resource path="res://navdi2/Node Scripts/Board/NavdiBoardState.gd" type="Script" id=1]
+[ext_resource path="res://22-joeri/Pachinksnow/FrogSpace.gd" type="Script" id=2]
+[ext_resource path="res://22-joeri/Pachinksnow/assets/clouds.png" type="Texture" id=3]
+[ext_resource path="res://22-joeri/Pachinksnow/WalkingFrog.tscn" type="PackedScene" id=4]
+[ext_resource path="res://22-joeri/Pachinksnow/Snowflake.tscn" type="PackedScene" id=5]
+[ext_resource path="res://22-joeri/Pachinksnow/EatingFrog.tscn" type="PackedScene" id=6]
+[ext_resource path="res://22-joeri/Pachinksnow/Pachinksnow.gd" type="Script" id=7]
+[ext_resource path="res://22-joeri/Pachinksnow/SnowSpace.gd" type="Script" id=8]
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 160, 24 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 3 )
+region = Rect2( 480, 0, 160, 24 )
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 160, 24 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 3 )
+region = Rect2( 160, 0, 160, 24 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 3 )
+region = Rect2( 320, 0, 160, 24 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 3 )
+region = Rect2( 480, 0, 160, 24 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 3 )
+region = Rect2( 480, 0, 160, 24 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 3 )
+region = Rect2( 640, 0, 160, 24 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 3 )
+region = Rect2( 800, 0, 160, 24 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 160, 24 )
+
+[sub_resource type="SpriteFrames" id=9]
+animations = [ {
+"frames": [ SubResource( 10 ), SubResource( 11 ) ],
+"loop": true,
+"name": "turn_on",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
+"loop": false,
+"name": "get_cloudy",
+"speed": 2.0
+}, {
+"frames": [ SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ],
+"loop": false,
+"name": "clear_up",
+"speed": 2.0
+} ]
+
+[node name="Pachinksnow" type="Node2D"]
+position = Vector2( 80, 80 )
+script = ExtResource( 7 )
+board_view_size = Vector2( 160, 160 )
+spawnpoints = [ NodePath("SnowSpace/Snowflake0-0"), NodePath("SnowSpace/Snowflake0-1"), NodePath("SnowSpace/Snowflake0-2"), NodePath("SnowSpace/Snowflake0-3"), NodePath("SnowSpace/Snowflake0-4") ]
+
+[node name="State" type="Node2D" parent="."]
+script = ExtResource( 1 )
+
+[node name="Clouds" type="AnimatedSprite" parent="."]
+position = Vector2( 0, -68 )
+frames = SubResource( 9 )
+animation = "turn_on"
+
+[node name="SnowSpace" type="Node2D" parent="."]
+position = Vector2( 0, -8 )
+script = ExtResource( 8 )
+
+[node name="Snowflake0-0" parent="SnowSpace" instance=ExtResource( 5 )]
+position = Vector2( -64, -48 )
+next_snowflakes = [ NodePath("../Snowflake1-0") ]
+
+[node name="Snowflake0-1" parent="SnowSpace" instance=ExtResource( 5 )]
+position = Vector2( -32, -48 )
+next_snowflakes = [ NodePath("../Snowflake1-0"), NodePath("../Snowflake1-1"), NodePath("../Snowflake1-2") ]
+
+[node name="Snowflake0-2" parent="SnowSpace" instance=ExtResource( 5 )]
+position = Vector2( 0, -48 )
+next_snowflakes = [ NodePath("../Snowflake1-2"), NodePath("../Snowflake1-3"), NodePath("../Snowflake1-4") ]
+
+[node name="Snowflake0-3" parent="SnowSpace" instance=ExtResource( 5 )]
+position = Vector2( 32, -48 )
+next_snowflakes = [ NodePath("../Snowflake1-4"), NodePath("../Snowflake1-5"), NodePath("../Snowflake1-6") ]
+
+[node name="Snowflake0-4" parent="SnowSpace" instance=ExtResource( 5 )]
+position = Vector2( 64, -48 )
+next_snowflakes = [ NodePath("../Snowflake1-6") ]
+
+[node name="Snowflake1-0" parent="SnowSpace" instance=ExtResource( 5 )]
+position = Vector2( -48, -32 )
+next_snowflakes = [ NodePath("../Snowflake2-0"), NodePath("../Snowflake2-1"), NodePath("../Snowflake2-2") ]
+
+[node name="Snowflake1-1" parent="SnowSpace" instance=ExtResource( 5 )]
+position = Vector2( -32, -32 )
+next_snowflakes = [ NodePath("../Snowflake2-1"), NodePath("../Snowflake2-2"), NodePath("../Snowflake2-3") ]
+
+[node name="Snowflake1-2" parent="SnowSpace" instance=ExtResource( 5 )]
+position = Vector2( -16, -32 )
+next_snowflakes = [ NodePath("../Snowflake2-2"), NodePath("../Snowflake2-3"), NodePath("../Snowflake2-4") ]
+
+[node name="Snowflake1-3" parent="SnowSpace" instance=ExtResource( 5 )]
+position = Vector2( 0, -32 )
+next_snowflakes = [ NodePath("../Snowflake2-3"), NodePath("../Snowflake2-4"), NodePath("../Snowflake2-5") ]
+
+[node name="Snowflake1-4" parent="SnowSpace" instance=ExtResource( 5 )]
+position = Vector2( 16, -32 )
+next_snowflakes = [ NodePath("../Snowflake2-4"), NodePath("../Snowflake2-5"), NodePath("../Snowflake2-6") ]
+
+[node name="Snowflake1-5" parent="SnowSpace" instance=ExtResource( 5 )]
+position = Vector2( 32, -32 )
+next_snowflakes = [ NodePath("../Snowflake2-5"), NodePath("../Snowflake2-6"), NodePath("../Snowflake2-7") ]
+
+[node name="Snowflake1-6" parent="SnowSpace" instance=ExtResource( 5 )]
+position = Vector2( 48, -32 )
+next_snowflakes = [ NodePath("../Snowflake2-6"), NodePath("../Snowflake2-7"), NodePath("../Snowflake2-8") ]
+
+[node name="Snowflake2-0" parent="SnowSpace" instance=ExtResource( 5 )]
+position = Vector2( -64, -16 )
+next_snowflakes = [ NodePath("../Snowflake3-0"), NodePath("../Snowflake3-1") ]
+
+[node name="Snowflake2-1" parent="SnowSpace" instance=ExtResource( 5 )]
+position = Vector2( -48, -16 )
+next_snowflakes = [ NodePath("../Snowflake3-0"), NodePath("../Snowflake3-1"), NodePath("../Snowflake3-2") ]
+
+[node name="Snowflake2-2" parent="SnowSpace" instance=ExtResource( 5 )]
+position = Vector2( -32, -16 )
+next_snowflakes = [ NodePath("../Snowflake3-1"), NodePath("../Snowflake3-2"), NodePath("../Snowflake3-3") ]
+
+[node name="Snowflake2-3" parent="SnowSpace" instance=ExtResource( 5 )]
+position = Vector2( -16, -16 )
+next_snowflakes = [ NodePath("../Snowflake3-2"), NodePath("../Snowflake3-3"), NodePath("../Snowflake3-4") ]
+
+[node name="Snowflake2-4" parent="SnowSpace" instance=ExtResource( 5 )]
+position = Vector2( 0, -16 )
+next_snowflakes = [ NodePath("../Snowflake3-3"), NodePath("../Snowflake3-4"), NodePath("../Snowflake3-5") ]
+
+[node name="Snowflake2-5" parent="SnowSpace" instance=ExtResource( 5 )]
+position = Vector2( 16, -16 )
+next_snowflakes = [ NodePath("../Snowflake3-4"), NodePath("../Snowflake3-5"), NodePath("../Snowflake3-6") ]
+
+[node name="Snowflake2-6" parent="SnowSpace" instance=ExtResource( 5 )]
+position = Vector2( 32, -16 )
+next_snowflakes = [ NodePath("../Snowflake3-5"), NodePath("../Snowflake3-6"), NodePath("../Snowflake3-7") ]
+
+[node name="Snowflake2-7" parent="SnowSpace" instance=ExtResource( 5 )]
+position = Vector2( 48, -16 )
+next_snowflakes = [ NodePath("../Snowflake3-6"), NodePath("../Snowflake3-7"), NodePath("../Snowflake3-8") ]
+
+[node name="Snowflake2-8" parent="SnowSpace" instance=ExtResource( 5 )]
+position = Vector2( 64, -16 )
+next_snowflakes = [ NodePath("../Snowflake3-7"), NodePath("../Snowflake3-8") ]
+
+[node name="Snowflake3-0" parent="SnowSpace" instance=ExtResource( 5 )]
+position = Vector2( -64, 0 )
+next_snowflakes = [ NodePath("../Snowflake4-0") ]
+
+[node name="Snowflake3-1" parent="SnowSpace" instance=ExtResource( 5 )]
+position = Vector2( -48, 0 )
+next_snowflakes = [ NodePath("../Snowflake4-0"), NodePath("../Snowflake4-1") ]
+
+[node name="Snowflake3-2" parent="SnowSpace" instance=ExtResource( 5 )]
+position = Vector2( -32, 0 )
+next_snowflakes = [ NodePath("../Snowflake4-0"), NodePath("../Snowflake4-1"), NodePath("../Snowflake4-2") ]
+
+[node name="Snowflake3-3" parent="SnowSpace" instance=ExtResource( 5 )]
+position = Vector2( -16, 0 )
+next_snowflakes = [ NodePath("../Snowflake4-1"), NodePath("../Snowflake4-2"), NodePath("../Snowflake4-3") ]
+
+[node name="Snowflake3-4" parent="SnowSpace" instance=ExtResource( 5 )]
+next_snowflakes = [ NodePath("../Snowflake4-2"), NodePath("../Snowflake4-3"), NodePath("../Snowflake4-4") ]
+
+[node name="Snowflake3-5" parent="SnowSpace" instance=ExtResource( 5 )]
+position = Vector2( 16, 0 )
+next_snowflakes = [ NodePath("../Snowflake4-3"), NodePath("../Snowflake4-4"), NodePath("../Snowflake4-5") ]
+
+[node name="Snowflake3-6" parent="SnowSpace" instance=ExtResource( 5 )]
+position = Vector2( 32, 0 )
+next_snowflakes = [ NodePath("../Snowflake4-4"), NodePath("../Snowflake4-5"), NodePath("../Snowflake4-6") ]
+
+[node name="Snowflake3-7" parent="SnowSpace" instance=ExtResource( 5 )]
+position = Vector2( 48, 0 )
+next_snowflakes = [ NodePath("../Snowflake4-5"), NodePath("../Snowflake4-6") ]
+
+[node name="Snowflake3-8" parent="SnowSpace" instance=ExtResource( 5 )]
+position = Vector2( 64, 0 )
+next_snowflakes = [ NodePath("../Snowflake4-6") ]
+
+[node name="Snowflake4-0" parent="SnowSpace" instance=ExtResource( 5 )]
+position = Vector2( -48, 16 )
+next_snowflakes = [ NodePath("../Snowflake5-0"), NodePath("../Snowflake5-1") ]
+
+[node name="Snowflake4-1" parent="SnowSpace" instance=ExtResource( 5 )]
+position = Vector2( -32, 16 )
+next_snowflakes = [ NodePath("../Snowflake5-1") ]
+
+[node name="Snowflake4-2" parent="SnowSpace" instance=ExtResource( 5 )]
+position = Vector2( -16, 16 )
+next_snowflakes = [ NodePath("../Snowflake5-1"), NodePath("../Snowflake5-2") ]
+
+[node name="Snowflake4-3" parent="SnowSpace" instance=ExtResource( 5 )]
+position = Vector2( 0, 16 )
+next_snowflakes = [ NodePath("../Snowflake5-2") ]
+
+[node name="Snowflake4-4" parent="SnowSpace" instance=ExtResource( 5 )]
+position = Vector2( 16, 16 )
+next_snowflakes = [ NodePath("../Snowflake5-2"), NodePath("../Snowflake5-3") ]
+
+[node name="Snowflake4-5" parent="SnowSpace" instance=ExtResource( 5 )]
+position = Vector2( 32, 16 )
+next_snowflakes = [ NodePath("../Snowflake5-3") ]
+
+[node name="Snowflake4-6" parent="SnowSpace" instance=ExtResource( 5 )]
+position = Vector2( 48, 16 )
+next_snowflakes = [ NodePath("../Snowflake5-3"), NodePath("../Snowflake5-4") ]
+
+[node name="Snowflake5-0" parent="SnowSpace" instance=ExtResource( 5 )]
+position = Vector2( -64, 32 )
+
+[node name="Snowflake5-1" parent="SnowSpace" instance=ExtResource( 5 )]
+position = Vector2( -32, 32 )
+
+[node name="Snowflake5-2" parent="SnowSpace" instance=ExtResource( 5 )]
+position = Vector2( 0, 32 )
+
+[node name="Snowflake5-3" parent="SnowSpace" instance=ExtResource( 5 )]
+position = Vector2( 32, 32 )
+
+[node name="Snowflake5-4" parent="SnowSpace" instance=ExtResource( 5 )]
+position = Vector2( 64, 32 )
+
+[node name="FrogSpace" type="Node2D" parent="."]
+position = Vector2( -16, 56 )
+script = ExtResource( 2 )
+
+[node name="EatingFrog0" parent="FrogSpace" instance=ExtResource( 6 )]
+position = Vector2( -48, -8 )
+right_frog = NodePath("../../../Pachinksnow/FrogSpace/WalkingFrog0")
+snowflake_to_eat = NodePath("../../../Pachinksnow/SnowSpace/Snowflake5-0")
+
+[node name="WalkingFrog0" parent="FrogSpace" instance=ExtResource( 4 )]
+position = Vector2( -32, 0 )
+left_frog = NodePath("../../../Pachinksnow/FrogSpace/EatingFrog0")
+right_frog = NodePath("../../../Pachinksnow/FrogSpace/EatingFrog1")
+
+[node name="EatingFrog1" parent="FrogSpace" instance=ExtResource( 6 )]
+position = Vector2( -16, -8 )
+left_frog = NodePath("../../../Pachinksnow/FrogSpace/WalkingFrog0")
+right_frog = NodePath("../../../Pachinksnow/FrogSpace/WalkingFrog1")
+snowflake_to_eat = NodePath("../../../Pachinksnow/SnowSpace/Snowflake5-1")
+
+[node name="WalkingFrog1" parent="FrogSpace" instance=ExtResource( 4 )]
+left_frog = NodePath("../../../Pachinksnow/FrogSpace/EatingFrog1")
+right_frog = NodePath("../../../Pachinksnow/FrogSpace/EatingFrog2")
+
+[node name="EatingFrog2" parent="FrogSpace" instance=ExtResource( 6 )]
+position = Vector2( 16, -8 )
+left_frog = NodePath("../../../Pachinksnow/FrogSpace/WalkingFrog1")
+right_frog = NodePath("../../../Pachinksnow/FrogSpace/WalkingFrog2")
+snowflake_to_eat = NodePath("../../../Pachinksnow/SnowSpace/Snowflake5-2")
+
+[node name="WalkingFrog2" parent="FrogSpace" instance=ExtResource( 4 )]
+position = Vector2( 32, 0 )
+left_frog = NodePath("../../../Pachinksnow/FrogSpace/EatingFrog2")
+right_frog = NodePath("../../../Pachinksnow/FrogSpace/EatingFrog3")
+
+[node name="EatingFrog3" parent="FrogSpace" instance=ExtResource( 6 )]
+position = Vector2( 48, -8 )
+left_frog = NodePath("../../../Pachinksnow/FrogSpace/WalkingFrog2")
+right_frog = NodePath("../../../Pachinksnow/FrogSpace/WalkingFrog3")
+snowflake_to_eat = NodePath("../../../Pachinksnow/SnowSpace/Snowflake5-3")
+
+[node name="WalkingFrog3" parent="FrogSpace" instance=ExtResource( 4 )]
+position = Vector2( 64, 0 )
+left_frog = NodePath("../../../Pachinksnow/FrogSpace/EatingFrog3")
+right_frog = NodePath("../../../Pachinksnow/FrogSpace/EatingFrog4")
+
+[node name="EatingFrog4" parent="FrogSpace" instance=ExtResource( 6 )]
+position = Vector2( 80, -8 )
+left_frog = NodePath("../../../Pachinksnow/FrogSpace/WalkingFrog3")
+snowflake_to_eat = NodePath("../../../Pachinksnow/SnowSpace/Snowflake5-4")
+
+[node name="SnowSpawn" type="Timer" parent="."]
+wait_time = 0.75

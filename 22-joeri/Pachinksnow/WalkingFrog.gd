@@ -1,6 +1,7 @@
 extends "res://22-joeri/Pachinksnow/Frog.gd"
 
 enum STATE {
+	booting_up,
 	off,
 	on,
 }
@@ -22,3 +23,12 @@ func _process(_delta):
 		$AnimatedSprite.set_animation("turn_on")
 		$AnimatedSprite.stop()
 		$AnimatedSprite.set_frame(1)
+
+func boot_up():
+	self.current_state = STATE.booting_up
+	$AnimatedSprite.set_animation("turn_on")
+	$AnimatedSprite.stop()
+	$AnimatedSprite.set_frame(1)
+	yield(self.get_tree().create_timer(0.5), "timeout")
+	$AnimatedSprite.set_frame(0)
+	self.current_state = STATE.off

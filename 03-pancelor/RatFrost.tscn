@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://art/sewers.tres" type="TileSet" id=1]
 [ext_resource path="res://art/sewers.png" type="Texture" id=2]
@@ -8,6 +8,8 @@
 [ext_resource path="res://navdi2/Node Scripts/Pin/NavdiPinQuickPlayer.gd" type="Script" id=6]
 [ext_resource path="res://00-core/SubwayStopBoard.gd" type="Script" id=7]
 [ext_resource path="res://navdi2/Node Scripts/Board/NavdiBoardState.gd" type="Script" id=8]
+[ext_resource path="res://03-pancelor/outliner.tres" type="Material" id=9]
+[ext_resource path="res://navdi2/Resources/src/roughyfive.tres" type="DynamicFont" id=10]
 [ext_resource path="res://01-droqen/Pickup_Coin3.wav" type="AudioStream" id=11]
 [ext_resource path="res://navdi2/Node Scripts/NavdiSheetSprite.gd" type="Script" id=12]
 [ext_resource path="res://03-pancelor/player.gd" type="Script" id=13]
@@ -20,6 +22,16 @@ position = Vector2( 80, 80 )
 script = ExtResource( 7 )
 board_view_size = Vector2( 160, 160 )
 show_outline = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = -80.0
+margin_top = -80.0
+margin_right = 80.0
+margin_bottom = 80.0
+color = Color( 0.403922, 0.713726, 0.741176, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="State" type="Node2D" parent="."]
 script = ExtResource( 8 )
@@ -37,10 +49,11 @@ __meta__ = {
 refresh_tileset = false
 
 [node name="cheese" type="KinematicBody2D" parent="."]
-position = Vector2( 6.24736, 2.36957 )
+position = Vector2( -21.4401, -4.44293 )
 script = ExtResource( 3 )
 
 [node name="NavdiSheetSprite" type="Sprite" parent="cheese"]
+material = ExtResource( 9 )
 texture = ExtResource( 2 )
 hframes = 10
 vframes = 2
@@ -59,13 +72,14 @@ __meta__ = {
 }
 
 [node name="player" type="KinematicBody2D" parent="."]
-position = Vector2( -3.50053, -5.7358 )
+position = Vector2( -22.1255, -15.5483 )
 script = ExtResource( 13 )
 idl_frames = [ 2 ]
 run_frames = [ 2, 3, 2, 4 ]
 slide_frames = [ 3, 4 ]
 
 [node name="NavdiSheetSprite" type="Sprite" parent="player"]
+material = ExtResource( 9 )
 texture = ExtResource( 2 )
 hframes = 10
 vframes = 2
@@ -92,3 +106,17 @@ stream = ExtResource( 11 )
 
 [node name="Generator" type="Node2D" parent="."]
 script = ExtResource( 4 )
+
+[node name="Instructions" type="Label" parent="."]
+margin_left = -78.0
+margin_top = -77.0
+margin_right = 76.0
+margin_bottom = -53.0
+custom_fonts/font = ExtResource( 10 )
+text = "get the cheese! 
+z=undo       x=reset"
+align = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}

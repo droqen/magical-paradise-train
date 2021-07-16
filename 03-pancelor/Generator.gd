@@ -2,33 +2,32 @@ extends Node2D
 
 var dev
 var dev_showhint
+var debug_font
 
 onready var map=$"../State/NavdiBoardTileMap"
 onready var player=$"../player"
 onready var cheese=$"../cheese"
 
-var debug_font
-
 export(int)var ICE_TILE=10
 export(int)var FLOOR_TILE=12
 export(int)var WALL_TILE=11 # probably want to just check .solid somehow?
-#const ymin=-7
-#const ymax=6
-#const xmin=-8
-#const xmax=7
-const ymin=-10
-const ymax=9
-const xmin=-10
-const xmax=9
+const ymin=-6
+const ymax=5
+const xmin=-7
+const xmax=6
+# scene limits:
+#  const ymin=-10
+#  const ymax=9
+#  const xmin=-10
+#  const xmax=9
 const dirx=[-1,1,0,0]
 const diry=[0,0,-1,1]
 var reachable={} # a mapping: cell => min distance
 var rng=0
 
 func _ready():
-	dev=true
+#	dev=true
 #	dev_showhint=dev
-#	rng=13
 	
 	if dev:
 		debug_font = Control.new().get_font("font")
@@ -53,9 +52,6 @@ func dev_process():
 		rng+=delta
 		print("seed ",rng)
 		generate(rng)
-		
-func randi_range(a,b):
-	return int(randf()*(b-a)+a)
 
 #func rand_loc():
 #	var x=randi_range(xmin+1,xmax)
@@ -69,7 +65,7 @@ func generate(rng_seed=null):
 	var unused_cells=[]
 	# fill center with ice
 	for y in range(ymin+1,ymax-1+1):
-		for x in range(ymin+1,ymax-1+1):
+		for x in range(xmin+1,xmax-1+1):
 			map.set_cell(x,y,ICE_TILE)
 			unused_cells.append(Vector2(x,y))
 	# L/R walls
@@ -87,41 +83,52 @@ func generate(rng_seed=null):
 	map.set_cellv(start,FLOOR_TILE)
 	player.set_start_cell(start)
 
-	var max_dist=6
-	var should_finish=false
 	var i=0
+	var inverted
 	while true:
 		i+=1
 		if i>=100 or unused_cells.size()<3: # sentinel, trips decently often
 			print("could not generate; doing fallback")
-			max_dist=0
-			should_finish=true
-			for c in reachable:
-				max_dist=max(max_dist,reachable[c])
-			
-		# maybe break if complex enough
-		var far_locs=[]
-		for c in reachable:
-			if reachable[c]>=max_dist:
-				far_locs.append(c)
-				if far_locs.size()>10:
-					should_finish=true
-#		print(i," ",far_locs.size())
-		if should_finish:
-			print("generating after %d try(s)"%i)
-			cheese.set_cell(choose(far_locs))
 			break
+		
 		# not done yet; change the board and try again
 		map.set_cellv(unused_cells.pop_back(),FLOOR_TILE)
 		map.set_cellv(unused_cells.pop_back(),WALL_TILE)
 		map.set_cellv(unused_cells.pop_back(),WALL_TILE)
 		reachable=explore(start)
+		inverted=invert_reachable()
+		if complex_enough(inverted):
+			break
+
+	print("generating after %d try(s)"%i)
+	var end_loc=choose(back(inverted))
+	cheese.set_cell(end_loc)
 	update()
+
+func complex_enough(inverted:Array):
+	return inverted.size()>9
+
+# reachable: loc => mindist 
+# returns: [0: <locs w/ dist 0>, 1: <locs w/ dist 1>, ... ]
+func invert_reachable():
+	var far_locs=[]
+	for c in reachable:
+		var dist=reachable[c]
+		while far_locs.size()<=dist:
+			far_locs.append([])
+		far_locs[dist].append(c)
+	return far_locs
+
+func randi_range(a,b):
+	return int(randf()*(b-a)+a)
+
+func back(arr:Array, n:int=1):
+	return arr[arr.size()-n]
 
 func choose(a:Array):
 	var ix=randi_range(0,a.size())
 	return a[ix]
-	
+
 func explore(start: Vector2):
 	# data holders for the algorithm
 	var mindist={}

@@ -1,40 +1,36 @@
-# How to add your own minigame
+# Magical Paradise Train
 
-## 1. Create your own scene
+a collaborative collection of microgames!
 
-Duplicate **01-droqen/TemplateMinigame.tscn** into your own folder. Give it a new name.
+## How to add your own minigame
 
-In order to signal to the game that you want to advance to the next scene, emit either the **SubwayStopBoard.gd** node's "player_won" or "player_lost" signal. See the node named "**when empty, win**" for an example.
+1. Create your own scene
+    * Duplicate **01-droqen/TemplateMinigame.tscn** into your own folder. Give it a new name.
+    * In order to signal to the game that you want to advance to the next scene, emit either the **SubwayStopBoard.gd** node's "player_won" or "player_lost" signal. See the node named "**when empty, win**" for an example.
+    * (!!!) Don't change the script on the root 'NavdiBoard' node or any of its variables, although you may rename it if you like.
+2. Create a new **MicrogameMetadata** resource in **00-core/metromap/**
+    * This step will add your microgame to the random rotation
+    * You can just duplicate **00-core/metromap/droqen_template_minigame.tres**, but then double-check before editing: are you editing the new resource (the one you just made) or the old existing one?
+    * Drag your scene from the previous step into your new Resource's *Microgame Scene* variable.
+3. Add your game to the **TrainJamMaster** node in **00-core/coreAll.tscn**
+    1. Drag-and-drop your scene into 'Test Microgame Scene'**
+        * Note that you should do this *with the scene itself,* not with a MicrogameMetadata resource.
+        * 'Test Microgame Scene' is a variable in the aforementioned **TrainJamMaster** node.
+        * If you'd rather play the whole game, clear the 'Test Microgame Scene' variable.
+    2. If you created a **MicrogameMetadata** resource, add it to 'Microgames'
+        * 'Microgames' is a variable (an array) in the **TrainJamMaster** node.
+        * Add a new slot at the end and stick your microgame resource in there.
+4. Run the project.
+    * (It should run from **00-core/coreAll.tscn**, which is the wrapper for running the entire game.)
 
-(!!!) Don't change the script on the root 'NavdiBoard' node or any of its variables, although you may rename it if you like.
+## sharing your microgame
 
-## 2. Create a new **MicrogameMetadata** resource in **00-core/metromap/** (OPTIONAL)
+tl;dr: make a git commit on `main`; push it to this repo!
+[long instructions here](./git-started.md)
 
-You can just duplicate **00-core/metromap/droqen_template_minigame.tres**, but then double-check before editing: are you editing the new resource (the one you just made) or the old existing one?
+------
 
-Drag your scene from the previous step into your new Resource's *Microgame Scene* variable.
-
-## 3. Add your game to the **TrainJamMaster** node in **00-core/coreAll.tscn**
-
-### 3a. Drag-and-drop your scene into 'Test Microgame Scene'**
-
-Note that you should do this *with the scene itself,* not with a MicrogameMetadata resource.
-
-'Test Microgame Scene' is a variable in the aforementioned **TrainJamMaster** node.
-
-If you'd rather play the whole game, clear the 'Test Microgame Scene' variable.
-
-### 3b. If you created a **MicrogameMetadata** resource, add it to 'Microgames'
-
-'Microgames' is a variable (an array) in the **TrainJamMaster** node.
-
-Add a new slot at the end and stick your microgame resource in there.
-
-## 4. Run the project.
-
-(It should run from **00-core/coreAll.tscn**, which is the wrapper for running the entire game.)
-
-## p.s. the 'navdi2' folder
+## Navdi2
 
 'Navdi' is my (droqen's) personal game-making and prototyping library. Explaining how any of it works is beyond the scope of this README, but you're free to use it as you see fit. If you dare. I've included tips on some classes that you might find useful in your own project:
 
@@ -44,7 +40,7 @@ It's a node that will always be where the mouse is. You can use it like I do (by
 
 If you do use NavdiCursorFollower, make sure that you set the 'Get Cursor From Group' variable to **SuperCursor**, or it will not work.
 
-## NavdiPinQuickPlayer
+### NavdiPinQuickPlayer
 
 A node that provides a customizable and common input solution.
 

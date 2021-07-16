@@ -24,11 +24,15 @@ func _process(_delta):
 
 func boot_up():
 	self.current_state = STATE.booting_up
-	$Label/LabelSnowflake.set_frame(0.75)
+	$Label/LabelSnowflake.set_frame(1)
 	$Label/LabelFront.show()
-	yield(self.get_tree().create_timer(1), "timeout")
+	for snowflake in $SnowCounter.get_children():
+		snowflake.set_frame(1)
+	yield(self.get_tree().create_timer(0.75), "timeout")
 	$Label/LabelSnowflake.set_frame(0)
 	$Label/LabelFront.hide()
+	for snowflake in $SnowCounter.get_children():
+		snowflake.set_frame(0)
 	self.current_state = STATE.off
 
 func set_current_score(score: int):

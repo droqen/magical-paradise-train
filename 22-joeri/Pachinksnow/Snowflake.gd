@@ -63,9 +63,9 @@ func melt():
 	self.current_state = STATE.melting
 	$OnTimer.stop()
 
+	$AudioStreamPlayer.play()	
 	$MeltTimer.start()
 	yield($MeltTimer, "timeout")
-	$AudioStreamPlayer.play()
 	self.turn_off()
 
 func eat():

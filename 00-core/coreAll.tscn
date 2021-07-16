@@ -9,7 +9,7 @@
 [ext_resource path="res://navdi2/Node Scripts/Cursor/NavdiCursorFollower.gd" type="Script" id=7]
 [ext_resource path="res://art/temp_cursor.png" type="Texture" id=8]
 [ext_resource path="res://00-core/TrainJamMaster.gd" type="Script" id=9]
-[ext_resource path="res://00-core/metromap/rat_frost.tres" type="Resource" id=11]
+[ext_resource path="res://00-core/metromap/cheesefreeze.tres" type="Resource" id=11]
 [ext_resource path="res://00-core/metromap/rat_painting.tres" type="Resource" id=12]
 [ext_resource path="res://00-core/metromap/PetTheCat.tres" type="Resource" id=13]
 [ext_resource path="res://00-core/metromap/sunhands.tres" type="Resource" id=14]

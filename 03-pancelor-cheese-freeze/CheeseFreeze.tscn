@@ -1,25 +1,25 @@
 [gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://art/sewers.tres" type="TileSet" id=1]
-[ext_resource path="res://art/sewers.png" type="Texture" id=2]
-[ext_resource path="res://03-pancelor/cheese.gd" type="Script" id=3]
-[ext_resource path="res://03-pancelor/Generator.gd" type="Script" id=4]
-[ext_resource path="res://navdi2/Node Scripts/Board/NavdiBoardTileMap.gd" type="Script" id=5]
-[ext_resource path="res://navdi2/Node Scripts/Pin/NavdiPinQuickPlayer.gd" type="Script" id=6]
-[ext_resource path="res://00-core/SubwayStopBoard.gd" type="Script" id=7]
-[ext_resource path="res://navdi2/Node Scripts/Board/NavdiBoardState.gd" type="Script" id=8]
-[ext_resource path="res://03-pancelor/outliner.tres" type="Material" id=9]
-[ext_resource path="res://navdi2/Resources/src/roughyfive.tres" type="DynamicFont" id=10]
-[ext_resource path="res://01-droqen/Pickup_Coin3.wav" type="AudioStream" id=11]
-[ext_resource path="res://navdi2/Node Scripts/NavdiSheetSprite.gd" type="Script" id=12]
-[ext_resource path="res://03-pancelor/player.gd" type="Script" id=13]
+[ext_resource path="res://03-pancelor-cheese-freeze/Generator.gd" type="Script" id=2]
+[ext_resource path="res://03-pancelor-cheese-freeze/player.gd" type="Script" id=3]
+[ext_resource path="res://navdi2/Node Scripts/Pin/NavdiPinQuickPlayer.gd" type="Script" id=4]
+[ext_resource path="res://navdi2/Resources/src/roughyfive.tres" type="DynamicFont" id=5]
+[ext_resource path="res://00-core/SubwayStopBoard.gd" type="Script" id=6]
+[ext_resource path="res://navdi2/Node Scripts/Board/NavdiBoardState.gd" type="Script" id=7]
+[ext_resource path="res://navdi2/Node Scripts/Board/NavdiBoardTileMap.gd" type="Script" id=8]
+[ext_resource path="res://navdi2/Node Scripts/NavdiSheetSprite.gd" type="Script" id=9]
+[ext_resource path="res://03-pancelor-cheese-freeze/cheese.gd" type="Script" id=10]
+[ext_resource path="res://03-pancelor-cheese-freeze/outliner.tres" type="Material" id=11]
+[ext_resource path="res://01-droqen/Pickup_Coin3.wav" type="AudioStream" id=12]
+[ext_resource path="res://art/sewers.png" type="Texture" id=13]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 2.9, 2.9 )
 
 [node name="NavdiBoard" type="Node2D"]
 position = Vector2( 80, 80 )
-script = ExtResource( 7 )
+script = ExtResource( 6 )
 board_view_size = Vector2( 160, 160 )
 show_outline = true
 
@@ -34,7 +34,7 @@ __meta__ = {
 }
 
 [node name="State" type="Node2D" parent="."]
-script = ExtResource( 8 )
+script = ExtResource( 7 )
 
 [node name="NavdiBoardTileMap" type="TileMap" parent="State"]
 tile_set = ExtResource( 1 )
@@ -42,7 +42,7 @@ cell_size = Vector2( 8, 8 )
 cell_y_sort = true
 format = 1
 tile_data = PoolIntArray( -131074, 10, 0, -131073, 10, 0, -196608, 10, 0, -196607, 10, 0, -65538, 10, 0, -65537, 10, 0, -131072, 11, 0, -131071, 10, 0, -2, 10, 0, -1, 10, 0, -65536, 10, 0, -65535, 10, 0, 65534, 10, 0, 65535, 10, 0, 0, 10, 0, 1, 11, 0 )
-script = ExtResource( 5 )
+script = ExtResource( 8 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -50,20 +50,20 @@ refresh_tileset = false
 
 [node name="cheese" type="KinematicBody2D" parent="."]
 position = Vector2( -21.4401, -4.44293 )
-script = ExtResource( 3 )
+script = ExtResource( 10 )
 
 [node name="NavdiSheetSprite" type="Sprite" parent="cheese"]
-material = ExtResource( 9 )
-texture = ExtResource( 2 )
+material = ExtResource( 11 )
+texture = ExtResource( 13 )
 hframes = 10
 vframes = 2
 frame = 1
-script = ExtResource( 12 )
+script = ExtResource( 9 )
 __meta__ = {
 "_edit_lock_": true
 }
 _rate = 0.75
-_editor_sheet = ExtResource( 2 )
+_editor_sheet = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="cheese"]
 shape = SubResource( 1 )
@@ -73,24 +73,24 @@ __meta__ = {
 
 [node name="player" type="KinematicBody2D" parent="."]
 position = Vector2( -22.1255, -15.5483 )
-script = ExtResource( 13 )
+script = ExtResource( 3 )
 idl_frames = [ 2 ]
 run_frames = [ 2, 3, 2, 4 ]
 slide_frames = [ 3, 4 ]
 
 [node name="NavdiSheetSprite" type="Sprite" parent="player"]
-material = ExtResource( 9 )
-texture = ExtResource( 2 )
+material = ExtResource( 11 )
+texture = ExtResource( 13 )
 hframes = 10
 vframes = 2
 frame = 2
-script = ExtResource( 12 )
+script = ExtResource( 9 )
 __meta__ = {
 "_edit_lock_": true
 }
 _frames = [ 2 ]
 _rate = 8.0
-_editor_sheet = ExtResource( 2 )
+_editor_sheet = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="player"]
 shape = SubResource( 1 )
@@ -99,20 +99,20 @@ __meta__ = {
 }
 
 [node name="NavdiPinQuickPlayer" type="Node" parent="player"]
-script = ExtResource( 6 )
+script = ExtResource( 4 )
 
 [node name="get" type="AudioStreamPlayer" parent="player"]
-stream = ExtResource( 11 )
+stream = ExtResource( 12 )
 
 [node name="Generator" type="Node2D" parent="."]
-script = ExtResource( 4 )
+script = ExtResource( 2 )
 
 [node name="Instructions" type="Label" parent="."]
 margin_left = -78.0
 margin_top = -77.0
 margin_right = 76.0
 margin_bottom = -53.0
-custom_fonts/font = ExtResource( 10 )
+custom_fonts/font = ExtResource( 5 )
 text = "get the cheese! 
 z=undo       x=reset"
 align = 1

@@ -48,7 +48,7 @@ func boot_up():
 	$AnimatedSprite.set_animation("eat")
 	$AnimatedSprite.stop()
 	$AnimatedSprite.set_frame(1)
-	yield(self.get_tree().create_timer(0.5), "timeout")
+	yield(self.get_tree().create_timer(0.75), "timeout")
 	$AnimatedSprite.set_animation("turn_on")
 	$AnimatedSprite.set_frame(0)
 	self.current_state = STATE.off

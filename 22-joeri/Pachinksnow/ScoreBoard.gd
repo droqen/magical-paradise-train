@@ -24,9 +24,9 @@ func _process(_delta):
 
 func boot_up():
 	self.current_state = STATE.booting_up
-	$Label/LabelSnowflake.set_frame(1)
+	$Label/LabelSnowflake.set_frame(0.75)
 	$Label/LabelFront.show()
-	yield(self.get_tree().create_timer(0.5), "timeout")
+	yield(self.get_tree().create_timer(1), "timeout")
 	$Label/LabelSnowflake.set_frame(0)
 	$Label/LabelFront.hide()
 	self.current_state = STATE.off

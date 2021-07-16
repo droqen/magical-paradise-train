@@ -50,7 +50,7 @@ func turn_on():
 func boot_up():
 	self.current_state = STATE.booting_up
 	$AnimatedSprite.set_frame(1)
-	yield(self.get_tree().create_timer(0.5), "timeout")
+	yield(self.get_tree().create_timer(0.75), "timeout")
 	$AnimatedSprite.set_frame(0)
 	self.turn_off()
 
@@ -65,6 +65,7 @@ func melt():
 
 	$MeltTimer.start()
 	yield($MeltTimer, "timeout")
+	$AudioStreamPlayer.play()
 	self.turn_off()
 
 func eat():

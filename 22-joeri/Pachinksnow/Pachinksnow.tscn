@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://navdi2/Node Scripts/Board/NavdiBoardState.gd" type="Script" id=1]
 [ext_resource path="res://22-joeri/Pachinksnow/FrogSpace.gd" type="Script" id=2]
@@ -11,6 +11,9 @@
 [ext_resource path="res://22-joeri/Pachinksnow/assets/slapface.ttf" type="DynamicFontData" id=9]
 [ext_resource path="res://22-joeri/Pachinksnow/assets/snowflake.png" type="Texture" id=10]
 [ext_resource path="res://22-joeri/Pachinksnow/ScoreBoard.gd" type="Script" id=11]
+[ext_resource path="res://22-joeri/Pachinksnow/assets/lost.wav" type="AudioStream" id=12]
+[ext_resource path="res://22-joeri/Pachinksnow/assets/won.wav" type="AudioStream" id=13]
+[ext_resource path="res://22-joeri/Pachinksnow/assets/boot_up.wav" type="AudioStream" id=14]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 3 )
@@ -413,3 +416,15 @@ frames = SubResource( 14 )
 [node name="SnowflakeScore3" type="AnimatedSprite" parent="ScoreBoard/SnowCounter"]
 position = Vector2( 104, 8 )
 frames = SubResource( 14 )
+
+[node name="BootUpSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 14 )
+
+[node name="WinSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 13 )
+
+[node name="LoseSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 12 )
+
+[node name="SnowflakeEatenSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 14 )

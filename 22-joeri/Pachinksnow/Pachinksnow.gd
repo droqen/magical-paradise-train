@@ -27,13 +27,17 @@ func _process(_delta):
 	if self.snow_caught >= self.to_win && !self.has_lost && !self.has_won:
 		self.has_won = true
 		yield(self.get_tree().create_timer(1), "timeout")
+		$WinSound.play()
 		emit_signal("player_won")
 
 	if self.current_state == STATE.finished && !$SnowSpace.has_snow && !self.has_lost && !self.has_won:
 		self.has_lost = true
+		yield(self.get_tree().create_timer(1), "timeout")
+		$LoseSound.play()
 		emit_signal("player_lost")
 
 func _on_snowflake_eaten():
+	$SnowflakeEatenSound.play()
 	self.snow_caught += 1
 	$ScoreBoard.set_current_score(self.snow_caught)
 
@@ -41,6 +45,8 @@ func start_game():
 	self.current_state = STATE.startUp	
 	yield(self.get_tree().create_timer(1), "timeout")
 	
+#	Show everything
+	$BootUpSound.play()
 	$Clouds.set_animation("turn_on")
 	$Clouds.set_frame(1)
 	$Floor/FloorFront.show()
@@ -52,14 +58,17 @@ func start_game():
 	for frog in $FrogSpace.get_children():
 		frog.boot_up()
 
-	yield(self.get_tree().create_timer(0.5), "timeout")
+#	Wait a bit...
+	yield(self.get_tree().create_timer(0.75), "timeout")
 	
+#	Hide everything
 	$Clouds.set_animation("turn_on")
 	$Clouds.set_frame(0)
 	$Floor/FloorFront.hide()
 
 	yield(self.get_tree().create_timer(0.25), "timeout")
 	
+#	Turn on the initial parts of the game
 	$Floor/FloorFront.show()	
 	$ScoreBoard.current_state = 	$ScoreBoard.STATE.on
 	$FrogSpace/WalkingFrog1.current_state = $FrogSpace/WalkingFrog1.STATE.on

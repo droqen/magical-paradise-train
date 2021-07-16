@@ -21,7 +21,7 @@ func _ready():
 	randomize()
 	$FrogSpace.connect("snowflake_eaten", self, "_on_snowflake_eaten")
 	$ScoreBoard.set_maximum(self.to_win)
-	start_game()
+	self.connect("game_start", self, "start_game")
 
 func _process(_delta):
 	if self.snow_caught >= self.to_win && !self.has_lost && !self.has_won:

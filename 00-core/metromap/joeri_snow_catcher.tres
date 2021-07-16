@@ -3,10 +3,8 @@
 [ext_resource path="res://00-core/MicrogameMetadata.gd" type="Script" id=1]
 [ext_resource path="res://22-joeri/Pachinksnow/Pachinksnow.tscn" type="PackedScene" id=2]
 
-
-
 [resource]
 script = ExtResource( 1 )
 microgame_scene = ExtResource( 2 )
-microgame_name = "Snow Catcher"
+microgame_name = "Pachinksnow"
 author_name = "Joeri"

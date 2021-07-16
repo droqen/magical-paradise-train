@@ -199,6 +199,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://navdi2/module for PyxelEdit/PyxelLoader.gd"
 }, {
+"base": "Node2D",
+"class": "Snowflake",
+"language": "GDScript",
+"path": "res://22-joeri/Pachinksnow/Snowflake.gd"
+}, {
 "base": "Reference",
 "class": "TileZone",
 "language": "GDScript",
@@ -263,6 +268,7 @@ _global_script_class_icons={
 "NavdiViewerWindow": "",
 "PinSingle": "",
 "PyxelLoader": "",
+"Snowflake": "",
 "TileZone": "",
 "TiledLoader": "",
 "TiledManager": "",
@@ -310,9 +316,9 @@ common/enable_pause_aware_picking=true
 [rendering]
 
 quality/driver/driver_name="GLES2"
-2d/snapping/use_gpu_pixel_snap=true
+quality/2d/use_pixel_snap=true
 vram_compression/import_etc=true
 vram_compression/import_etc2=false
 environment/default_clear_color=Color( 1, 1, 1, 1 )
 environment/default_environment="res://default_env.tres"
-quality/2d/use_pixel_snap=true
+2d/snapping/use_gpu_pixel_snap=true

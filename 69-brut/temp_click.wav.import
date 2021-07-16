@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/temp_click.wav-b1fba2d07db88a834f6f23664ba2af4f.sample"
+
+[deps]
+
+source_file="res://69-brut/temp_click.wav"
+dest_files=[ "res://.import/temp_click.wav-b1fba2d07db88a834f6f23664ba2af4f.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

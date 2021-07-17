@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://navdi2/Resources/src/roughyfive.tres" type="DynamicFont" id=1]
 [ext_resource path="res://00-core/SubwayStopBoard.gd" type="Script" id=2]
@@ -10,12 +10,15 @@
 [ext_resource path="res://69-brut/unshaded.tres" type="Material" id=8]
 [ext_resource path="res://02-ashk/pencil sound.ogg" type="AudioStream" id=9]
 [ext_resource path="res://69-brut/beauty_unscratched.png" type="Texture" id=10]
+[ext_resource path="res://69-brut/judge.png" type="Texture" id=11]
 [ext_resource path="res://69-brut/ScratchManager2.gd" type="Script" id=12]
 [ext_resource path="res://69-brut/scratchables/scratchables.png" type="Texture" id=13]
 [ext_resource path="res://69-brut/scratchables/scratchables_targets.png" type="Texture" id=14]
 [ext_resource path="res://69-brut/BombTimer/BombTimer.tscn" type="PackedScene" id=15]
 [ext_resource path="res://navdi2/Resources/src/droqenserif.ttf" type="DynamicFontData" id=16]
 [ext_resource path="res://69-brut/scratch_mask.png" type="Texture" id=17]
+[ext_resource path="res://69-brut/judge.gd" type="Script" id=18]
+[ext_resource path="res://69-brut/Scoreboard.gd" type="Script" id=19]
 
 [sub_resource type="CanvasItemMaterial" id=1]
 light_mode = 1
@@ -35,19 +38,24 @@ colors = PoolColorArray( 0.8, 0.8, 0.8, 1, 0.8, 0.8, 0.8, 0 )
 [sub_resource type="CanvasItemMaterial" id=6]
 light_mode = 2
 
+[sub_resource type="ViewportTexture" id=8]
+viewport_path = NodePath("Viewport")
+
+[sub_resource type="CanvasItemMaterial" id=9]
+blend_mode = 1
+light_mode = 2
+
+[sub_resource type="ViewportTexture" id=10]
+viewport_path = NodePath("Viewport")
+
 [sub_resource type="DynamicFont" id=7]
 outline_size = 2
 font_data = ExtResource( 16 )
 
-[sub_resource type="ViewportTexture" id=8]
-viewport_path = NodePath("Viewport")
-
-[sub_resource type="CanvasItemMaterial" id=10]
-blend_mode = 1
-light_mode = 2
-
-[sub_resource type="ViewportTexture" id=9]
-viewport_path = NodePath("Viewport")
+[sub_resource type="DynamicFont" id=11]
+size = 24
+outline_size = 2
+font_data = ExtResource( 16 )
 
 [node name="NavdiBoard" type="Node2D"]
 position = Vector2( 80, 80 )
@@ -169,23 +177,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Score" type="Label" parent="ScratchManager"]
-material = ExtResource( 8 )
-margin_left = -78.0
-margin_top = 35.0
-margin_right = 79.0
-margin_bottom = 74.0
-custom_fonts/font = SubResource( 7 )
-custom_colors/font_color = Color( 1, 0, 1, 1 )
-custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
-align = 1
-valign = 1
-autowrap = true
-uppercase = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="preview" type="Sprite" parent="ScratchManager"]
 visible = false
 position = Vector2( 7.42615, 17.9611 )
@@ -207,7 +198,7 @@ render_target_v_flip = true
 render_target_update_mode = 3
 
 [node name="Line2D" type="Line2D" parent="Viewport"]
-material = SubResource( 10 )
+material = SubResource( 9 )
 position = Vector2( 80, 80 )
 width = 8.0
 default_color = Color( 1, 1, 1, 1 )
@@ -226,9 +217,57 @@ energy = 8.39
 mode = 2
 
 [node name="Light2D" type="Light2D" parent="."]
-texture = SubResource( 9 )
+texture = SubResource( 10 )
 mode = 2
 
+[node name="ScoreSetup" type="Node2D" parent="."]
+position = Vector2( -40.3843, 52.0796 )
+z_index = 8
+script = ExtResource( 19 )
+
+[node name="judge" type="Sprite" parent="ScoreSetup"]
+position = Vector2( 5.19087, -44.1487 )
+texture = ExtResource( 11 )
+script = ExtResource( 18 )
+
+[node name="Explain" type="Label" parent="ScoreSetup"]
+material = ExtResource( 8 )
+margin_left = -1.16838
+margin_top = -102.416
+margin_right = 116.832
+margin_bottom = -63.4158
+rect_pivot_offset = Vector2( -168.584, 160.55 )
+custom_fonts/font = SubResource( 7 )
+custom_colors/font_color = Color( 1, 0, 1, 1 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+valign = 1
+autowrap = true
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Score" type="Label" parent="ScoreSetup"]
+material = ExtResource( 8 )
+margin_left = 29.6071
+margin_top = -68.5842
+margin_right = 92.6071
+margin_bottom = -29.5842
+rect_pivot_offset = Vector2( -168.584, 160.55 )
+custom_fonts/font = SubResource( 11 )
+custom_colors/font_color = Color( 1, 0, 1, 1 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+align = 1
+valign = 1
+autowrap = true
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="ScoreSetup"]
+
+[connection signal="end_gameplay" from="ScratchManager" to="ScoreSetup" method="_on_ScratchManager_end_gameplay"]
 [connection signal="area_entered" from="ScratchManager/NoDrawZone" to="ScratchManager" method="_on_NoDrawZone_area_entered"]
 [connection signal="area_exited" from="ScratchManager/NoDrawZone" to="ScratchManager" method="_on_NoDrawZone_area_exited"]
 [connection signal="bomb_exploded" from="ScratchManager/BombTimer" to="ScratchManager" method="_on_BombTimer_bomb_exploded"]

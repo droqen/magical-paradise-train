@@ -9,6 +9,8 @@ export(Color) var scratchColor
 export(NodePath) var differencePath
 export(float) var timeAfterLoss
 
+signal end_gameplay(score)
+
 onready var scratchMaskImage = scratchMaskTexture.get_data()
 onready var scracthTargetImages = scratchTargets.get_data()
 onready var differenceNode = get_node(differencePath)
@@ -66,8 +68,8 @@ func _on_Timer_timeout():
 
 func score_and_end():
 	compare_scratch()
-	yield(get_tree().create_timer(2.0), "timeout")
-	get_parent().emit_signal("player_won")
+	#yield(get_tree().create_timer(2.0), "timeout")
+	#get_parent().emit_signal("player_won")
 
 func compare_scratch():
 	differenceImage = Image.new()
@@ -101,7 +103,8 @@ func compare_scratch():
 			elif color_scratch.a > 0:
 				score += 2
 
-	$Score.text = "YOUR SCORE IS \n" + str(score)
+	emit_signal("end_gameplay", score)
+	print("sending end gameplay singal")
 
 	scratchImage.unlock()
 	differenceImage.unlock()

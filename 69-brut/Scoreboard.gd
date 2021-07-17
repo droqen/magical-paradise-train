@@ -41,3 +41,7 @@ func _on_ScratchManager_end_gameplay(score):
 		$Score.text += "!"		
 	yield(get_tree().create_timer(3), "timeout")
 	get_parent().emit_signal("player_won")
+
+
+func _on_Instructions_start_game():
+	pass # Replace with function body.

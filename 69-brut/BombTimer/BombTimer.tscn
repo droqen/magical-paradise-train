@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://69-brut/BombTimer/bomb1.png" type="Texture" id=1]
 [ext_resource path="res://69-brut/BombTimer/rope.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://69-brut/BombTimer/explode.png" type="Texture" id=4]
 [ext_resource path="res://69-brut/BombTimer/rope.gd" type="Script" id=5]
 [ext_resource path="res://69-brut/BombTimer/BombTimer.gd" type="Script" id=6]
+[ext_resource path="res://69-brut/BombTimer/RandomRotation.gd" type="Script" id=7]
 
 [sub_resource type="CanvasItemMaterial" id=1]
 light_mode = 1
@@ -41,6 +42,10 @@ scale = Vector2( 0.765452, 0.765452 )
 z_index = 8
 texture = ExtResource( 1 )
 offset = Vector2( 5.1227, -9.96419 )
+script = ExtResource( 7 )
+change_rotation_on_time = 0.5
+angle_range = 5
+angle_offset = -40
 
 [node name="SetupTween" type="Tween" parent="."]
 
@@ -58,6 +63,7 @@ position = Vector2( -66.3001, 25.8458 )
 scale = Vector2( 1e-05, 1e-05 )
 z_index = 1
 texture = ExtResource( 4 )
+script = ExtResource( 7 )
 
 [node name="RopeTween" type="Tween" parent="rope"]
 

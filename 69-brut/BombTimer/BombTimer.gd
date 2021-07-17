@@ -6,7 +6,7 @@ export (float) var duration
 signal bomb_exploded
 
 onready var rope_end_pos : Vector2 = rope.position
-var start_pos = 190
+var start_pos = 210
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -30,12 +30,12 @@ func start():
 	$SetupTween.start()
 	yield($SetupTween, "tween_completed")
 	print("FSSHHHH")
-	$SetupTween.interpolate_property(explosion, "scale", Vector2.ZERO, Vector2.ONE*0.8, 3, TRANS_BACK, EASE_OUT)
+	$SetupTween.interpolate_property(explosion, "scale", Vector2.ZERO, Vector2.ONE*0.8, 0.25, TRANS_BACK, EASE_OUT)
 	$SetupTween.start()
 	#rope.position.x = 150
 	#$rope.set_on_fire(start_pos)
 	print("ROPEROPE")
-	$rope/RopeTween.interpolate_property($rope, "position", $rope.position, initialPos, rope_duration, TRANS_QUAD, EASE_OUT)
+	$rope/RopeTween.interpolate_property($rope, "position", $rope.position, initialPos, rope_duration-0.1, TRANS_LINEAR, EASE_IN_OUT)
 	$rope/RopeTween.start()
 	#interpolate_property(rope, "position", rope.position, initialPos, duration, TRANS_BACK, EASE_OUT)
 	yield($rope/RopeTween, "tween_completed")

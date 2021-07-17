@@ -21,6 +21,7 @@ var instructions: String
 var line2d
 var line2dParent
 
+var game_started = false
 var previous_pencil_position
 var pencil_speed = Vector2.ZERO
 var drawing = false
@@ -124,7 +125,7 @@ func _input(event):
 var has_started = false
 func _process(delta):
 	var pencil_delta = $pencil.global_position-previous_pencil_position
-	if Input.is_action_pressed("left mouse button") and can_draw:
+	if Input.is_action_pressed("left mouse button") and can_draw and game_started:
 		if(!has_started):
 			has_started = true
 			$BombTimer.start()
@@ -189,3 +190,7 @@ func _on_NoDrawZone_area_exited(area):
 func _on_BombTimer_bomb_exploded():
 	score_and_end()
 	pass # Replace with function body.
+
+
+func _on_Instructions_start_game():
+	game_started = true

@@ -14,46 +14,41 @@
 [ext_resource path="res://69-brut/ScratchManager2.gd" type="Script" id=12]
 [ext_resource path="res://69-brut/scratchables/scratchables.png" type="Texture" id=13]
 [ext_resource path="res://69-brut/scratchables/scratchables_targets.png" type="Texture" id=14]
-[ext_resource path="res://69-brut/BombSetup.tscn" type="PackedScene" id=15]
+[ext_resource path="res://69-brut/BombTimer.tscn" type="PackedScene" id=15]
 [ext_resource path="res://navdi2/Resources/src/droqenserif.ttf" type="DynamicFontData" id=16]
 
 [sub_resource type="CanvasItemMaterial" id=1]
 light_mode = 1
 
-[sub_resource type="ViewportTexture" id=10]
+[sub_resource type="ViewportTexture" id=2]
 viewport_path = NodePath("Viewport")
 
-[sub_resource type="CanvasItemMaterial" id=11]
+[sub_resource type="CanvasItemMaterial" id=3]
 
-[sub_resource type="CircleShape2D" id=12]
+[sub_resource type="CircleShape2D" id=4]
 radius = 4.69366
 
-[sub_resource type="Gradient" id=13]
+[sub_resource type="Gradient" id=5]
 offsets = PoolRealArray( 0.864103, 1 )
 colors = PoolColorArray( 0.8, 0.8, 0.8, 1, 0.8, 0.8, 0.8, 0 )
 
-[sub_resource type="CanvasItemMaterial" id=14]
+[sub_resource type="CanvasItemMaterial" id=6]
 light_mode = 2
 
-[sub_resource type="DynamicFont" id=17]
+[sub_resource type="DynamicFont" id=7]
 outline_size = 2
 font_data = ExtResource( 16 )
 
-[sub_resource type="ViewportTexture" id=15]
+[sub_resource type="ViewportTexture" id=8]
 viewport_path = NodePath("Viewport")
 
-[sub_resource type="ViewportTexture" id=16]
+[sub_resource type="ViewportTexture" id=9]
 viewport_path = NodePath("Viewport")
 
 [node name="NavdiBoard" type="Node2D"]
 position = Vector2( 80, 80 )
 script = ExtResource( 2 )
 board_view_size = Vector2( 160, 160 )
-tiled_manager_path = NodePath("TiledManager")
-force_setup = false
-source_tilemap_path = NodePath("")
-source_tilemap_name = ""
-apply_tilemap = false
 show_outline = true
 
 [node name="ScratchManager" type="Node2D" parent="."]
@@ -62,7 +57,7 @@ script = ExtResource( 12 )
 images = {
 "rat": ExtResource( 11 )
 }
-scratchTexture = SubResource( 10 )
+scratchTexture = SubResource( 2 )
 scratchTargets = ExtResource( 14 )
 particleTarget = ExtResource( 10 )
 overflowColor = Color( 0.811765, 0.12549, 0.12549, 1 )
@@ -88,12 +83,12 @@ texture = ExtResource( 10 )
 
 [node name="pencil shadow" type="Sprite" parent="ScratchManager"]
 modulate = Color( 0, 0, 0, 0.403922 )
-material = SubResource( 11 )
+material = SubResource( 3 )
 z_index = 1
 
 [node name="pencil shadow" type="Sprite" parent="ScratchManager/pencil shadow"]
 modulate = Color( 0, 0, 0, 0.403922 )
-material = SubResource( 11 )
+material = SubResource( 3 )
 position = Vector2( 26.6535, 73.1502 )
 rotation = 0.303687
 scale = Vector2( 1.11167, 1.24499 )
@@ -105,7 +100,7 @@ texture = ExtResource( 6 )
 [node name="Area2D" type="Area2D" parent="ScratchManager/pencil shadow"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ScratchManager/pencil shadow/Area2D"]
-shape = SubResource( 12 )
+shape = SubResource( 4 )
 
 [node name="Node2D" type="Node2D" parent="ScratchManager/pencil shadow"]
 
@@ -139,7 +134,7 @@ damping = 48.35
 damping_random = 0.2
 angle_random = 1.0
 scale_amount_random = 1.0
-color_ramp = SubResource( 13 )
+color_ramp = SubResource( 5 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="ScratchManager"]
 stream = ExtResource( 9 )
@@ -149,7 +144,7 @@ autoplay = true
 stream = ExtResource( 5 )
 
 [node name="ScratchPrize" type="Sprite" parent="ScratchManager"]
-material = SubResource( 14 )
+material = SubResource( 6 )
 texture = ExtResource( 13 )
 hframes = 10
 frame = 1
@@ -157,11 +152,9 @@ frame = 1
 [node name="Debug" type="Sprite" parent="ScratchManager"]
 
 [node name="ScratchBG" type="Sprite" parent="ScratchManager"]
-material = SubResource( 14 )
+material = SubResource( 6 )
 z_index = -1
 texture = ExtResource( 7 )
-
-[node name="BombSetup" parent="ScratchManager" instance=ExtResource( 15 )]
 
 [node name="Instructions" type="Label" parent="ScratchManager"]
 material = ExtResource( 8 )
@@ -182,7 +175,7 @@ margin_left = -78.0
 margin_top = -22.0
 margin_right = 75.0
 margin_bottom = 22.0
-custom_fonts/font = SubResource( 17 )
+custom_fonts/font = SubResource( 7 )
 custom_colors/font_color = Color( 1, 0, 1, 1 )
 custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
 align = 1
@@ -193,11 +186,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="BombTimer" parent="ScratchManager" instance=ExtResource( 15 )]
+duration = 6.0
+
 [node name="State" type="Node2D" parent="."]
 script = ExtResource( 3 )
 
 [node name="Light2D" type="Light2D" parent="."]
-texture = SubResource( 15 )
+texture = SubResource( 8 )
 mode = 2
 
 [node name="Viewport" type="Viewport" parent="."]
@@ -221,9 +217,9 @@ antialiased = true
 position = Vector2( 45.6293, 47.3965 )
 scale = Vector2( 0.197876, 0.182408 )
 z_index = 10
-texture = SubResource( 16 )
+texture = SubResource( 9 )
+
 [connection signal="timeout" from="ScratchManager/Timer" to="ScratchManager" method="_on_Timer_timeout"]
 [connection signal="area_entered" from="ScratchManager/NoDrawZone" to="ScratchManager" method="_on_NoDrawZone_area_entered"]
 [connection signal="area_exited" from="ScratchManager/NoDrawZone" to="ScratchManager" method="_on_NoDrawZone_area_exited"]
-[connection signal="tween_all_completed" from="ScratchManager/BombSetup" to="ScratchManager" method="_on_BombSetup_tween_all_completed"]
-[connection signal="tween_completed" from="ScratchManager/BombSetup" to="ScratchManager" method="_on_BombSetup_tween_completed"]
+[connection signal="bomb_exploded" from="ScratchManager/BombTimer" to="ScratchManager" method="_on_BombTimer_bomb_exploded"]

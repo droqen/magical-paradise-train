@@ -91,7 +91,8 @@ func _ready():
 	
 
 func _on_Timer_timeout():
-	waitAndEnd()
+	#waitAndEnd()
+	pass
 
 func waitAndEnd():
 	compare_scratch()
@@ -149,8 +150,8 @@ func _process(delta):
 	if Input.is_action_pressed("left mouse button") and can_draw:
 		if(!has_started):
 			has_started = true
-			$BombSetup.do_the_tween()
-			$Timer.start()
+			$BombTimer.start()
+			#$Timer.start()
 		particles.emitting = true
 		$pencil/pencil.position.y = 30
 		volume = lerp(volume, pencil_speed.length()/100, delta*10)
@@ -200,18 +201,10 @@ func _on_NoDrawZone_area_entered(area):
 	can_draw = false
 	pass # Replace with function body.
 
-
 func _on_NoDrawZone_area_exited(area):
 	can_draw = true
 	pass # Replace with function body.
 
-
-func _on_Button_pressed():
-	get_parent().emit_signal("player_won")
-	$AudioStreamPlayer2.play()
+func _on_BombTimer_bomb_exploded():
+	waitAndEnd()
 	pass # Replace with function body.
-
-
-func _on_BombSetup_tween_completed(object, key):
-	pass # Replace with function body.
-

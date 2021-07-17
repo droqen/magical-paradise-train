@@ -1,11 +1,11 @@
 [gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://69-brut/rope.gd" type="Script" id=1]
-[ext_resource path="res://69-brut/BombTimer.gd" type="Script" id=2]
-[ext_resource path="res://69-brut/rope_mask.png" type="Texture" id=3]
-[ext_resource path="res://69-brut/bomb1.png" type="Texture" id=4]
-[ext_resource path="res://69-brut/rope.png" type="Texture" id=5]
-[ext_resource path="res://69-brut/explode.png" type="Texture" id=6]
+[ext_resource path="res://69-brut/BombTimer/bomb1.png" type="Texture" id=1]
+[ext_resource path="res://69-brut/BombTimer/rope.png" type="Texture" id=2]
+[ext_resource path="res://69-brut/BombTimer/rope_mask.png" type="Texture" id=3]
+[ext_resource path="res://69-brut/BombTimer/explode.png" type="Texture" id=4]
+[ext_resource path="res://69-brut/BombTimer/rope.gd" type="Script" id=5]
+[ext_resource path="res://69-brut/BombTimer/BombTimer.gd" type="Script" id=6]
 
 [sub_resource type="CanvasItemMaterial" id=1]
 light_mode = 1
@@ -18,14 +18,14 @@ next_pass = SubResource( 2 )
 light_mode = 2
 
 [node name="BombTimer" type="Tween"]
-script = ExtResource( 2 )
+script = ExtResource( 6 )
 
 [node name="Sprite" type="Sprite" parent="."]
 material = SubResource( 1 )
 position = Vector2( 133.385, 141.625 )
 scale = Vector2( 0.765452, 0.765452 )
 z_index = 8
-texture = ExtResource( 4 )
+texture = ExtResource( 1 )
 offset = Vector2( 5.1227, -9.96419 )
 
 [node name="SetupTween" type="Tween" parent="."]
@@ -35,15 +35,15 @@ material = SubResource( 3 )
 position = Vector2( 93.3033, 168.214 )
 scale = Vector2( 1, -1 )
 z_index = 6
-texture = ExtResource( 5 )
+texture = ExtResource( 2 )
 offset = Vector2( -22.1532, 13.4969 )
-script = ExtResource( 1 )
+script = ExtResource( 5 )
 
 [node name="fire" type="Sprite" parent="rope"]
 position = Vector2( -66.3001, 25.8458 )
 scale = Vector2( 1e-05, 1e-05 )
 z_index = 1
-texture = ExtResource( 6 )
+texture = ExtResource( 4 )
 
 [node name="RopeTween" type="Tween" parent="rope"]
 

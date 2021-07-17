@@ -27,13 +27,16 @@ func start():
 	$SetupTween.interpolate_property(rope, "position", rope.position, rope_end_pos, 0.3, TRANS_BACK, EASE_OUT)
 	$SetupTween.start()
 	yield($SetupTween, "tween_completed")
+	print("FSSHHHH")
 	$SetupTween.interpolate_property(explosion, "scale", Vector2.ZERO, Vector2.ONE*0.8, 3, TRANS_BACK, EASE_OUT)
 	$SetupTween.start()
 	#rope.position.x = 150
 	#$rope.set_on_fire(start_pos)
-	$rope/RopeTween.interpolate_property($rope, "position", $rope.position, initialPos, duration, Tween.TRANS_BACK, Tween.EASE_OUT)
+	print("ROPEROPE")
+	$rope/RopeTween.interpolate_property($rope, "position", $rope.position, initialPos, duration, TRANS_QUAD, EASE_OUT)
 	$rope/RopeTween.start()
 	#interpolate_property(rope, "position", rope.position, initialPos, duration, TRANS_BACK, EASE_OUT)
 	yield($rope/RopeTween, "tween_completed")
+	print("BOOOM")
 	emit_signal("bomb_exploded")
 		

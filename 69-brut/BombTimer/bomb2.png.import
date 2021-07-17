@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/explode.png-3519192ef7d4af9740fd085f794d57f0.stex"
+path="res://.import/bomb2.png-8a71b6f4bd06f11dd629f2aea3dae659.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://69-brut/explode.png"
-dest_files=[ "res://.import/explode.png-3519192ef7d4af9740fd085f794d57f0.stex" ]
+source_file="res://69-brut/BombTimer/bomb2.png"
+dest_files=[ "res://.import/bomb2.png-8a71b6f4bd06f11dd629f2aea3dae659.stex" ]
 
 [params]
 

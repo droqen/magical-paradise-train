@@ -1,52 +1,23 @@
 extends Node2D
-export(Dictionary) var images
 export(Texture) var scratchTexture
 export(Texture) var scratchTargets
 export(Texture) var particleTarget
+export(Texture) var scratchMaskTexture
 export(Color) var overflowColor
 export(Color) var missingColor
 export(Color) var scratchColor
 export(NodePath) var differencePath
 export(float) var timeAfterLoss
 
+onready var scratchMaskImage = scratchMaskTexture.get_data()
 onready var scracthTargetImages = scratchTargets.get_data()
 onready var differenceNode = get_node(differencePath)
 var differenceImage : Image
 
 var instructions: String
-var rat_attributes = [
-	" cool",
-	" heroic",
-	" punk",
-	" cottagecore",
-	" gay",
-	" friendly",
-	"n adorable",
-	" round",
-	"n anthro",
-	" seductive",
-	" skaterboy",
-	"n abstract",
-	" mad",
-	" hyperrealistic",
-	" dad",
-	" baby",
-	" soft",
-	" square",
-	" minecraft",
-	" slimy",
-	" hot",
-	" comically large",
-	" miniscule",
-	" screen-filling",
-	" funny",
-	"n evil", 
-	" twisted",
-	" minimalist"
-	
-]
 
 var line2d
+var line2dParent
 
 var previous_pencil_position
 var pencil_speed = Vector2.ZERO
@@ -70,13 +41,12 @@ func _ready():
 	line2d = get_node("../Viewport/Line2D")
 	randomize()
 	instructions = "scratch-a-"
-	var names = images.keys()
 	randomizedImageNumber = randi()%10 #TODO: make this be an array 
 	#var prize = names[randomizedImageNumber]
 	#instructions += prize
 	$ScratchPrize.frame = randomizedImageNumber
 	#	print(instructions)
-	$Instructions.text = instructions
+	# $Instructions.text = instructions
 	previous_pencil_position = get_global_mouse_position()*0.5
 	particlesImage.lock()
 	scracthTargetImages.lock() 
@@ -87,14 +57,14 @@ func _ready():
 	var t = ImageTexture.new()
 	t.create_from_image(differenceImage)
 	differenceNode.set_texture(t)
-
 	
-
+	scratchMaskImage.lock()
+	
 func _on_Timer_timeout():
-	#waitAndEnd()
+	#score_and_end()
 	pass
 
-func waitAndEnd():
+func score_and_end():
 	compare_scratch()
 	yield(get_tree().create_timer(2.0), "timeout")
 	get_parent().emit_signal("player_won")
@@ -110,6 +80,8 @@ func compare_scratch():
 	var score = 0
 	for i in range(160): 
 		for j in range(160): 
+			if scratchMaskImage.get_pixel(i, j).a == 0:
+				continue
 			var comp_offset_x = i + randomizedImageNumber * 160
 			var color_scratch = scratchImage.get_pixel(i, j)
 			var color_target = scracthTargetImages.get_pixel(comp_offset_x, j)
@@ -119,15 +91,15 @@ func compare_scratch():
 				# differenceImage.set_pixel(i, j, Color.blue)
 			# if(color_scratch.a > 0):
 				# differenceImage.set_pixel(i, j, Color.yellow)
-			if(color_scratch.a != color_target.a):
-				if(color_scratch.a != 0):
+			if abs(color_scratch.a - color_target.a) > 0.9:
+				if color_target.a > 0.9:
 					differenceImage.set_pixel(i, j, missingColor)
-					score -= 1
-				if(color_scratch.a != 0):
+					# score -= 1
+				if color_scratch.a > 0.9:
 					differenceImage.set_pixel(i, j, overflowColor)
 					score -= 1
-			else:
-				score += 1
+			elif color_scratch.a > 0:
+				score += 2
 
 	$Score.text = "YOUR SCORE IS \n" + str(score)
 
@@ -136,6 +108,8 @@ func compare_scratch():
 	var t = ImageTexture.new()
 	t.create_from_image(differenceImage)
 	differenceNode.set_texture(t)
+	
+	$AudioStreamPlayer.volume_db = linear2db(0)
 
 
 func _input(event):
@@ -154,11 +128,15 @@ func _process(delta):
 			#$Timer.start()
 		particles.emitting = true
 		$pencil/pencil.position.y = 30
-		volume = lerp(volume, pencil_speed.length()/100, delta*10)
+		if was_drawing:
+			volume = lerp(volume, pencil_speed.length()/100, delta*10)
 		if not was_drawing:
-			var new_line = line2d
-			#add_child(new_line)
+			var new_line = line2d.duplicate()
+			line2d.get_parent().add_child(new_line)
+			#add_child(new_line)			
 			current_line = new_line
+			# if we want it to immediately scratch
+			#current_line.add_point($pencil.position - Vector2(0, 0.1))
 		current_line.add_point($pencil.position)
 #		points += 1
 #		print(current_line.points)
@@ -206,5 +184,5 @@ func _on_NoDrawZone_area_exited(area):
 	pass # Replace with function body.
 
 func _on_BombTimer_bomb_exploded():
-	waitAndEnd()
+	score_and_end()
 	pass # Replace with function body.

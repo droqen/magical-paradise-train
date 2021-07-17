@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/bomb1.png-83c7f81290a21040d036e3e88526ad0f.stex"
+path="res://.import/scratch_mask.png-95a9d33627a51ca53c07e3ed51b75ee5.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://69-brut/bomb1.png"
-dest_files=[ "res://.import/bomb1.png-83c7f81290a21040d036e3e88526ad0f.stex" ]
+source_file="res://69-brut/scratch_mask.png"
+dest_files=[ "res://.import/scratch_mask.png-95a9d33627a51ca53c07e3ed51b75ee5.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

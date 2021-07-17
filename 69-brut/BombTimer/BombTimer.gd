@@ -8,7 +8,6 @@ signal bomb_exploded
 onready var rope_end_pos : Vector2 = rope.position
 var start_pos = 190
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	sprite.scale = Vector2.ZERO
@@ -22,9 +21,12 @@ func start():
 		TRANS_BACK, EASE_OUT)
 	$SetupTween.interpolate_property(sprite, "rotation_degrees",
 		0, -390, 0.3, TRANS_BACK, EASE_OUT) 
+	
+	var initialSetupTime = 0.3
+	var rope_duration = duration - $explosion.lifetime - initialSetupTime
 		
 	initialPos = rope.position
-	$SetupTween.interpolate_property(rope, "position", rope.position, rope_end_pos, 0.3, TRANS_BACK, EASE_OUT)
+	$SetupTween.interpolate_property(rope, "position", rope.position, rope_end_pos, initialSetupTime, TRANS_BACK, EASE_OUT)
 	$SetupTween.start()
 	yield($SetupTween, "tween_completed")
 	print("FSSHHHH")
@@ -33,10 +35,14 @@ func start():
 	#rope.position.x = 150
 	#$rope.set_on_fire(start_pos)
 	print("ROPEROPE")
-	$rope/RopeTween.interpolate_property($rope, "position", $rope.position, initialPos, duration, TRANS_QUAD, EASE_OUT)
+	$rope/RopeTween.interpolate_property($rope, "position", $rope.position, initialPos, rope_duration, TRANS_QUAD, EASE_OUT)
 	$rope/RopeTween.start()
 	#interpolate_property(rope, "position", rope.position, initialPos, duration, TRANS_BACK, EASE_OUT)
 	yield($rope/RopeTween, "tween_completed")
 	print("BOOOM")
+	$explosion.emitting = true
+	$Sprite.visible=false
+	$rope.visible=false
+	yield(get_tree().create_timer($explosion.lifetime), "timeout")
 	emit_signal("bomb_exploded")
 		

@@ -41,18 +41,17 @@ light_mode = 2
 [sub_resource type="ViewportTexture" id=8]
 viewport_path = NodePath("Viewport")
 
-[sub_resource type="CanvasItemMaterial" id=9]
-blend_mode = 1
+[sub_resource type="CanvasItemMaterial" id=11]
 light_mode = 2
 
-[sub_resource type="ViewportTexture" id=10]
+[sub_resource type="ViewportTexture" id=9]
 viewport_path = NodePath("Viewport")
 
 [sub_resource type="DynamicFont" id=7]
 outline_size = 2
 font_data = ExtResource( 16 )
 
-[sub_resource type="DynamicFont" id=11]
+[sub_resource type="DynamicFont" id=10]
 size = 24
 outline_size = 2
 font_data = ExtResource( 16 )
@@ -70,7 +69,7 @@ scratchTexture = SubResource( 2 )
 scratchTargets = ExtResource( 14 )
 particleTarget = ExtResource( 10 )
 scratchMaskTexture = ExtResource( 17 )
-overflowColor = Color( 0.811765, 0.12549, 0.12549, 1 )
+overflowColor = Color( 0.882353, 0.239216, 0.133333, 1 )
 missingColor = Color( 0.145098, 0.152941, 0.239216, 1 )
 scratchColor = Color( 1, 1, 1, 0 )
 differencePath = NodePath("Debug")
@@ -198,26 +197,25 @@ render_target_v_flip = true
 render_target_update_mode = 3
 
 [node name="Line2D" type="Line2D" parent="Viewport"]
-material = SubResource( 9 )
+material = SubResource( 11 )
 position = Vector2( 80, 80 )
+points = PoolVector2Array( 256.571, 69.0557 )
 width = 8.0
 default_color = Color( 1, 1, 1, 1 )
 texture_mode = 1
 joint_mode = 2
 begin_cap_mode = 2
 end_cap_mode = 2
-sharp_limit = 20.0
-round_precision = 80
-antialiased = true
+round_precision = 1
 
 [node name="Light2D" type="Light2D" parent="Viewport"]
 position = Vector2( 80, 80 )
 texture = ExtResource( 17 )
-energy = 8.39
+energy = 16.0
 mode = 2
 
 [node name="Light2D" type="Light2D" parent="."]
-texture = SubResource( 10 )
+texture = SubResource( 9 )
 mode = 2
 
 [node name="ScoreSetup" type="Node2D" parent="."]
@@ -249,15 +247,14 @@ __meta__ = {
 
 [node name="Score" type="Label" parent="ScoreSetup"]
 material = ExtResource( 8 )
-margin_left = 29.6071
-margin_top = -68.5842
-margin_right = 92.6071
-margin_bottom = -29.5842
+margin_left = 36.4891
+margin_top = -68.5281
+margin_right = 123.489
+margin_bottom = -29.5281
 rect_pivot_offset = Vector2( -168.584, 160.55 )
-custom_fonts/font = SubResource( 11 )
+custom_fonts/font = SubResource( 10 )
 custom_colors/font_color = Color( 1, 0, 1, 1 )
 custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
-align = 1
 valign = 1
 autowrap = true
 uppercase = true

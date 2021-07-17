@@ -36,3 +36,8 @@ func _on_ScratchManager_end_gameplay(score):
 	yield(get_tree().create_timer(0.4), "timeout")
 	judge.target_x = 2.2
 	$Score.text = str(score)
+	for i in range(0, randi()%5):
+		yield(get_tree().create_timer(0.1), "timeout")
+		$Score.text += "!"		
+	yield(get_tree().create_timer(3), "timeout")
+	get_parent().emit_signal("player_won")

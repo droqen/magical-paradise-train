@@ -2,26 +2,27 @@
 
 a collaborative collection of microgames!
 
-## How to add your own minigame
+## How to add your own microgame
 
 1. Create your own scene
     * Duplicate **01-droqen/TemplateMinigame.tscn** into your own folder. Give it a new name.
-    * In order to signal to the game that you want to advance to the next scene, emit either the **SubwayStopBoard.gd** node's "player_won" or "player_lost" signal. See the node named "**when empty, win**" for an example.
+    * In order to signal to the game that you want to advance to the next scene, emit either the **SubwayStopBoard.gd** node's `player_won` or `player_lost` signal. See the node named "**when empty, win**" for an example.
+      * **SubwayStopBoard.gd** also has a `game_start` signal that you can listen to to react when the subway doors have completely opened.
     * (!!!) Don't change the script on the root 'NavdiBoard' node or any of its variables, although you may rename it if you like.
 2. Create a new **MicrogameMetadata** resource in **00-core/metromap/**
     * This step will add your microgame to the random rotation
-    * You can just duplicate **00-core/metromap/droqen_template_minigame.tres**, but then double-check before editing: are you editing the new resource (the one you just made) or the old existing one?
+    * You can just duplicate **00-core/metromap/_droqen_template_minigame.tres**, but then double-check before editing: are you editing the new resource (the one you just made) or the old existing one?
     * Drag your scene from the previous step into your new Resource's *Microgame Scene* variable.
-3. Add your game to the **TrainJamMaster** node in **00-core/coreAll.tscn**
-    1. Drag-and-drop your scene into 'Test Microgame Scene'**
+    * If you want to create your game but not have it in the rotation yet, you can add a `_` before the resource name
+
+## How to test your game
+   1. Open the scene **00-core/coreAll.tscn**, and select the node **TrainJamMaster**
+   2. Drag-and-drop your scene into 'Test Microgame Scene'**
         * Note that you should do this *with the scene itself,* not with a MicrogameMetadata resource.
         * 'Test Microgame Scene' is a variable in the aforementioned **TrainJamMaster** node.
         * If you'd rather play the whole game, clear the 'Test Microgame Scene' variable.
-    2. If you created a **MicrogameMetadata** resource, add it to 'Microgames'
-        * 'Microgames' is a variable (an array) in the **TrainJamMaster** node.
-        * Add a new slot at the end and stick your microgame resource in there.
-4. Run the project.
-    * (It should run from **00-core/coreAll.tscn**, which is the wrapper for running the entire game.)
+   3. Run the project.
+      * (It should run from **00-core/coreAll.tscn**, which is the wrapper for running the entire game.)
 
 ## sharing your microgame
 

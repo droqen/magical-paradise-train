@@ -1,7 +1,7 @@
 extends Node
 
 export(PackedScene)var test_microgame_scene: PackedScene = null
-export(Array, Resource)var all_microgames = [] # a list of all available microgames
+var all_microgames = [] # a list of all available microgames
 var microgame_stack: Array = [] # pop from this to get the next microgame
 
 var current_microgame: MicrogameMetadata = null
@@ -27,8 +27,23 @@ var stateTimer = 0.0
 var stateDuration = 1.0
 
 func _ready():
+	preload_games()
 	randomize()
 	load_first_game()
+	
+func preload_games():
+	var directory = Directory.new()
+	var error = directory.open("res://00-core/metromap")
+	if error == OK:
+		directory.list_dir_begin()
+		var file_name = directory.get_next()
+		while (file_name != ""):
+			if not directory.current_is_dir() and file_name[0] != "_":
+				
+				var minigame = load(directory.get_current_dir()+"/"+file_name)
+				all_microgames.push_back(minigame)
+				print(str(all_microgames))
+			file_name = directory.get_next()
 
 func load_first_game():
 	if test_microgame_scene:

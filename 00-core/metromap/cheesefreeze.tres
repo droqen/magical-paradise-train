@@ -6,5 +6,5 @@
 [resource]
 script = ExtResource( 1 )
 microgame_scene = ExtResource( 2 )
-microgame_name = "Rat Frost"
+microgame_name = "Cheese Freeze"
 author_name = "pancelor"

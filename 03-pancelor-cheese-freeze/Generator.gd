@@ -11,15 +11,19 @@ onready var cheese=$"../cheese"
 export(int)var ICE_TILE=10
 export(int)var FLOOR_TILE=12
 export(int)var WALL_TILE=11 # probably want to just check .solid somehow?
-const ymin=-6
-const ymax=5
-const xmin=-7
-const xmax=6
+# the chance that we keep useless level elements
+export(float,0,1,0.05)var NOISE=0.25
+
 # scene limits:
 #  const ymin=-10
 #  const ymax=9
 #  const xmin=-10
 #  const xmax=9
+const ymin=-6
+const ymax=5
+const xmin=-7
+const xmax=6
+
 const dirx=[-1,1,0,0]
 const diry=[0,0,-1,1]
 var reachable={} # a mapping: cell => min distance
@@ -32,7 +36,8 @@ func _ready():
 	if dev:
 		debug_font = Control.new().get_font("font")
 	randomize()
-	generate()
+	rng=randi()
+	generate(rng)
 
 func _process(_delta):
 	if dev:
@@ -50,7 +55,6 @@ func dev_process():
 		delta+=1
 	if delta!=0:
 		rng+=delta
-		print("seed ",rng)
 		generate(rng)
 
 #func rand_loc():
@@ -60,6 +64,7 @@ func dev_process():
 	
 func generate(rng_seed=null):
 	if rng_seed:
+		print("seed: ",rng_seed)
 		seed(rng_seed)
 		
 	var unused_cells=[]
@@ -79,9 +84,9 @@ func generate(rng_seed=null):
 	
 	unused_cells.shuffle()
 	reachable.clear()
-	var start=unused_cells.pop_back()
-	map.set_cellv(start,FLOOR_TILE)
-	player.set_start_cell(start)
+	var start_loc=unused_cells.pop_back()
+	map.set_cellv(start_loc,FLOOR_TILE)
+	player.set_start_cell(start_loc)
 
 	var i=0
 	var inverted
@@ -95,7 +100,7 @@ func generate(rng_seed=null):
 		map.set_cellv(unused_cells.pop_back(),FLOOR_TILE)
 		map.set_cellv(unused_cells.pop_back(),WALL_TILE)
 		map.set_cellv(unused_cells.pop_back(),WALL_TILE)
-		reachable=explore(start)
+		reachable=explore(start_loc)
 		inverted=invert_reachable()
 		if complex_enough(inverted):
 			break
@@ -103,6 +108,7 @@ func generate(rng_seed=null):
 	print("generating after %d try(s)"%i)
 	var end_loc=choose(back(inverted))
 	cheese.set_cell(end_loc)
+	prune(start_loc,end_loc)
 	update()
 
 func complex_enough(inverted:Array):
@@ -118,6 +124,22 @@ func invert_reachable():
 			far_locs.append([])
 		far_locs[dist].append(c)
 	return far_locs
+
+func prune(start_loc:Vector2,end_loc:Vector2):
+	var dist=reachable[end_loc]
+	for y in range(ymin+1,ymax-1+1):
+		for x in range(xmin+1,xmax-1+1):
+			var tile=map.get_cell(x,y)
+			if (start_loc.x!=x or start_loc.y!=y) and tile!=ICE_TILE:
+				map.set_cell(x,y,ICE_TILE)
+				var new_reachable=explore(start_loc)
+				var is_useful=new_reachable.get(end_loc,0)<dist
+				if is_useful or randf()<NOISE:
+#					print("revert")
+					map.set_cell(x,y,tile)
+				else:
+#					print("prune")
+					reachable=new_reachable
 
 func randi_range(a,b):
 	return int(randf()*(b-a)+a)
@@ -182,9 +204,3 @@ func _draw():
 		var dist = reachable[c]
 		draw_rect(Rect2(center.x-2,center.y-2,4,4),red)
 		draw_string(debug_font, center, str(dist))
-	
-
-
-
-
-

@@ -27,6 +27,7 @@ var stateTimer = 0.0
 var stateDuration = 1.0
 
 func _ready():
+	randomize()
 	load_first_game()
 
 func load_first_game():

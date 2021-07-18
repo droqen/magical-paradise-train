@@ -39,7 +39,7 @@ func _on_ScratchManager_end_gameplay(score):
 	for i in range(0, randi()%5):
 		yield(get_tree().create_timer(0.1), "timeout")
 		$Score.text += "!"		
-	yield(get_tree().create_timer(3), "timeout")
+	yield(get_tree().create_timer(1.5), "timeout")
 	get_parent().emit_signal("player_won")
 
 

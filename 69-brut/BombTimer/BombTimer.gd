@@ -1,4 +1,5 @@
 extends Tween
+export (AudioStream) var explosionSound
 onready var sprite = $Sprite
 onready var rope = $rope
 onready var explosion = get_node("rope/fire")
@@ -15,6 +16,7 @@ func _ready():
 
 var initialPos : Vector2
 func start():
+	$explosion/AudioStreamPlayer.stream = explosionSound
 	rope.position = Vector2(180, rope.position.y)
 	$SetupTween.interpolate_property(sprite, "scale", 
 		Vector2.ZERO, Vector2(0.75,0.75), 0.325, 
@@ -29,20 +31,21 @@ func start():
 	$SetupTween.interpolate_property(rope, "position", rope.position, rope_end_pos, initialSetupTime, TRANS_BACK, EASE_OUT)
 	$SetupTween.start()
 	yield($SetupTween, "tween_completed")
-	print("FSSHHHH")
 	$SetupTween.interpolate_property(explosion, "scale", Vector2.ZERO, Vector2.ONE*0.8, 0.25, TRANS_BACK, EASE_OUT)
 	$SetupTween.start()
 	#rope.position.x = 150
 	#$rope.set_on_fire(start_pos)
-	print("ROPEROPE")
+	$rope/AudioStreamPlayer.play()
 	$rope/RopeTween.interpolate_property($rope, "position", $rope.position, initialPos, rope_duration-0.1, TRANS_LINEAR, EASE_IN_OUT)
 	$rope/RopeTween.start()
 	#interpolate_property(rope, "position", rope.position, initialPos, duration, TRANS_BACK, EASE_OUT)
 	yield($rope/RopeTween, "tween_completed")
-	print("BOOOM")
+	$rope/AudioStreamPlayer.stop()
+	$explosion/AudioStreamPlayer.play()
 	$explosion.emitting = true
 	$Sprite.visible=false
 	$rope.visible=false
 	yield(get_tree().create_timer($explosion.lifetime), "timeout")
 	emit_signal("bomb_exploded")
+	$explosion/AudioStreamPlayer.stop()
 		

@@ -1,0 +1,2 @@
+fuse: https://freesound.org/people/apolloaiello/sounds/329045/
+explosion: https://freesound.org/people/cmusounddesign/sounds/71984/

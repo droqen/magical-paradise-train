@@ -21,37 +21,36 @@
 [ext_resource path="res://69-brut/Scoreboard.gd" type="Script" id=19]
 [ext_resource path="res://69-brut/Instructions.gd" type="Script" id=20]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=12]
 outline_size = 2
 font_data = ExtResource( 16 )
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=13]
 size = 24
 outline_size = 2
 font_data = ExtResource( 16 )
 
 [sub_resource type="CanvasItemMaterial" id=3]
-light_mode = 1
 
-[sub_resource type="ViewportTexture" id=4]
+[sub_resource type="ViewportTexture" id=19]
 viewport_path = NodePath("Viewport")
 
-[sub_resource type="CanvasItemMaterial" id=5]
+[sub_resource type="CanvasItemMaterial" id=14]
 
-[sub_resource type="CircleShape2D" id=6]
+[sub_resource type="CircleShape2D" id=15]
 radius = 4.69366
 
-[sub_resource type="Gradient" id=7]
+[sub_resource type="Gradient" id=16]
 offsets = PoolRealArray( 0.864103, 1 )
 colors = PoolColorArray( 0.8, 0.8, 0.8, 1, 0.8, 0.8, 0.8, 0 )
 
-[sub_resource type="CanvasItemMaterial" id=8]
+[sub_resource type="CanvasItemMaterial" id=17]
 light_mode = 2
 
 [sub_resource type="ViewportTexture" id=9]
 viewport_path = NodePath("Viewport")
 
-[sub_resource type="CanvasItemMaterial" id=10]
+[sub_resource type="CanvasItemMaterial" id=18]
 light_mode = 2
 
 [sub_resource type="ViewportTexture" id=11]
@@ -81,7 +80,7 @@ margin_top = -102.416
 margin_right = 116.832
 margin_bottom = -63.4158
 rect_pivot_offset = Vector2( -168.584, 160.55 )
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 12 )
 custom_colors/font_color = Color( 1, 0, 1, 1 )
 custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
 valign = 1
@@ -98,7 +97,7 @@ margin_top = -68.5281
 margin_right = 123.489
 margin_bottom = -29.5281
 rect_pivot_offset = Vector2( -168.584, 160.55 )
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 13 )
 custom_colors/font_color = Color( 1, 0, 1, 1 )
 custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
 valign = 1
@@ -113,7 +112,7 @@ __meta__ = {
 [node name="ScratchManager" type="Node2D" parent="."]
 material = SubResource( 3 )
 script = ExtResource( 12 )
-scratchTexture = SubResource( 4 )
+scratchTexture = SubResource( 19 )
 scratchTargets = ExtResource( 14 )
 particleTarget = ExtResource( 10 )
 scratchMaskTexture = ExtResource( 17 )
@@ -141,12 +140,12 @@ __meta__ = {
 
 [node name="pencil shadow" type="Sprite" parent="ScratchManager"]
 modulate = Color( 0, 0, 0, 0.403922 )
-material = SubResource( 5 )
+material = SubResource( 14 )
 z_index = 1
 
 [node name="pencil shadow" type="Sprite" parent="ScratchManager/pencil shadow"]
 modulate = Color( 0, 0, 0, 0.403922 )
-material = SubResource( 5 )
+material = SubResource( 14 )
 position = Vector2( 26.6535, 73.1502 )
 rotation = 0.303687
 scale = Vector2( 1.11167, 1.24499 )
@@ -158,7 +157,7 @@ texture = ExtResource( 6 )
 [node name="Area2D" type="Area2D" parent="ScratchManager/pencil shadow"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ScratchManager/pencil shadow/Area2D"]
-shape = SubResource( 6 )
+shape = SubResource( 15 )
 
 [node name="Node2D" type="Node2D" parent="ScratchManager/pencil shadow"]
 
@@ -192,7 +191,7 @@ damping = 48.35
 damping_random = 0.2
 angle_random = 1.0
 scale_amount_random = 1.0
-color_ramp = SubResource( 7 )
+color_ramp = SubResource( 16 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="ScratchManager"]
 stream = ExtResource( 9 )
@@ -202,13 +201,13 @@ autoplay = true
 stream = ExtResource( 5 )
 
 [node name="ScratchPrize" type="Sprite" parent="ScratchManager"]
-material = SubResource( 8 )
+material = SubResource( 17 )
 texture = ExtResource( 13 )
 hframes = 10
 frame = 1
 
 [node name="ScratchBG" type="Sprite" parent="ScratchManager"]
-material = SubResource( 8 )
+material = SubResource( 17 )
 z_index = -1
 texture = ExtResource( 7 )
 __meta__ = {
@@ -252,7 +251,7 @@ render_target_v_flip = true
 render_target_update_mode = 3
 
 [node name="Line2D" type="Line2D" parent="Viewport"]
-material = SubResource( 10 )
+material = SubResource( 18 )
 position = Vector2( 80, 80 )
 points = PoolVector2Array( 256.571, 69.0557 )
 width = 8.0
@@ -285,6 +284,7 @@ margin_left = -89.0
 margin_top = -94.0
 margin_right = 92.0
 margin_bottom = 98.0
+color = Color( 0, 0, 0, 0 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -300,7 +300,7 @@ margin_top = -20.0
 margin_right = 59.0
 margin_bottom = 69.0
 rect_pivot_offset = Vector2( -168.584, 160.55 )
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 12 )
 custom_colors/font_color = Color( 1, 0, 1, 1 )
 custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
 text = "SCRATCH!!"
@@ -313,9 +313,10 @@ __meta__ = {
 
 [node name="Tween" type="Tween" parent="Instructions"]
 
+[connection signal="game_start" from="." to="Instructions" method="_write_instructions"]
 [connection signal="end_gameplay" from="ScratchManager" to="ScoreSetup" method="_on_ScratchManager_end_gameplay"]
 [connection signal="area_entered" from="ScratchManager/NoDrawZone" to="ScratchManager" method="_on_NoDrawZone_area_entered"]
 [connection signal="area_exited" from="ScratchManager/NoDrawZone" to="ScratchManager" method="_on_NoDrawZone_area_exited"]
 [connection signal="bomb_exploded" from="ScratchManager/BombTimer" to="ScratchManager" method="_on_BombTimer_bomb_exploded"]
-[connection signal="start_game" from="Instructions" to="ScratchManager" method="_on_Instructions_start_game"]
 [connection signal="start_game" from="Instructions" to="ScoreSetup" method="_on_Instructions_start_game"]
+[connection signal="start_game" from="Instructions" to="ScratchManager" method="_on_Instructions_start_game"]

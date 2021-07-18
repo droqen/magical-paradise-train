@@ -125,7 +125,7 @@ func _input(event):
 var has_started = false
 func _process(delta):
 	var pencil_delta = $pencil.global_position-previous_pencil_position
-	if Input.is_action_pressed("left mouse button") and can_draw and game_started:
+	if Input.is_action_pressed("left mouse button") and can_draw and game_started and not game_ended:
 		if(!has_started):
 			has_started = true
 			$BombTimer.start()
@@ -187,7 +187,9 @@ func _on_NoDrawZone_area_exited(area):
 	can_draw = true
 	pass # Replace with function body.
 
+var game_ended = false
 func _on_BombTimer_bomb_exploded():
+	game_ended = true
 	score_and_end()
 	pass # Replace with function body.
 

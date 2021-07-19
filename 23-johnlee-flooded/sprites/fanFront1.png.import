@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/plank.png-b8bd37472311ffd12e20744c1eba470a.stex"
+path="res://.import/fanFront1.png-ca9802bc44978d22b9ef5bef2103a601.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://23-johnlee-flooded/sprites/plank.png"
-dest_files=[ "res://.import/plank.png-b8bd37472311ffd12e20744c1eba470a.stex" ]
+source_file="res://23-johnlee-flooded/sprites/fanFront1.png"
+dest_files=[ "res://.import/fanFront1.png-ca9802bc44978d22b9ef5bef2103a601.stex" ]
 
 [params]
 

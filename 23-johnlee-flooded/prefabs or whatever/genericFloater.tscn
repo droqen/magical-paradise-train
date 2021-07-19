@@ -1,20 +1,33 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://23-johnlee-flooded/scripts/floater.gd" type="Script" id=1]
 [ext_resource path="res://23-johnlee-flooded/sprites/plank.png" type="Texture" id=2]
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="PhysicsMaterial" id=1]
+friction = 0.0
+bounce = 0.9
+
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 7.89985, 3.86792 )
 
-[node name="floater" type="KinematicBody2D"]
+[node name="floater" type="RigidBody2D"]
+physics_material_override = SubResource( 1 )
+gravity_scale = 0.0
 script = ExtResource( 1 )
-accel = 10.0
+accel = 50.0
 deAccel = 10.0
 maxSpeed = 30.0
+angleLimit = 90.0
+distanceLimit = 60.0
+rotateMult = 0.5
+rotateMax = 10.0
+bounceMult = 0.9
+sinAmp = 0.2
+sinFreq = 1.0
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 2.00226 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )

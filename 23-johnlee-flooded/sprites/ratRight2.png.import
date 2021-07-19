@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/plank.png-b8bd37472311ffd12e20744c1eba470a.stex"
+path="res://.import/ratRight2.png-8b1d9834958e823087a382eb3db5ba57.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://23-johnlee-flooded/sprites/plank.png"
-dest_files=[ "res://.import/plank.png-b8bd37472311ffd12e20744c1eba470a.stex" ]
+source_file="res://23-johnlee-flooded/sprites/ratRight2.png"
+dest_files=[ "res://.import/ratRight2.png-8b1d9834958e823087a382eb3db5ba57.stex" ]
 
 [params]
 

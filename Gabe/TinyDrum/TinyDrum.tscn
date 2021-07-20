@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://00-core/SubwayStopBoard.gd" type="Script" id=1]
 [ext_resource path="res://navdi2/Node Scripts/Board/NavdiBoardState.gd" type="Script" id=2]
@@ -19,6 +19,9 @@
 [ext_resource path="res://Gabe/TinyDrum/gfx/fader.png" type="Texture" id=17]
 [ext_resource path="res://Gabe/TinyDrum/TempoTimer.gd" type="Script" id=18]
 [ext_resource path="res://Gabe/TinyDrum/gfx/tempo_icon.png" type="Texture" id=19]
+[ext_resource path="res://navdi2/Resources/src/roughyFIVEbySIX.ttf" type="DynamicFontData" id=20]
+[ext_resource path="res://Gabe/TinyDrum/instructions.gd" type="Script" id=21]
+[ext_resource path="res://02-ashk/temp_click.wav" type="AudioStream" id=22]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -26,17 +29,24 @@
 
 [sub_resource type="StyleBoxEmpty" id=3]
 
+[sub_resource type="DynamicFont" id=4]
+size = 8
+font_data = ExtResource( 20 )
+
 [node name="TinyDrum" type="Node2D"]
 position = Vector2( 80, 80 )
 script = ExtResource( 1 )
 board_view_size = Vector2( 160, 160 )
 show_outline = true
 
-[node name="BG" type="Sprite" parent="."]
+[node name="BG" type="TextureRect" parent="."]
 modulate = Color( 0, 0, 0, 1 )
-position = Vector2( 21.4731, 19.1135 )
-scale = Vector2( 25.295, 24.705 )
+margin_left = -80.0
+margin_top = -80.0
+margin_right = 80.0
+margin_bottom = 80.0
 texture = ExtResource( 4 )
+expand = true
 __meta__ = {
 "_edit_lock_": true
 }
@@ -75,7 +85,7 @@ margin_bottom = 6.0
 buttonIndex = 3
 
 [node name="StepButtons" type="Node2D" parent="DrumMachine"]
-position = Vector2( -71.0463, -30.9402 )
+position = Vector2( -63.0463, -22.9402 )
 script = ExtResource( 9 )
 
 [node name="StepButton" parent="DrumMachine/StepButtons" instance=ExtResource( 3 )]
@@ -221,7 +231,7 @@ custom_styles/grabber_area = SubResource( 3 )
 min_value = 0.1
 max_value = 0.9
 step = 0.01
-value = 0.1
+value = 0.4
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -288,14 +298,32 @@ width = 2.0
 default_color = Color( 0.580392, 0.878431, 0.537255, 1 )
 
 [node name="DoneButton" type="TextureButton" parent="."]
-margin_left = -84.7467
-margin_top = 65.6085
-margin_right = -37.7467
-margin_bottom = 105.608
+margin_left = -65.7467
+margin_top = 37.3585
+margin_right = -18.7467
+margin_bottom = 77.358
+rect_rotation = 86.3249
 texture_normal = ExtResource( 15 )
 script = ExtResource( 13 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="DoneButton"]
+stream = ExtResource( 22 )
+
+[node name="instructions" type="Label" parent="."]
+margin_left = -78.0
+margin_top = 31.0
+margin_right = 78.0
+margin_bottom = 45.0
+custom_fonts/font = SubResource( 4 )
+text = "Make a rat type beat"
+autowrap = true
+script = ExtResource( 21 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="value_changed" from="DrumMachine/TempoTimer/Tempo/HSlider" to="DrumMachine/TempoTimer" method="SetWaitTime"]
+[connection signal="pressed" from="DoneButton" to="DoneButton/AudioStreamPlayer" method="play"]

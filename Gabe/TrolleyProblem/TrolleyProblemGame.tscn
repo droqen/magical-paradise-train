@@ -1,8 +1,8 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://00-core/SubwayStopBoard.gd" type="Script" id=1]
 [ext_resource path="res://Gabe/TrolleyProblem/tracksBG.png" type="Texture" id=2]
-[ext_resource path="res://Gabe/TrolleyProblem/TrainCar.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Gabe/TrolleyProblem/TrolleyProblemTrainCar.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Gabe/TrolleyProblem/VariableTrack.gd" type="Script" id=4]
 [ext_resource path="res://Gabe/TrolleyProblem/track_single_straight.png" type="Texture" id=5]
 [ext_resource path="res://Gabe/bits/BombButtonPressed.png" type="Texture" id=6]
@@ -10,13 +10,13 @@
 [ext_resource path="res://Gabe/bits/BombButtonReady.png" type="Texture" id=8]
 [ext_resource path="res://Gabe/TrolleyProblem/rat.png" type="Texture" id=9]
 [ext_resource path="res://navdi2/Node Scripts/Board/NavdiBoardState.gd" type="Script" id=10]
-[ext_resource path="res://Gabe/TrolleyProblem/TextureButton.gd" type="Script" id=11]
+[ext_resource path="res://Gabe/TrolleyProblem/TrolleyProblemTextureButton.gd" type="Script" id=11]
 [ext_resource path="res://Gabe/bits/BombButtonDisabled.png" type="Texture" id=12]
 [ext_resource path="res://Gabe/TrolleyProblem/audio_trainLoop.wav" type="AudioStream" id=13]
-[ext_resource path="res://Gabe/TrolleyProblem/TrainDirectionArea.tscn" type="PackedScene" id=14]
-
-[sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 6.86913, 2.5982 )
+[ext_resource path="res://Gabe/TrolleyProblem/TrolleyProblemTrainSystem.gd" type="Script" id=14]
+[ext_resource path="res://Gabe/TrolleyProblem/TrolleyProblemTrainPath.gd" type="Script" id=15]
+[ext_resource path="res://Gabe/TrolleyProblem/sfx/SwitchFlipOff.wav" type="AudioStream" id=16]
+[ext_resource path="res://Gabe/TrolleyProblem/GameOverArea.gd" type="Script" id=17]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 9 )
@@ -33,6 +33,12 @@ animations = [ {
 "name": "default",
 "speed": 5.0
 } ]
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 8.7726, 10 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 1.94138, 47.2095 )
 
 [node name="TrolleyProblemGame" type="Node2D"]
 position = Vector2( 80, 80 )
@@ -55,14 +61,6 @@ position = Vector2( -80, -27 )
 texture = ExtResource( 2 )
 centered = false
 
-[node name="TrainDirectionArea2" parent="." instance=ExtResource( 14 )]
-position = Vector2( -0.525558, -30.4027 )
-newDir = Vector2( 1, 0 )
-
-[node name="CollisionShape2D" parent="TrainDirectionArea2" index="0"]
-position = Vector2( 8.72685, 5.55241 )
-shape = SubResource( 4 )
-
 [node name="VariableTrack" type="Node2D" parent="."]
 position = Vector2( 0, 21 )
 script = ExtResource( 4 )
@@ -74,33 +72,82 @@ centered = false
 region_enabled = true
 region_rect = Rect2( 0, 10, 16, 20 )
 
-[node name="TrainDirectionArea" parent="VariableTrack" instance=ExtResource( 14 )]
-position = Vector2( 3, 0 )
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="VariableTrack"]
 
-[node name="CollisionShape2D" parent="VariableTrack/TrainDirectionArea" index="0"]
-position = Vector2( 13.1416, 10.7029 )
+[node name="UnfortunateSouls" type="Node2D" parent="."]
+position = Vector2( 33.2931, -17.0968 )
 
-[node name="Train" type="Node2D" parent="."]
-position = Vector2( -80.4942, -27.4597 )
+[node name="AnimatedSprite" type="AnimatedSprite" parent="UnfortunateSouls"]
+position = Vector2( 5, 48 )
+frames = SubResource( 3 )
+frame = 1
+playing = true
 
-[node name="TrainCar" parent="Train" instance=ExtResource( 3 )]
+[node name="AnimatedSprite2" type="AnimatedSprite" parent="UnfortunateSouls"]
+position = Vector2( 13, 48 )
+frames = SubResource( 3 )
+frame = 1
+playing = true
+
+[node name="AnimatedSprite3" type="AnimatedSprite" parent="UnfortunateSouls"]
+position = Vector2( 16, 0 )
+frames = SubResource( 3 )
+playing = true
+
+[node name="AnimatedSprite4" type="AnimatedSprite" parent="UnfortunateSouls"]
+position = Vector2( 20, 48 )
+frames = SubResource( 3 )
+playing = true
+
+[node name="AnimatedSprite5" type="AnimatedSprite" parent="UnfortunateSouls"]
+position = Vector2( 28, 48 )
+frames = SubResource( 3 )
+frame = 1
+playing = true
+
+[node name="State" type="Node2D" parent="."]
+position = Vector2( -80.5192, -79.4597 )
+script = ExtResource( 10 )
+
+[node name="TrainSystem" type="Node2D" parent="."]
+script = ExtResource( 14 )
+
+[node name="Path" type="Node2D" parent="TrainSystem"]
+script = ExtResource( 15 )
+
+[node name="Start" type="Node2D" parent="TrainSystem/Path"]
+position = Vector2( -47, 31 )
+
+[node name="Node2D2" type="Node2D" parent="TrainSystem/Path/Start"]
+position = Vector2( 56, 0 )
+
+[node name="EndSegment" type="Node2D" parent="TrainSystem/Path/Start/Node2D2"]
+
+[node name="Node2D" type="Node2D" parent="TrainSystem/Path/Start/Node2D2/EndSegment"]
+position = Vector2( 120, 0 )
+
+[node name="Train" type="Node2D" parent="TrainSystem"]
+position = Vector2( -80.4942, -28.4597 )
+
+[node name="TrolleyProblemTrainCar" parent="TrainSystem/Train" instance=ExtResource( 3 )]
 position = Vector2( 20.3753, 59.666 )
 isLocomotive = true
 
-[node name="TrainCar2" parent="Train" instance=ExtResource( 3 )]
+[node name="TrolleyProblemTrainCar2" parent="TrainSystem/Train" instance=ExtResource( 3 )]
+visible = false
 position = Vector2( -13.6247, 59.666 )
 
-[node name="TrainCar3" parent="Train" instance=ExtResource( 3 )]
+[node name="TrolleyProblemTrainCar3" parent="TrainSystem/Train" instance=ExtResource( 3 )]
+visible = false
 position = Vector2( -47.6247, 59.666 )
 
-[node name="TrainCar4" parent="Train" instance=ExtResource( 3 )]
+[node name="TrolleyProblemTrainCar4" parent="TrainSystem/Train" instance=ExtResource( 3 )]
+visible = false
 position = Vector2( -81.6247, 59.666 )
 
-[node name="TrainCar5" parent="Train" instance=ExtResource( 3 )]
+[node name="TrolleyProblemTrainCar5" parent="TrainSystem/Train" instance=ExtResource( 3 )]
+visible = false
 position = Vector2( -115.625, 59.666 )
-
-[node name="Creatures" type="Node2D" parent="."]
-position = Vector2( -0.493835, 8.20592 )
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 margin_left = -80.0
@@ -130,41 +177,28 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="UnfortunateSouls" type="Node2D" parent="."]
-position = Vector2( 33.2931, -17.0968 )
+[node name="Area2D" type="Area2D" parent="TextureButton"]
+position = Vector2( 86, 108 )
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="UnfortunateSouls"]
-frames = SubResource( 3 )
-frame = 1
-playing = true
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TextureButton/Area2D"]
+shape = SubResource( 4 )
 
-[node name="AnimatedSprite2" type="AnimatedSprite" parent="UnfortunateSouls"]
-position = Vector2( 8, 0 )
-frames = SubResource( 3 )
-frame = 1
-playing = true
-
-[node name="AnimatedSprite3" type="AnimatedSprite" parent="UnfortunateSouls"]
-position = Vector2( 16, 0 )
-frames = SubResource( 3 )
-playing = true
-
-[node name="AnimatedSprite4" type="AnimatedSprite" parent="UnfortunateSouls"]
-position = Vector2( 16, 48 )
-frames = SubResource( 3 )
-playing = true
-
-[node name="State" type="Node2D" parent="."]
-position = Vector2( -80.5192, -79.4597 )
-script = ExtResource( 10 )
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="TextureButton"]
+stream = ExtResource( 16 )
 
 [node name="TrainLoop" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 13 )
 pitch_scale = 0.95
-autoplay = true
 
-[connection signal="TRACK_ENTERED" from="VariableTrack" to="TextureButton" method="OnTrackEnter"]
+[node name="GameOverArea" type="Area2D" parent="."]
+position = Vector2( 30.1947, 0 )
+collision_layer = 0
+script = ExtResource( 17 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameOverArea"]
+position = Vector2( -2.3838, 1.85406 )
+shape = SubResource( 5 )
+
 [connection signal="pressed" from="TextureButton" to="VariableTrack" method="IncrementTrackState"]
-
-[editable path="TrainDirectionArea2"]
-[editable path="VariableTrack/TrainDirectionArea"]
+[connection signal="pressed" from="TextureButton" to="TrainSystem/Path" method="IncrementTrackState"]
+[connection signal="body_entered" from="TextureButton/Area2D" to="TextureButton" method="OnTrackEnter"]

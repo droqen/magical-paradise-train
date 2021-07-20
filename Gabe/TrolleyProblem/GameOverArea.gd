@@ -1,4 +1,4 @@
-extends TextureButton
+extends Area2D
 
 
 # Declare member variables here. Examples:
@@ -8,8 +8,8 @@ extends TextureButton
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	connect("body_entered",self,"OnBodyEnter")
 
 
-func OnTrackEnter():
-	disabled = true
+func OnBodyEnter(_body):
+	get_parent().emit_signal("player_won")

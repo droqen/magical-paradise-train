@@ -1,0 +1,53 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Gabe/TinyDrum/gfx/voice_select_button.png" type="Texture" id=1]
+[ext_resource path="res://Gabe/TinyDrum/gfx/button_shine.png" type="Texture" id=2]
+[ext_resource path="res://Gabe/TinyDrum/VoiceSelectButton.gd" type="Script" id=3]
+[ext_resource path="res://Gabe/TinyDrum/gfx/icons.png" type="Texture" id=4]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 4 )
+region = Rect2( 16, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 4 )
+region = Rect2( 32, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 4 )
+region = Rect2( 48, 0, 16, 16 )
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
+"loop": true,
+"name": "New Anim",
+"speed": 5.0
+} ]
+
+[node name="VoiceSelectButton" type="TextureButton"]
+texture_normal = ExtResource( 1 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OnLight" type="Node2D" parent="."]
+position = Vector2( 9, 2 )
+
+[node name="Sprite" type="Sprite" parent="OnLight"]
+position = Vector2( -2, -1 )
+texture = ExtResource( 2 )
+
+[node name="Sprite2" type="Sprite" parent="OnLight"]
+position = Vector2( 1, -1 )
+texture = ExtResource( 2 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 8, -11.0243 )
+frames = SubResource( 5 )
+animation = "New Anim"

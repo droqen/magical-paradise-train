@@ -1,0 +1,301 @@
+[gd_scene load_steps=23 format=2]
+
+[ext_resource path="res://00-core/SubwayStopBoard.gd" type="Script" id=1]
+[ext_resource path="res://navdi2/Node Scripts/Board/NavdiBoardState.gd" type="Script" id=2]
+[ext_resource path="res://Gabe/TinyDrum/StepButton.tscn" type="PackedScene" id=3]
+[ext_resource path="res://navdi2/Resources/fff.png" type="Texture" id=4]
+[ext_resource path="res://Gabe/TinyDrum/VoiceParameterPanel.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Gabe/TinyDrum/VoiceSelectButton.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Gabe/TinyDrum/SoundButtons.gd" type="Script" id=7]
+[ext_resource path="res://Gabe/TinyDrum/DrumMachine.gd" type="Script" id=8]
+[ext_resource path="res://Gabe/TinyDrum/StepButtons.gd" type="Script" id=9]
+[ext_resource path="res://Gabe/TinyDrum/Samples/sd03.wav" type="AudioStream" id=10]
+[ext_resource path="res://Gabe/TinyDrum/Samples/hh01.wav" type="AudioStream" id=11]
+[ext_resource path="res://Gabe/TinyDrum/Samples/bd01.wav" type="AudioStream" id=12]
+[ext_resource path="res://Gabe/TinyDrum/DoneButton.gd" type="Script" id=13]
+[ext_resource path="res://Gabe/TinyDrum/Samples/cp01.wav" type="AudioStream" id=14]
+[ext_resource path="res://69-brut/done button.png" type="Texture" id=15]
+[ext_resource path="res://Gabe/TinyDrum/gfx/slider_track.png" type="Texture" id=16]
+[ext_resource path="res://Gabe/TinyDrum/gfx/fader.png" type="Texture" id=17]
+[ext_resource path="res://Gabe/TinyDrum/TempoTimer.gd" type="Script" id=18]
+[ext_resource path="res://Gabe/TinyDrum/gfx/tempo_icon.png" type="Texture" id=19]
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[sub_resource type="StyleBoxEmpty" id=2]
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[node name="TinyDrum" type="Node2D"]
+position = Vector2( 80, 80 )
+script = ExtResource( 1 )
+board_view_size = Vector2( 160, 160 )
+show_outline = true
+
+[node name="BG" type="Sprite" parent="."]
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 21.4731, 19.1135 )
+scale = Vector2( 25.295, 24.705 )
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="State" type="Node2D" parent="."]
+script = ExtResource( 2 )
+
+[node name="DrumMachine" type="Node2D" parent="."]
+script = ExtResource( 8 )
+
+[node name="SoundButtons" type="Node2D" parent="DrumMachine"]
+position = Vector2( 0, 24 )
+script = ExtResource( 7 )
+
+[node name="VoiceSelectButton" parent="DrumMachine/SoundButtons" instance=ExtResource( 6 )]
+margin_left = -63.8386
+margin_right = -47.8386
+margin_bottom = 6.0
+
+[node name="VoiceSelectButton2" parent="DrumMachine/SoundButtons" instance=ExtResource( 6 )]
+margin_left = -45.9321
+margin_right = -29.9321
+margin_bottom = 6.0
+buttonIndex = 1
+
+[node name="VoiceSelectButton3" parent="DrumMachine/SoundButtons" instance=ExtResource( 6 )]
+margin_left = -28.1357
+margin_right = -12.1357
+margin_bottom = 6.0
+buttonIndex = 2
+
+[node name="VoiceSelectButton4" parent="DrumMachine/SoundButtons" instance=ExtResource( 6 )]
+margin_left = -9.55184
+margin_right = 6.44816
+margin_bottom = 6.0
+buttonIndex = 3
+
+[node name="StepButtons" type="Node2D" parent="DrumMachine"]
+position = Vector2( -71.0463, -30.9402 )
+script = ExtResource( 9 )
+
+[node name="StepButton" parent="DrumMachine/StepButtons" instance=ExtResource( 3 )]
+margin_top = 62.8579
+margin_right = 16.0
+margin_bottom = 78.8579
+
+[node name="StepButton2" parent="DrumMachine/StepButtons" instance=ExtResource( 3 )]
+margin_left = 16.0
+margin_top = 62.8579
+margin_right = 32.0
+margin_bottom = 78.8579
+buttonIndex = 1
+
+[node name="StepButton3" parent="DrumMachine/StepButtons" instance=ExtResource( 3 )]
+margin_left = 32.0
+margin_top = 62.8579
+margin_right = 48.0
+margin_bottom = 78.8579
+buttonIndex = 2
+
+[node name="StepButton4" parent="DrumMachine/StepButtons" instance=ExtResource( 3 )]
+margin_left = 48.0
+margin_top = 62.8579
+margin_right = 64.0
+margin_bottom = 78.8579
+buttonIndex = 3
+
+[node name="StepButton5" parent="DrumMachine/StepButtons" instance=ExtResource( 3 )]
+margin_left = 64.0
+margin_top = 62.8579
+margin_right = 80.0
+margin_bottom = 78.8579
+buttonIndex = 4
+
+[node name="StepButton6" parent="DrumMachine/StepButtons" instance=ExtResource( 3 )]
+margin_left = 80.0
+margin_top = 62.8579
+margin_right = 96.0
+margin_bottom = 78.8579
+buttonIndex = 5
+
+[node name="StepButton7" parent="DrumMachine/StepButtons" instance=ExtResource( 3 )]
+margin_left = 96.0
+margin_top = 62.8579
+margin_right = 112.0
+margin_bottom = 78.8579
+buttonIndex = 6
+
+[node name="StepButton8" parent="DrumMachine/StepButtons" instance=ExtResource( 3 )]
+margin_left = 112.0
+margin_top = 62.8579
+margin_right = 128.0
+margin_bottom = 78.8579
+buttonIndex = 7
+
+[node name="StepButton9" parent="DrumMachine/StepButtons" instance=ExtResource( 3 )]
+margin_left = 8.0
+margin_top = 81.8579
+margin_right = 24.0
+margin_bottom = 97.8579
+buttonIndex = 8
+
+[node name="StepButton10" parent="DrumMachine/StepButtons" instance=ExtResource( 3 )]
+margin_left = 24.0
+margin_top = 81.8579
+margin_right = 40.0
+margin_bottom = 97.8579
+buttonIndex = 9
+
+[node name="StepButton11" parent="DrumMachine/StepButtons" instance=ExtResource( 3 )]
+margin_left = 40.0
+margin_top = 81.8579
+margin_right = 56.0
+margin_bottom = 97.8579
+buttonIndex = 10
+
+[node name="StepButton12" parent="DrumMachine/StepButtons" instance=ExtResource( 3 )]
+margin_left = 56.0
+margin_top = 81.8579
+margin_right = 72.0
+margin_bottom = 97.8579
+buttonIndex = 11
+
+[node name="StepButton13" parent="DrumMachine/StepButtons" instance=ExtResource( 3 )]
+margin_left = 72.0
+margin_top = 81.8579
+margin_right = 88.0
+margin_bottom = 97.8579
+buttonIndex = 12
+
+[node name="StepButton14" parent="DrumMachine/StepButtons" instance=ExtResource( 3 )]
+margin_left = 88.0
+margin_top = 81.8579
+margin_right = 104.0
+margin_bottom = 97.8579
+buttonIndex = 13
+
+[node name="StepButton15" parent="DrumMachine/StepButtons" instance=ExtResource( 3 )]
+margin_left = 104.0
+margin_top = 81.8579
+margin_right = 120.0
+margin_bottom = 97.8579
+buttonIndex = 14
+
+[node name="StepButton16" parent="DrumMachine/StepButtons" instance=ExtResource( 3 )]
+margin_left = 120.0
+margin_top = 81.8579
+margin_right = 136.0
+margin_bottom = 97.8579
+buttonIndex = 15
+
+[node name="TempoTimer" type="Timer" parent="DrumMachine"]
+wait_time = 0.4
+autostart = true
+script = ExtResource( 18 )
+
+[node name="Tempo" type="Node2D" parent="DrumMachine/TempoTimer"]
+position = Vector2( 80, 80 )
+
+[node name="TextureRect" type="TextureRect" parent="DrumMachine/TempoTimer/Tempo"]
+margin_left = 63.25
+margin_top = 13.25
+margin_right = 68.25
+margin_bottom = 61.25
+rect_rotation = 89.9999
+texture = ExtResource( 16 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSlider" type="HSlider" parent="DrumMachine/TempoTimer/Tempo"]
+margin_left = 17.0
+margin_top = 7.0
+margin_right = 62.0
+margin_bottom = 23.0
+custom_icons/grabber_disabled = ExtResource( 17 )
+custom_icons/grabber_highlight = ExtResource( 17 )
+custom_icons/grabber = ExtResource( 17 )
+custom_styles/slider = SubResource( 1 )
+custom_styles/grabber_area_highlight = SubResource( 2 )
+custom_styles/grabber_area = SubResource( 3 )
+min_value = 0.1
+max_value = 0.9
+step = 0.01
+value = 0.1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="tempo_icon" type="Sprite" parent="DrumMachine/TempoTimer/Tempo"]
+position = Vector2( 39.8451, 10.4122 )
+texture = ExtResource( 19 )
+
+[node name="SFX" type="Node2D" parent="DrumMachine"]
+
+[node name="Kick" type="AudioStreamPlayer" parent="DrumMachine/SFX"]
+stream = ExtResource( 12 )
+
+[node name="Hat" type="AudioStreamPlayer" parent="DrumMachine/SFX"]
+stream = ExtResource( 11 )
+
+[node name="Snare" type="AudioStreamPlayer" parent="DrumMachine/SFX"]
+stream = ExtResource( 10 )
+
+[node name="Clap" type="AudioStreamPlayer" parent="DrumMachine/SFX"]
+stream = ExtResource( 14 )
+
+[node name="VoiceParams" type="Node2D" parent="DrumMachine"]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="DrumMachine/VoiceParams"]
+margin_left = -69.0
+margin_top = -77.0
+margin_right = 91.0
+margin_bottom = 5.0
+custom_constants/separation = -3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" parent="DrumMachine/VoiceParams/HBoxContainer" instance=ExtResource( 5 )]
+margin_top = 0.0
+margin_bottom = 82.0
+
+[node name="Panel2" parent="DrumMachine/VoiceParams/HBoxContainer" instance=ExtResource( 5 )]
+margin_left = 34.0
+margin_top = 0.0
+margin_right = 71.0
+margin_bottom = 82.0
+voiceIndex = 1
+
+[node name="Panel3" parent="DrumMachine/VoiceParams/HBoxContainer" instance=ExtResource( 5 )]
+margin_left = 68.0
+margin_top = 0.0
+margin_right = 105.0
+margin_bottom = 82.0
+voiceIndex = 2
+
+[node name="Panel4" parent="DrumMachine/VoiceParams/HBoxContainer" instance=ExtResource( 5 )]
+margin_left = 102.0
+margin_top = 0.0
+margin_right = 139.0
+margin_bottom = 82.0
+voiceIndex = 3
+
+[node name="Lines" type="Node2D" parent="."]
+
+[node name="Line2D" type="Line2D" parent="Lines"]
+width = 2.0
+default_color = Color( 0.580392, 0.878431, 0.537255, 1 )
+
+[node name="DoneButton" type="TextureButton" parent="."]
+margin_left = -84.7467
+margin_top = 65.6085
+margin_right = -37.7467
+margin_bottom = 105.608
+texture_normal = ExtResource( 15 )
+script = ExtResource( 13 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="value_changed" from="DrumMachine/TempoTimer/Tempo/HSlider" to="DrumMachine/TempoTimer" method="SetWaitTime"]

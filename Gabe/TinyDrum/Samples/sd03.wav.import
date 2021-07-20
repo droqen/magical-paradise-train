@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/sd03.wav-dda424bef1b454b11b911d774499b727.sample"
+
+[deps]
+
+source_file="res://Gabe/TinyDrum/Samples/sd03.wav"
+dest_files=[ "res://.import/sd03.wav-dda424bef1b454b11b911d774499b727.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

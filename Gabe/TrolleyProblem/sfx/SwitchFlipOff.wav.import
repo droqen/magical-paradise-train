@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/SwitchFlipOff.wav-5f148c18d51ed7a051eb4f1581c9c1f2.sample"
+
+[deps]
+
+source_file="res://Gabe/TrolleyProblem/sfx/SwitchFlipOff.wav"
+dest_files=[ "res://.import/SwitchFlipOff.wav-5f148c18d51ed7a051eb4f1581c9c1f2.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

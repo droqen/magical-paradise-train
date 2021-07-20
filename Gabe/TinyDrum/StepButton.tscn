@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Gabe/TinyDrum/gfx/purple_step_button.png" type="Texture" id=1]
+[ext_resource path="res://Gabe/TinyDrum/gfx/button_shine.png" type="Texture" id=2]
+[ext_resource path="res://Gabe/TinyDrum/StepButton.gd" type="Script" id=3]
+
+[node name="StepButton" type="TextureButton"]
+action_mode = 0
+texture_normal = ExtResource( 1 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OnLight" type="Sprite" parent="."]
+position = Vector2( 8, 2 )
+texture = ExtResource( 2 )
+
+[node name="FlashLight" type="Sprite" parent="."]
+position = Vector2( 8, 2 )
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 2 )
+
+[node name="FlashTimer" type="Timer" parent="."]
+wait_time = 0.25
+one_shot = true
+
+[connection signal="timeout" from="FlashTimer" to="FlashLight" method="hide"]

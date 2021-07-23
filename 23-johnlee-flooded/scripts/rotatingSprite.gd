@@ -6,14 +6,19 @@ extends Node2D
 # var b = "text"
 var vectorToTarget
 export(String) var targetName
+export(float) var fadeSpeed
 var target
 var animSprite
 var particleThing
+var audio
+var isOn=false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	target = get_node(targetName) 
 	animSprite= get_node("AnimatedSprite")
 	particleThing = get_node("Particles2D")
+	audio=get_node("AudioStreamPlayer")
+	audio.set_volume_db(linear2db(0))
 	pass # Replace with function body.
 
 
@@ -24,11 +29,16 @@ func _process(delta):
 	if Input.is_action_just_pressed("left mouse button"):
 		particleThing.emitting=true
 		#also sound on
+		isOn=true
 	if Input.is_action_just_released("left mouse button"):
 		particleThing.emitting=false
 		#also sound off
-	
-	
+		isOn=false
+	if(isOn):
+		audio.set_volume_db(linear2db(move_toward(db2linear( audio.volume_db),1,delta*fadeSpeed)))
+	else:
+		audio.set_volume_db(linear2db(move_toward(db2linear( audio.volume_db),0,delta*fadeSpeed)))
+		print(audio.volume_db)
 	vectorToTarget=(target.global_position-global_position).normalized()
 	
 	var angleDegrees=rad2deg( vectorToTarget.angle())
@@ -57,5 +67,7 @@ func _process(delta):
 	else:
 		animSprite.animation="left"
 		particleThing.direction= Vector2.LEFT
+	
+	
 	
 	pass

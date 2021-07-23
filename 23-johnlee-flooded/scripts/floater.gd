@@ -11,16 +11,30 @@ export(float) var distanceLimit
 export(bool) var rat
 export(float) var rotateMult
 export(float) var rotateMax
-export(float) var bounceMult
 export(float) var sinAmp
 export(float) var sinFreq
+export(Array, Texture) var randomVariants
 var fan
 var theFloor
 var time=0
+var shadow
+var shadowOffset
+var audioComp
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	fan = get_parent().get_node("NavdiCursorFollower").get_child(0) 
-	time=rand_range(0,2)
+	audioComp = get_parent().get_node("bumpSounds")
+	
+	shadow = get_node("Node/shadow")
+	shadowOffset=Vector2(0,28.5)
+	randomize()
+	time=rand_range(0,2) #to vary the sin waves
+	
+	if(!rat):
+		var randIndex=randi()%randomVariants.size()
+		get_node("Sprite").texture=randomVariants[randIndex]
+		shadow.texture=randomVariants[randIndex]
+	
 	pass # Replace with function body.
 
 #other things to factor in: how close you r 2 fan, 
@@ -54,4 +68,26 @@ func _physics_process(delta):
 	
 	time+=delta
 	linear_velocity+=Vector2(0,1)* sin(time*sinFreq)*sinAmp
+	
+	
+	#sort by y
+	z_index=position.y
+	#update shadow (why am i doing so much work for these shadows that you
+	#can barely see
+	shadow.position=global_position+shadowOffset
+	shadow.rotation_degrees=rotation_degrees
 	pass
+
+var stillTouching
+func _on_body_entered(body):
+	if !audioComp.playing and !stillTouching && linear_velocity.length()>13:
+		audioComp.pitch_scale=rand_range(0.8,1.2)
+		audioComp.volume_db=linear2db(.5)
+		audioComp.play()
+		stillTouching=true
+	pass # Replace with function body.
+
+
+func _on_body_exited(body):
+	stillTouching=false
+	pass # Replace with function body.

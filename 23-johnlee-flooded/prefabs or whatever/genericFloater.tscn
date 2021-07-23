@@ -1,18 +1,26 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://23-johnlee-flooded/scripts/floater.gd" type="Script" id=1]
 [ext_resource path="res://23-johnlee-flooded/sprites/plank.png" type="Texture" id=2]
+[ext_resource path="res://23-johnlee-flooded/sprites/news.png" type="Texture" id=3]
+[ext_resource path="res://23-johnlee-flooded/sprites/cone.png" type="Texture" id=4]
+[ext_resource path="res://23-johnlee-flooded/sprites/wakeParticle.png" type="Texture" id=5]
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.0
 bounce = 0.9
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="Curve" id=2]
+_data = [ Vector2( 0.00581396, 0.457955 ), 0.0, 0.0, 0, 0, Vector2( 0.965116, 1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 7.89985, 3.86792 )
 
 [node name="floater" type="RigidBody2D"]
 physics_material_override = SubResource( 1 )
 gravity_scale = 0.0
+contacts_reported = 1
+contact_monitor = true
 script = ExtResource( 1 )
 accel = 50.0
 deAccel = 10.0
@@ -21,13 +29,49 @@ angleLimit = 90.0
 distanceLimit = 60.0
 rotateMult = 0.5
 rotateMax = 10.0
-bounceMult = 0.9
 sinAmp = 0.2
 sinFreq = 1.0
+randomVariants = [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ) ]
+
+[node name="Node" type="Node" parent="."]
+
+[node name="shadow" type="Sprite" parent="Node"]
+modulate = Color( 0, 0, 0, 0.243137 )
+show_behind_parent = true
+position = Vector2( 0, 28.489 )
+z_index = -200
+z_as_relative = false
+texture = ExtResource( 2 )
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+show_behind_parent = true
+z_index = -100
+amount = 3
+lifetime = 2.3
+preprocess = 12.9
+explosiveness = 0.2
+randomness = 0.35
+lifetime_randomness = 0.12
+fixed_fps = 6
+local_coords = false
+texture = ExtResource( 5 )
+emission_shape = 1
+emission_sphere_radius = 0.01
+direction = Vector2( 0, 1 )
+spread = 20.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 3.67
+initial_velocity_random = 0.4
+scale_amount = 1.84
+scale_amount_random = 0.58
+scale_amount_curve = SubResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 2.00226 )
-shape = SubResource( 2 )
+shape = SubResource( 3 )
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

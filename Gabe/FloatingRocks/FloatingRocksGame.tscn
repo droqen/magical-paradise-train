@@ -181,6 +181,9 @@ script = ExtResource( 10 )
 [node name="BirdGroup" parent="BirdsManager" instance=ExtResource( 7 )]
 leaveDir = Vector2( 1, -0.1 )
 
+[node name="Bird" parent="BirdsManager/BirdGroup/Birds" index="0"]
+position = Vector2( -149.239, -44.1942 )
+
 [node name="BirdGroup2" parent="BirdsManager" instance=ExtResource( 7 )]
 position = Vector2( 3, -24.1761 )
 groupIndex = 1
@@ -217,5 +220,6 @@ position = Vector2( -191.239, -51.7343 )
 position = Vector2( 204.651, 194.737 )
 groupIndex = 3
 
+[editable path="BirdsManager/BirdGroup"]
 [editable path="BirdsManager/BirdGroup2"]
 [editable path="BirdsManager/BirdGroup3"]

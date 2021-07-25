@@ -93,7 +93,7 @@ visible = false
 position = Vector2( 2.65625, -5.0625 )
 frames = ExtResource( 9 )
 animation = "FLY"
-frame = 2
+frame = 1
 speed_scale = 2.0
 playing = true
 

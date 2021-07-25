@@ -1,0 +1,155 @@
+[gd_scene load_steps=24 format=2]
+
+[ext_resource path="res://Gabe/Shaders/Outline.shader" type="Shader" id=1]
+[ext_resource path="res://Gabe/FloatingRocks/PlayerCharacter/char_climb-sheet.png" type="Texture" id=2]
+[ext_resource path="res://Gabe/FloatingRocks/PlayerCharacter/char_crouch.png" type="Texture" id=3]
+[ext_resource path="res://Gabe/FloatingRocks/PlayerCharacter/test_char-sheet.png" type="Texture" id=4]
+[ext_resource path="res://Gabe/FloatingRocks/PlayerCharacter/char_jump.png" type="Texture" id=5]
+[ext_resource path="res://Gabe/FloatingRocks/PlayerCharacter/FloatingRocksCharacter.gd" type="Script" id=6]
+[ext_resource path="res://Gabe/bits/GabeKeyboardInput.gd" type="Script" id=7]
+[ext_resource path="res://Gabe/FloatingRocks/PlayerCharacter/GabeCharacterGFX.gd" type="Script" id=8]
+[ext_resource path="res://Gabe/FloatingRocks/Birds/BirdSpriteFrames.tres" type="SpriteFrames" id=9]
+[ext_resource path="res://Gabe/FloatingRocks/sfx/mouth_sound_cut-09-respawn.wav" type="AudioStream" id=10]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 1 )
+shader_param/line_color = Color( 0.760784, 0, 0, 1 )
+shader_param/line_thickness = 1.0
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 4 )
+region = Rect2( 64, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 4 )
+region = Rect2( 128, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 4 )
+region = Rect2( 192, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 2 )
+region = Rect2( 64, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 2 )
+region = Rect2( 128, 0, 64, 64 )
+
+[sub_resource type="SpriteFrames" id=11]
+animations = [ {
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
+"loop": true,
+"name": "WALK",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 6 ) ],
+"loop": true,
+"name": "JUMP",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 7 ) ],
+"loop": true,
+"name": "CROUCH",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 8 ), SubResource( 9 ), SubResource( 10 ) ],
+"loop": true,
+"name": "CLIMB",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=12]
+extents = Vector2( 2.01702, 4.54573 )
+
+[sub_resource type="RectangleShape2D" id=13]
+extents = Vector2( 2.82951, 4.05407 )
+
+[node name="Character" type="KinematicBody2D"]
+collision_layer = 2
+script = ExtResource( 6 )
+
+[node name="GFX" type="Node2D" parent="."]
+script = ExtResource( 8 )
+
+[node name="Bird" type="AnimatedSprite" parent="GFX"]
+visible = false
+position = Vector2( 2.65625, -5.0625 )
+frames = ExtResource( 9 )
+animation = "FLY"
+frame = 2
+speed_scale = 2.0
+playing = true
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="GFX"]
+material = SubResource( 1 )
+frames = SubResource( 11 )
+animation = "WALK"
+frame = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 12 )
+
+[node name="Rays" type="Node2D" parent="."]
+
+[node name="FloorCastLeft" type="RayCast2D" parent="Rays"]
+position = Vector2( -1.48084, 4 )
+enabled = true
+cast_to = Vector2( 0, 1 )
+
+[node name="FloorCastRight" type="RayCast2D" parent="Rays"]
+position = Vector2( 1.51916, 4 )
+enabled = true
+cast_to = Vector2( 0, 1 )
+
+[node name="RightCast" type="RayCast2D" parent="Rays"]
+position = Vector2( 2, -2 )
+enabled = true
+cast_to = Vector2( 1, 0 )
+
+[node name="RightCastLow" type="RayCast2D" parent="Rays"]
+position = Vector2( 2, 3 )
+enabled = true
+cast_to = Vector2( 1, 0 )
+
+[node name="LeftCast" type="RayCast2D" parent="Rays"]
+position = Vector2( -2, -1 )
+enabled = true
+cast_to = Vector2( -1, 0 )
+
+[node name="LeftCastLow" type="RayCast2D" parent="Rays"]
+position = Vector2( -2, 3 )
+enabled = true
+cast_to = Vector2( -1, 0 )
+
+[node name="GabeKeyboardInput" type="Node" parent="."]
+script = ExtResource( 7 )
+
+[node name="SpikeDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpikeDetector"]
+shape = SubResource( 13 )
+
+[node name="JumpSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+pitch_scale = 0.85
+
+[connection signal="area_entered" from="SpikeDetector" to="." method="SpikeTouched"]

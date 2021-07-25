@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/bird_flapping.wav-e5483c005d3b9f80326a8d094abcd5c2.sample"
+
+[deps]
+
+source_file="res://Gabe/FloatingRocks/sfx/bird_flapping.wav"
+dest_files=[ "res://.import/bird_flapping.wav-e5483c005d3b9f80326a8d094abcd5c2.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

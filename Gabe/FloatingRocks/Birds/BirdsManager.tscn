@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Gabe/FloatingRocks/Birds/BirdGroup.gd" type="Script" id=1]
+[ext_resource path="res://Gabe/FloatingRocks/Birds/BirdGroup.tscn" type="PackedScene" id=2]
+
+[node name="BirdsManager" type="Node2D"]
+
+[node name="BirdGroup" type="Area2D" parent="." instance=ExtResource( 2 )]
+position = Vector2( -122.239, -40.1942 )
+collision_layer = 0
+collision_mask = 2
+script = ExtResource( 1 )
+leaveDir = Vector2( 1, -0.1 )

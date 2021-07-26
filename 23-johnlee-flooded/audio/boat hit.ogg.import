@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/boat hit.ogg-9e92736848fe62f6350c8c96752adbf3.oggstr"
+
+[deps]
+
+source_file="res://23-johnlee-flooded/audio/boat hit.ogg"
+dest_files=[ "res://.import/boat hit.ogg-9e92736848fe62f6350c8c96752adbf3.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,460 @@
+[gd_scene load_steps=49 format=2]
+
+[ext_resource path="res://23-johnlee-flooded/prefabs or whatever/fan.tscn" type="PackedScene" id=1]
+[ext_resource path="res://navdi2/Node Scripts/Board/NavdiBoardState.gd" type="Script" id=2]
+[ext_resource path="res://navdi2/Resources/fff.png" type="Texture" id=3]
+[ext_resource path="res://navdi2/Node Scripts/Cursor/NavdiCursorFollower.gd" type="Script" id=4]
+[ext_resource path="res://00-core/SubwayStopBoard.gd" type="Script" id=6]
+[ext_resource path="res://23-johnlee-flooded/prefabs or whatever/genericFloater.tscn" type="PackedScene" id=7]
+[ext_resource path="res://23-johnlee-flooded/scripts/debugDraw.gd" type="Script" id=9]
+[ext_resource path="res://23-johnlee-flooded/sprites/wall.png" type="Texture" id=11]
+[ext_resource path="res://23-johnlee-flooded/animations/waterTile.tres" type="Texture" id=12]
+[ext_resource path="res://23-johnlee-flooded/sprites/water.png" type="Texture" id=13]
+[ext_resource path="res://23-johnlee-flooded/sprites/trackBottom.png" type="Texture" id=14]
+[ext_resource path="res://23-johnlee-flooded/sprites/trackTop.png" type="Texture" id=15]
+[ext_resource path="res://23-johnlee-flooded/sprites/safety.png" type="Texture" id=16]
+[ext_resource path="res://23-johnlee-flooded/sprites/floor.png" type="Texture" id=17]
+[ext_resource path="res://23-johnlee-flooded/sprites/wallBottom.png" type="Texture" id=18]
+[ext_resource path="res://23-johnlee-flooded/sprites/floorGross.png" type="Texture" id=19]
+[ext_resource path="res://23-johnlee-flooded/sprites/poster1.png" type="Texture" id=20]
+[ext_resource path="res://23-johnlee-flooded/sprites/poster2.png" type="Texture" id=21]
+[ext_resource path="res://23-johnlee-flooded/sprites/wallVine.png" type="Texture" id=22]
+[ext_resource path="res://23-johnlee-flooded/sprites/wallPipe.png" type="Texture" id=23]
+[ext_resource path="res://23-johnlee-flooded/sprites/ratLeft1.png" type="Texture" id=24]
+[ext_resource path="res://23-johnlee-flooded/sprites/ratRight1.png" type="Texture" id=25]
+[ext_resource path="res://23-johnlee-flooded/sprites/ratRight2.png" type="Texture" id=26]
+[ext_resource path="res://23-johnlee-flooded/sprites/ratLeft2.png" type="Texture" id=27]
+[ext_resource path="res://23-johnlee-flooded/scripts/centerFollower.gd" type="Script" id=28]
+[ext_resource path="res://23-johnlee-flooded/sprites/ratLove2.png" type="Texture" id=29]
+[ext_resource path="res://23-johnlee-flooded/sprites/ratLove4.png" type="Texture" id=30]
+[ext_resource path="res://23-johnlee-flooded/sprites/ratLove5.png" type="Texture" id=31]
+[ext_resource path="res://23-johnlee-flooded/sprites/ratLove6.png" type="Texture" id=32]
+[ext_resource path="res://23-johnlee-flooded/sprites/ratLove7.png" type="Texture" id=33]
+[ext_resource path="res://23-johnlee-flooded/sprites/ratLove3.png" type="Texture" id=34]
+[ext_resource path="res://23-johnlee-flooded/sprites/ratLove1.png" type="Texture" id=35]
+[ext_resource path="res://23-johnlee-flooded/audio/boat hit.ogg" type="AudioStream" id=36]
+[ext_resource path="res://23-johnlee-flooded/audio/kiss.ogg" type="AudioStream" id=37]
+[ext_resource path="res://23-johnlee-flooded/sprites/prompt.png" type="Texture" id=38]
+[ext_resource path="res://23-johnlee-flooded/scripts/prompt.gd" type="Script" id=39]
+[ext_resource path="res://23-johnlee-flooded/audio/ambience.ogg" type="AudioStream" id=40]
+[ext_resource path="res://23-johnlee-flooded/audio/arrive chord.ogg" type="AudioStream" id=41]
+[ext_resource path="res://23-johnlee-flooded/audio/musicLoop.ogg" type="AudioStream" id=42]
+[ext_resource path="res://23-johnlee-flooded/audio/exit chord.ogg" type="AudioStream" id=43]
+
+[sub_resource type="TileSet" id=2]
+0/name = "wall.png 0"
+0/texture = ExtResource( 11 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 16, 16 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
+1/name = "trackBottom.png 1"
+1/texture = ExtResource( 14 )
+1/tex_offset = Vector2( 0, 0 )
+1/modulate = Color( 1, 1, 1, 1 )
+1/region = Rect2( 0, 0, 16, 16 )
+1/tile_mode = 0
+1/occluder_offset = Vector2( 0, 0 )
+1/navigation_offset = Vector2( 0, 0 )
+1/shape_offset = Vector2( 0, 0 )
+1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+1/shape_one_way = false
+1/shape_one_way_margin = 0.0
+1/shapes = [  ]
+1/z_index = 0
+2/name = "trackTop.png 2"
+2/texture = ExtResource( 15 )
+2/tex_offset = Vector2( 0, 0 )
+2/modulate = Color( 1, 1, 1, 1 )
+2/region = Rect2( 0, 0, 16, 16 )
+2/tile_mode = 0
+2/occluder_offset = Vector2( 0, 0 )
+2/navigation_offset = Vector2( 0, 0 )
+2/shape_offset = Vector2( 0, 0 )
+2/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+2/shape_one_way = false
+2/shape_one_way_margin = 0.0
+2/shapes = [  ]
+2/z_index = 0
+3/name = "safety.png 3"
+3/texture = ExtResource( 16 )
+3/tex_offset = Vector2( 0, 0 )
+3/modulate = Color( 1, 1, 1, 1 )
+3/region = Rect2( 0, 0, 16, 16 )
+3/tile_mode = 0
+3/occluder_offset = Vector2( 0, 0 )
+3/navigation_offset = Vector2( 0, 0 )
+3/shape_offset = Vector2( 0, 0 )
+3/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+3/shape_one_way = false
+3/shape_one_way_margin = 0.0
+3/shapes = [  ]
+3/z_index = 0
+4/name = "floor.png 4"
+4/texture = ExtResource( 17 )
+4/tex_offset = Vector2( 0, 0 )
+4/modulate = Color( 1, 1, 1, 1 )
+4/region = Rect2( 0, 0, 16, 16 )
+4/tile_mode = 0
+4/occluder_offset = Vector2( 0, 0 )
+4/navigation_offset = Vector2( 0, 0 )
+4/shape_offset = Vector2( 0, 0 )
+4/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+4/shape_one_way = false
+4/shape_one_way_margin = 0.0
+4/shapes = [  ]
+4/z_index = 0
+5/name = "wallBottom.png 5"
+5/texture = ExtResource( 18 )
+5/tex_offset = Vector2( 0, 0 )
+5/modulate = Color( 1, 1, 1, 1 )
+5/region = Rect2( 0, 0, 16, 16 )
+5/tile_mode = 0
+5/occluder_offset = Vector2( 0, 0 )
+5/navigation_offset = Vector2( 0, 0 )
+5/shape_offset = Vector2( 0, 0 )
+5/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+5/shape_one_way = false
+5/shape_one_way_margin = 0.0
+5/shapes = [  ]
+5/z_index = 0
+6/name = "floorGross.png 6"
+6/texture = ExtResource( 19 )
+6/tex_offset = Vector2( 0, 0 )
+6/modulate = Color( 1, 1, 1, 1 )
+6/region = Rect2( 0, 0, 16, 16 )
+6/tile_mode = 0
+6/occluder_offset = Vector2( 0, 0 )
+6/navigation_offset = Vector2( 0, 0 )
+6/shape_offset = Vector2( 0, 0 )
+6/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+6/shape_one_way = false
+6/shape_one_way_margin = 0.0
+6/shapes = [  ]
+6/z_index = 0
+7/name = "wallVine.png 7"
+7/texture = ExtResource( 22 )
+7/tex_offset = Vector2( 0, 0 )
+7/modulate = Color( 1, 1, 1, 1 )
+7/region = Rect2( 0, 0, 16, 16 )
+7/tile_mode = 0
+7/occluder_offset = Vector2( 0, 0 )
+7/navigation_offset = Vector2( 0, 0 )
+7/shape_offset = Vector2( 0, 0 )
+7/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+7/shape_one_way = false
+7/shape_one_way_margin = 0.0
+7/shapes = [  ]
+7/z_index = 0
+8/name = "wallPipe.png 8"
+8/texture = ExtResource( 23 )
+8/tex_offset = Vector2( 0, 0 )
+8/modulate = Color( 1, 1, 1, 1 )
+8/region = Rect2( 0, 0, 16, 16 )
+8/tile_mode = 0
+8/occluder_offset = Vector2( 0, 0 )
+8/navigation_offset = Vector2( 0, 0 )
+8/shape_offset = Vector2( 0, 0 )
+8/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+8/shape_one_way = false
+8/shape_one_way_margin = 0.0
+8/shapes = [  ]
+8/z_index = 0
+
+[sub_resource type="TileSet" id=3]
+1/name = "water.png 1"
+1/texture = ExtResource( 13 )
+1/tex_offset = Vector2( 0, 0 )
+1/modulate = Color( 1, 1, 1, 1 )
+1/region = Rect2( 0, 0, 16, 16 )
+1/tile_mode = 0
+1/occluder_offset = Vector2( 0, 0 )
+1/navigation_offset = Vector2( 0, 0 )
+1/shape_offset = Vector2( 0, 0 )
+1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+1/shape_one_way = false
+1/shape_one_way_margin = 0.0
+1/shapes = [  ]
+1/z_index = 0
+2/name = "waterTile.tres 2"
+2/texture = ExtResource( 12 )
+2/tex_offset = Vector2( 0, 0 )
+2/modulate = Color( 1, 1, 1, 1 )
+2/region = Rect2( 0, 0, 16, 16 )
+2/tile_mode = 0
+2/occluder_offset = Vector2( 0, 0 )
+2/navigation_offset = Vector2( 0, 0 )
+2/shape_offset = Vector2( 0, 0 )
+2/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+2/shape_one_way = false
+2/shape_one_way_margin = 0.0
+2/shapes = [  ]
+2/z_index = 0
+
+[sub_resource type="SpriteFrames" id=4]
+animations = [ {
+"frames": [ ExtResource( 24 ), ExtResource( 27 ) ],
+"loop": true,
+"name": "left",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 25 ), ExtResource( 26 ) ],
+"loop": true,
+"name": "right",
+"speed": 5.0
+} ]
+
+[sub_resource type="PhysicsMaterial" id=5]
+friction = 0.0
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 86.1042, 10 )
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 10, 102.91 )
+
+[sub_resource type="SpriteFrames" id=8]
+animations = [ {
+"frames": [ ExtResource( 32 ), ExtResource( 33 ) ],
+"loop": true,
+"name": "idle",
+"speed": 2.0
+}, {
+"frames": [ ExtResource( 35 ), ExtResource( 29 ), ExtResource( 34 ), ExtResource( 30 ), ExtResource( 31 ) ],
+"loop": true,
+"name": "appear",
+"speed": 7.0
+} ]
+
+[sub_resource type="Curve" id=10]
+bake_resolution = 4
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[node name="NavdiBoard" type="Node2D"]
+position = Vector2( 80, 80 )
+script = ExtResource( 6 )
+board_view_size = Vector2( 160, 160 )
+show_outline = true
+
+[node name="State" type="Node2D" parent="."]
+script = ExtResource( 2 )
+
+[node name="floor" type="Sprite" parent="State"]
+modulate = Color( 0.196078, 0.176471, 0.137255, 1 )
+position = Vector2( 0, 37.0831 )
+scale = Vector2( 20, 20 )
+z_index = -200
+texture = ExtResource( 3 )
+
+[node name="TileMap" type="TileMap" parent="State"]
+z_index = -200
+tile_set = SubResource( 2 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( -262149, 0, 0, -262148, 0, 0, -262147, 0, 0, -262146, 7, 0, -262145, 0, 0, -327680, 0, 0, -327679, 7, 0, -327678, 0, 0, -327677, 0, 0, -327676, 0, 0, -196613, 0, 0, -196612, 0, 0, -196611, 0, 0, -196610, 0, 0, -196609, 0, 0, -262144, 0, 0, -262143, 7, 0, -262142, 0, 0, -262141, 0, 0, -262140, 0, 0, -131077, 7, 0, -131076, 0, 0, -131075, 0, 0, -131074, 0, 0, -131073, 0, 0, -196608, 0, 0, -196607, 7, 0, -196606, 0, 0, -196605, 0, 0, -196604, 0, 0, -65541, 7, 0, -65540, 0, 0, -65539, 0, 0, -65538, 0, 0, -65537, 0, 0, -131072, 0, 0, -131071, 0, 0, -131070, 0, 0, -131069, 0, 0, -131068, 0, 0, -5, 0, 0, -4, 8, 0, -3, 0, 0, -2, 0, 0, -1, 0, 0, -65536, 8, 0, -65535, 0, 0, -65534, 0, 0, -65533, 0, 0, -65532, 8, 0, 65531, 5, 0, 65532, 5, 0, 65533, 5, 0, 65534, 5, 0, 65535, 5, 0, 0, 5, 0, 1, 5, 0, 2, 5, 0, 3, 5, 0, 4, 5, 0, 131067, 2, 0, 131068, 2, 0, 131069, 2, 0, 131070, 2, 0, 131071, 2, 0, 65536, 2, 0, 65537, 2, 0, 65538, 2, 0, 65539, 2, 0, 65540, 2, 0, 196603, 3, 0, 196604, 3, 0, 196605, 3, 0, 196606, 3, 0, 196607, 3, 0, 131072, 3, 0, 131073, 3, 0, 131074, 3, 0, 131075, 3, 0, 131076, 3, 0, 262139, 6, 0, 262140, 4, 0, 262141, 4, 0, 262142, 6, 0, 262143, 4, 0, 196608, 4, 0, 196609, 4, 0, 196610, 4, 0, 196611, 6, 0, 196612, 4, 0, 327675, 4, 0, 327676, 6, 0, 327677, 4, 0, 327678, 4, 0, 327679, 6, 0, 262144, 4, 0, 262145, 4, 0, 262146, 4, 0, 262147, 6, 0, 262148, 6, 0, 393211, 6, 0, 393212, 4, 0, 393213, 4, 0, 393214, 4, 0, 393215, 4, 0, 327680, 4, 0, 327681, 6, 0, 327682, 4, 0, 327683, 4, 0, 327684, 6, 0, 458747, 4, 0, 458748, 4, 0, 458749, 4, 0, 458750, 4, 0, 458751, 4, 0, 393216, 4, 0, 393217, 4, 0, 393218, 4, 0, 393219, 4, 0, 393220, 4, 0 )
+
+[node name="bonus tilemap to hide shadows" type="TileMap" parent="State"]
+z_index = -199
+tile_set = SubResource( 2 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( 65531, 5, 0, 65532, 5, 0, 65533, 5, 0, 65534, 5, 0, 65535, 5, 0, 0, 5, 0, 1, 5, 0, 2, 5, 0, 3, 5, 0, 4, 5, 0, 131067, 2, 0, 131068, 2, 0, 131069, 2, 0, 131070, 2, 0, 131071, 2, 0, 65536, 2, 0, 65537, 2, 0, 65538, 2, 0, 65539, 2, 0, 65540, 2, 0, 393211, 6, 0, 393212, 4, 0, 393213, 6, 0, 393214, 4, 0, 393215, 6, 0, 327680, 4, 0, 327681, 6, 0, 327682, 4, 0, 327683, 6, 0, 327684, 6, 0, 458749, 6, 0, 393216, 6, 0, 393218, 6, 0 )
+
+[node name="poster1" type="Sprite" parent="State"]
+position = Vector2( -73.855, -67.226 )
+z_index = -200
+texture = ExtResource( 20 )
+
+[node name="poster2" type="Sprite" parent="State"]
+position = Vector2( 75.5629, -67.2258 )
+z_index = -200
+texture = ExtResource( 21 )
+
+[node name="waterTiles" type="TileMap" parent="State"]
+modulate = Color( 1, 1, 1, 0.803922 )
+z_index = -198
+tile_set = SubResource( 3 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( -5, 2, 0, -4, 2, 0, -3, 2, 0, -2, 2, 0, -1, 2, 0, -65536, 2, 0, -65535, 2, 0, -65534, 2, 0, -65533, 2, 0, -65532, 2, 0, 65531, 1, 0, 65532, 1, 0, 65533, 1, 0, 65534, 1, 0, 65535, 1, 0, 0, 1, 0, 1, 1, 0, 2, 1, 0, 3, 1, 0, 4, 1, 0, 131067, 1, 0, 131068, 1, 0, 131069, 1, 0, 131070, 1, 0, 131071, 1, 0, 65536, 1, 0, 65537, 1, 0, 65538, 1, 0, 65539, 1, 0, 65540, 1, 0, 196603, 1, 0, 196604, 1, 0, 196605, 1, 0, 196606, 1, 0, 196607, 1, 0, 131072, 1, 0, 131073, 1, 0, 131074, 1, 0, 131075, 1, 0, 131076, 1, 0, 262139, 1, 0, 262140, 1, 0, 262141, 1, 0, 262142, 1, 0, 262143, 1, 0, 196608, 1, 0, 196609, 1, 0, 196610, 1, 0, 196611, 1, 0, 196612, 1, 0, 327675, 1, 0, 327676, 1, 0, 327677, 1, 0, 327678, 1, 0, 327679, 1, 0, 262144, 1, 0, 262145, 1, 0, 262146, 1, 0, 262147, 1, 0, 262148, 1, 0 )
+
+[node name="floater" parent="State" instance=ExtResource( 7 )]
+position = Vector2( 17.6389, 57.0114 )
+
+[node name="floater2" parent="State" instance=ExtResource( 7 )]
+position = Vector2( -28.0332, 30.5531 )
+
+[node name="floater3" parent="State" instance=ExtResource( 7 )]
+position = Vector2( 37.1677, 25.8284 )
+
+[node name="floater4" parent="State" instance=ExtResource( 7 )]
+position = Vector2( -34.6478, 52.9167 )
+
+[node name="floater5" parent="State" instance=ExtResource( 7 )]
+position = Vector2( -4.72466, 20.7887 )
+
+[node name="floater6" parent="State" instance=ExtResource( 7 )]
+position = Vector2( 6.61464, 34.9628 )
+
+[node name="floater7" parent="State" instance=ExtResource( 7 )]
+position = Vector2( -4.0947, 45.0422 )
+
+[node name="floater8" parent="State" instance=ExtResource( 7 )]
+position = Vector2( -14.1741, 6.61458 )
+
+[node name="floater9" parent="State" instance=ExtResource( 7 )]
+position = Vector2( 10.0794, 0.944931 )
+
+[node name="floater10" parent="State" instance=ExtResource( 7 )]
+position = Vector2( -13.5441, -5.0397 )
+
+[node name="right rat" parent="State" instance=ExtResource( 7 )]
+position = Vector2( 61.1261, 27.5008 )
+contacts_reported = 2
+rat = true
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="State/right rat"]
+frames = SubResource( 4 )
+animation = "right"
+frame = 1
+speed_scale = 0.413
+playing = true
+
+[node name="left rat" parent="State" instance=ExtResource( 7 )]
+position = Vector2( -59.8881, 28.4459 )
+rat = true
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="State/left rat"]
+frames = SubResource( 4 )
+animation = "left"
+speed_scale = 0.413
+playing = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="State"]
+physics_material_override = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="State/StaticBody2D"]
+position = Vector2( 0.629944, 90.0844 )
+shape = SubResource( 6 )
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="State"]
+physics_material_override = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="State/StaticBody2D2"]
+position = Vector2( -1.74939, -22.0976 )
+shape = SubResource( 6 )
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="State"]
+physics_material_override = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="State/StaticBody2D3"]
+position = Vector2( -90.0844, -2.83484 )
+shape = SubResource( 7 )
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="State"]
+physics_material_override = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="State/StaticBody2D4"]
+position = Vector2( 89.7694, -3.77978 )
+shape = SubResource( 7 )
+
+[node name="NavdiCursorFollower" type="Node2D" parent="State"]
+z_index = 300
+script = ExtResource( 4 )
+get_cursor_from_group = "SuperCursor"
+
+[node name="Fan" parent="State/NavdiCursorFollower" instance=ExtResource( 1 )]
+position = Vector2( 0, 0.25 )
+targetName = "../../hearts"
+
+[node name="debug doer" type="Node2D" parent="State"]
+script = ExtResource( 9 )
+
+[node name="hearts" type="Node2D" parent="State"]
+scale = Vector2( 2, 2 )
+z_index = 200
+script = ExtResource( 28 )
+rat1Name = "left rat"
+rat2Name = "right rat"
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="State/hearts"]
+visible = false
+frames = SubResource( 8 )
+animation = "idle"
+frame = 1
+playing = true
+
+[node name="Timer" type="Timer" parent="State/hearts"]
+wait_time = 2.0
+one_shot = true
+
+[node name="kissSound" type="AudioStreamPlayer" parent="State/hearts"]
+stream = ExtResource( 37 )
+
+[node name="exitChord" type="AudioStreamPlayer" parent="State/hearts"]
+stream = ExtResource( 43 )
+volume_db = -3.029
+
+[node name="bumpSounds" type="AudioStreamPlayer" parent="State"]
+stream = ExtResource( 36 )
+volume_db = 0.1
+
+[node name="ambience" type="AudioStreamPlayer" parent="State"]
+stream = ExtResource( 40 )
+volume_db = 0.1
+autoplay = true
+
+[node name="prompt" type="Sprite" parent="."]
+position = Vector2( 0.536377, -56.5814 )
+scale = Vector2( 0.2739, 0.278782 )
+texture = ExtResource( 38 )
+script = ExtResource( 39 )
+fadeDelay = 3.0
+fadeSpeed = 1.0
+startMusicDelay = 0.5
+
+[node name="Tween" type="Tween" parent="prompt"]
+playback_speed = 7.21
+playback/speed = 7.21
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="prompt"]
+z_index = -1
+emitting = false
+amount = 30
+lifetime = 5.0
+explosiveness = 1.0
+local_coords = false
+emission_shape = 2
+emission_rect_extents = Vector2( 200, 30 )
+direction = Vector2( 0, -1 )
+spread = 0.1
+gravity = Vector2( 0, 40 )
+initial_velocity = 90.0
+initial_velocity_random = 0.9
+radial_accel = 10.76
+angle = 588.4
+angle_random = 1.0
+scale_amount = 5.0
+scale_amount_curve = SubResource( 10 )
+color = Color( 0.835294, 0.388235, 1, 1 )
+hue_variation = 0.02
+hue_variation_random = 1.0
+
+[node name="entranceChord" type="AudioStreamPlayer" parent="prompt"]
+stream = ExtResource( 41 )
+volume_db = -6.058
+
+[node name="musicLoop" type="AudioStreamPlayer" parent="prompt"]
+stream = ExtResource( 42 )
+autoplay = true
+
+[connection signal="body_entered" from="State/right rat" to="State/hearts" method="_on_right_rat_body_entered"]
+[connection signal="timeout" from="State/hearts/Timer" to="State/hearts" method="SendGameEnd"]

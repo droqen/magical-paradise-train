@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://00-core/SubwayStopBoard.gd" type="Script" id=1]
 [ext_resource path="res://navdi2/Node Scripts/Board/NavdiBoardState.gd" type="Script" id=2]
@@ -22,6 +22,7 @@
 [ext_resource path="res://navdi2/Resources/src/roughyFIVEbySIX.ttf" type="DynamicFontData" id=20]
 [ext_resource path="res://Gabe/TinyDrum/instructions.gd" type="Script" id=21]
 [ext_resource path="res://02-ashk/temp_click.wav" type="AudioStream" id=22]
+[ext_resource path="res://Gabe/bits/FadeOutAudio.tscn" type="PackedScene" id=23]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -243,16 +244,28 @@ texture = ExtResource( 19 )
 [node name="SFX" type="Node2D" parent="DrumMachine"]
 
 [node name="Kick" type="AudioStreamPlayer" parent="DrumMachine/SFX"]
+pause_mode = 2
 stream = ExtResource( 12 )
 
+[node name="FadeOutAudio" parent="DrumMachine/SFX/Kick" instance=ExtResource( 23 )]
+
 [node name="Hat" type="AudioStreamPlayer" parent="DrumMachine/SFX"]
+pause_mode = 2
 stream = ExtResource( 11 )
 
+[node name="FadeOutAudio" parent="DrumMachine/SFX/Hat" instance=ExtResource( 23 )]
+
 [node name="Snare" type="AudioStreamPlayer" parent="DrumMachine/SFX"]
+pause_mode = 2
 stream = ExtResource( 10 )
 
+[node name="FadeOutAudio" parent="DrumMachine/SFX/Snare" instance=ExtResource( 23 )]
+
 [node name="Clap" type="AudioStreamPlayer" parent="DrumMachine/SFX"]
+pause_mode = 2
 stream = ExtResource( 14 )
+
+[node name="FadeOutAudio" parent="DrumMachine/SFX/Clap" instance=ExtResource( 23 )]
 
 [node name="VoiceParams" type="Node2D" parent="DrumMachine"]
 
@@ -325,5 +338,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[connection signal="player_won" from="." to="DrumMachine/SFX/Hat/FadeOutAudio" method="FadeOut"]
+[connection signal="player_won" from="." to="DrumMachine/SFX/Snare/FadeOutAudio" method="FadeOut"]
+[connection signal="player_won" from="." to="DrumMachine/SFX/Clap/FadeOutAudio" method="FadeOut"]
+[connection signal="player_won" from="." to="DrumMachine/SFX/Kick/FadeOutAudio" method="FadeOut"]
 [connection signal="value_changed" from="DrumMachine/TempoTimer/Tempo/HSlider" to="DrumMachine/TempoTimer" method="SetWaitTime"]
 [connection signal="pressed" from="DoneButton" to="DoneButton/AudioStreamPlayer" method="play"]

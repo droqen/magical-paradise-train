@@ -25,7 +25,7 @@ func SetAsLocomotive():
 	
 	$Sprite.texture = load("res://Gabe/TrolleyProblem/locomotive.png")
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	var dist =  global_position.distance_to(trainFront.global_position)
 	if dist > distanceToFront:
 		moveSpeed += .5
@@ -39,7 +39,7 @@ func _physics_process(delta):
 		moveDir = global_position.direction_to(currentPoint.global_position)
 	
 	
-		move_and_slide(moveDir * moveSpeed)
+		var _vel =move_and_slide(moveDir * moveSpeed)
 		
 		if global_position.distance_to(currentPoint.global_position) < minDistance:
 			if currentPoint.get_child_count() > 0:

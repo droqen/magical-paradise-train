@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/SwitchFlipsOn_moreBass.wav-d7f7b672a396e1ac0aa865067c492e87.sample"
+
+[deps]
+
+source_file="res://Gabe/TrolleyProblem/sfx/SwitchFlipsOn_moreBass.wav"
+dest_files=[ "res://.import/SwitchFlipsOn_moreBass.wav-d7f7b672a396e1ac0aa865067c492e87.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

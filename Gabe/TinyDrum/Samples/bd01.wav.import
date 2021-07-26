@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/bd01.wav-b66983c5a86688c84320d7550ad45942.sample"
+
+[deps]
+
+source_file="res://Gabe/TinyDrum/Samples/bd01.wav"
+dest_files=[ "res://.import/bd01.wav-b66983c5a86688c84320d7550ad45942.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -1,0 +1,330 @@
+[gd_scene load_steps=22 format=2]
+
+[ext_resource path="res://00-core/SubwayStopBoard.gd" type="Script" id=1]
+[ext_resource path="res://navdi2/Node Scripts/Board/NavdiBoardState.gd" type="Script" id=2]
+[ext_resource path="res://navdi2/Node Scripts/Cursor/NavdiCursorFollower.gd" type="Script" id=3]
+[ext_resource path="res://01-droqen/mg_MurderMystery/poirat_ratnoire/back of your head.png" type="Texture" id=4]
+[ext_resource path="res://navdi2/Resources/fff.png" type="Texture" id=5]
+[ext_resource path="res://01-droqen/mg_MurderMystery/poirat_ratnoire/guilty rat arms.png" type="Texture" id=6]
+[ext_resource path="res://01-droqen/mg_MurderMystery/poirat_ratnoire/guilty rat body.png" type="Texture" id=7]
+[ext_resource path="res://01-droqen/mg_MurderMystery/poirat_ratnoire/guilty rat head.png" type="Texture" id=8]
+[ext_resource path="res://art/sounds/probably_illegal.wav" type="AudioStream" id=9]
+[ext_resource path="res://01-droqen/mg_MurderMystery/poirat_ratnoire/Guilty Rat.gd" type="Script" id=10]
+[ext_resource path="res://01-droqen/mg_MurderMystery/poirat_ratnoire/table.png" type="Texture" id=11]
+[ext_resource path="res://01-droqen/mg_MurderMystery/poirat_ratnoire/title.png" type="Texture" id=12]
+[ext_resource path="res://navdi2/Node Scripts/UI/MarchingTextContainer.gd" type="Script" id=13]
+[ext_resource path="res://navdi2/Resources/src/roughyfive.tres" type="DynamicFont" id=14]
+[ext_resource path="res://navdi2/Resources/src/quizardry.tres" type="DynamicFont" id=15]
+[ext_resource path="res://01-droqen/mg_MurderMystery/poirat_ratnoire/ratstory.gd" type="Script" id=16]
+[ext_resource path="res://01-droqen/mg_MurderMystery/poirat_ratnoire/ending.gd" type="Script" id=17]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.882353, 0.690196, 0.278431, 1 )
+border_width_bottom = 4
+border_color = Color( 0.329412, 0.207843, 0.0862745, 1 )
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+expand_margin_bottom = 4.0
+
+[sub_resource type="Theme" id=2]
+default_font = ExtResource( 15 )
+Button/colors/font_color = Color( 0.133333, 0.121569, 0.192157, 1 )
+Button/colors/font_color_disabled = Color( 0.9, 0.9, 0.9, 0.2 )
+Button/colors/font_color_hover = Color( 0.94, 0.94, 0.94, 1 )
+Button/colors/font_color_pressed = Color( 1, 1, 1, 1 )
+Button/constants/hseparation = 2
+Button/fonts/font = null
+Button/styles/disabled = null
+Button/styles/focus = null
+Button/styles/hover = null
+Button/styles/normal = SubResource( 1 )
+Button/styles/pressed = null
+
+[sub_resource type="Curve" id=4]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Animation" id=3]
+resource_name = "SLAM"
+length = 2.0
+tracks/0/type = "bezier"
+tracks/0/path = NodePath(".:modulate:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray(  ),
+"times": PoolRealArray(  )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath(".:modulate:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray(  ),
+"times": PoolRealArray(  )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath(".:modulate:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray(  ),
+"times": PoolRealArray(  )
+}
+tracks/3/type = "bezier"
+tracks/3/path = NodePath(".:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"points": PoolRealArray( -0.0033232, -0.16, -0.301968, 0.09, 0.169857, 0.936955, -0.25, -0.246444, 0.08, 0.0788621, 0.999789, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.2, 1 )
+}
+tracks/4/type = "bezier"
+tracks/4/path = NodePath(".:scale:x")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"points": PoolRealArray( 0.991552, -0.25, -2.24928, 0.01, 0.0899712, 1.49506, -0.2, 0.00295918, 0.41, -0.00606632, 0.997619, 0, 0.121326, 0, 0, 1.00368, -0.52, -0.0121326, 0.25, 0.00583297 ),
+"times": PoolRealArray( 0, 0.2, 0.9, 2 )
+}
+tracks/5/type = "bezier"
+tracks/5/path = NodePath(".:scale:y")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"points": PoolRealArray( 0.97942, -0.25, -1.05322, 0.02, 0.084258, 1.50112, -0.15, 0.00211616, 0.43, -0.00606632, 0.997619, -0.00999999, 0.139525, 0, 0, 0.997619, -0.78, -0.00303316, 0.25, 0.000972167 ),
+"times": PoolRealArray( 0, 0.2, 0.9, 2 )
+}
+tracks/6/type = "bezier"
+tracks/6/path = NodePath(".:rotation_degrees")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"points": PoolRealArray(  ),
+"times": PoolRealArray(  )
+}
+tracks/7/type = "method"
+tracks/7/path = NodePath(".")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0.9 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "hit_ground"
+} ]
+}
+
+[node name="NavdiBoard" type="Node2D"]
+position = Vector2( 80, 80 )
+script = ExtResource( 1 )
+board_view_size = Vector2( 160, 160 )
+show_outline = true
+
+[node name="ratstory" type="Node" parent="."]
+script = ExtResource( 16 )
+
+[node name="State" type="Node2D" parent="."]
+script = ExtResource( 2 )
+
+[node name="floor" type="Sprite" parent="State"]
+modulate = Color( 0.196078, 0.176471, 0.137255, 1 )
+position = Vector2( -0.264862, -0.794594 )
+scale = Vector2( 20, 20 )
+texture = ExtResource( 5 )
+
+[node name="NavdiCursorFollower" type="Node2D" parent="State"]
+script = ExtResource( 3 )
+get_cursor_from_group = "SuperCursor"
+
+[node name="guilty rat body" type="Sprite" parent="State"]
+position = Vector2( 45.6454, -17.1044 )
+texture = ExtResource( 7 )
+script = ExtResource( 10 )
+
+[node name="guilty rat head" type="Sprite" parent="State/guilty rat body"]
+texture = ExtResource( 8 )
+
+[node name="guilty rat arms" type="Sprite" parent="State/guilty rat body/guilty rat head"]
+scale = Vector2( 0.931312, 1.19048 )
+z_index = 2
+texture = ExtResource( 6 )
+
+[node name="MarchingTextContainer" type="MarginContainer" parent="State/guilty rat body"]
+margin_left = -119.056
+margin_top = -29.5173
+margin_right = -26.0562
+margin_bottom = 32.4827
+script = ExtResource( 13 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+start_playing_on_ready = false
+bbcode_text = "Bleh bleh bleh!!!"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="State/guilty rat body/MarchingTextContainer"]
+margin_right = 92.0
+margin_bottom = 62.0
+custom_fonts/normal_font = ExtResource( 14 )
+bbcode_text = "Bleh bleh bleh!!!"
+text = "Bleh bleh bleh!!!"
+
+[node name="table" type="Sprite" parent="State"]
+position = Vector2( 26.2978, 2.26688 )
+texture = ExtResource( 11 )
+
+[node name="back of your head" type="Sprite" parent="State"]
+position = Vector2( -47.7839, 29.8132 )
+z_index = 2
+texture = ExtResource( 4 )
+
+[node name="Control" type="Control" parent="State/back of your head"]
+margin_right = 40.0
+margin_bottom = 40.0
+theme = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="h" type="HBoxContainer" parent="State/back of your head/Control"]
+margin_left = -29.0
+margin_top = 28.0
+margin_right = 124.0
+margin_bottom = 45.0
+custom_constants/separation = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Guilty" type="Button" parent="State/back of your head/Control/h"]
+margin_right = 74.0
+margin_bottom = 17.0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 3
+enabled_focus_mode = 0
+text = "GUILTY"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Innocent" type="Button" parent="State/back of your head/Control/h"]
+margin_left = 78.0
+margin_right = 153.0
+margin_bottom = 17.0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 3
+enabled_focus_mode = 0
+text = "INNOCENT"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ContinueText" type="Button" parent="State/back of your head/Control"]
+margin_left = 75.0
+margin_top = 7.0
+margin_right = 123.0
+margin_bottom = 21.0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+custom_fonts/font = ExtResource( 14 )
+enabled_focus_mode = 0
+text = "talk, rat"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="title" type="Sprite" parent="State"]
+position = Vector2( -44.7581, -65.8214 )
+texture = ExtResource( 12 )
+
+[node name="Label" type="Label" parent="State"]
+margin_left = 31.9184
+margin_top = -76.685
+margin_right = 81.9184
+margin_bottom = -61.685
+custom_fonts/font = ExtResource( 14 )
+custom_colors/font_color = Color( 0.603922, 0.576471, 0.717647, 1 )
+text = "every rat
+has a tell"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ending" type="Node2D" parent="State"]
+modulate = Color( 1, 1, 1, 1.0003 )
+scale = Vector2( 0.997619, 0.997619 )
+z_index = 5
+script = ExtResource( 17 )
+
+[node name="fff2" type="Sprite" parent="State/ending"]
+modulate = Color( 0.329412, 0.207843, 0.0862745, 1 )
+scale = Vector2( 16, 6 )
+texture = ExtResource( 5 )
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="State/ending"]
+scale = Vector2( 1, 0.65 )
+emitting = false
+amount = 80
+lifetime = 4.0
+explosiveness = 1.0
+lifetime_randomness = 0.44
+direction = Vector2( 0, -1 )
+spread = 180.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 125.0
+initial_velocity_random = 0.5
+angular_velocity = 125.22
+angular_velocity_random = 1.0
+damping = 100.0
+damping_random = 0.72
+angle = 720.0
+angle_random = 1.0
+scale_amount = 10.0
+scale_amount_curve = SubResource( 4 )
+color = Color( 0.882353, 0.690196, 0.278431, 1 )
+
+[node name="fff" type="Sprite" parent="State/ending"]
+modulate = Color( 0.882353, 0.690196, 0.278431, 1 )
+scale = Vector2( 15, 5 )
+texture = ExtResource( 5 )
+
+[node name="Label2" type="Label" parent="State/ending"]
+margin_left = -55.0
+margin_top = -60.0
+margin_right = 55.0
+margin_bottom = 60.0
+custom_fonts/font = ExtResource( 14 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "THIS RAT REALLY IS JUST LATE FOR AN APPOINTMENT"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="State/ending"]
+anims/SLAM = SubResource( 3 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )

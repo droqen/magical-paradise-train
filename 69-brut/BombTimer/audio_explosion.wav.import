@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/audio_explosion.wav-131fc8c8c97d3c484b8e464b535f24ae.sample"
+
+[deps]
+
+source_file="res://69-brut/BombTimer/audio_explosion.wav"
+dest_files=[ "res://.import/audio_explosion.wav-131fc8c8c97d3c484b8e464b535f24ae.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://00-core/SubwayStopBoard.gd" type="Script" id=1]
 [ext_resource path="res://Gabe/TrolleyProblem/tracksBG.png" type="Texture" id=2]
@@ -17,6 +17,7 @@
 [ext_resource path="res://Gabe/TrolleyProblem/TrolleyProblemTrainPath.gd" type="Script" id=15]
 [ext_resource path="res://Gabe/TrolleyProblem/sfx/SwitchFlipOff.wav" type="AudioStream" id=16]
 [ext_resource path="res://Gabe/TrolleyProblem/GameOverArea.gd" type="Script" id=17]
+[ext_resource path="res://Gabe/bits/FadeOutAudio.tscn" type="PackedScene" id=18]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 9 )
@@ -186,10 +187,13 @@ shape = SubResource( 4 )
 stream = ExtResource( 16 )
 
 [node name="TrainLoop" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
 stream = ExtResource( 13 )
 volume_db = -2.112
 pitch_scale = 0.95
 autoplay = true
+
+[node name="FadeOutAudio" parent="TrainLoop" instance=ExtResource( 18 )]
 
 [node name="GameOverArea" type="Area2D" parent="."]
 position = Vector2( 30.1947, 0 )

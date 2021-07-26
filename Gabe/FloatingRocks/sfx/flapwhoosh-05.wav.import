@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/flapwhoosh-05.wav-5415c1d5e814ab0c949e61e0d1a3bc09.sample"
+
+[deps]
+
+source_file="res://Gabe/FloatingRocks/sfx/flapwhoosh-05.wav"
+dest_files=[ "res://.import/flapwhoosh-05.wav-5415c1d5e814ab0c949e61e0d1a3bc09.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

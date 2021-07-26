@@ -234,6 +234,10 @@ func EndProcess():
 	#squishAnimator.SquishLand(onGround, onGroundLastFrame, velocityLastFrame)
 	#squishAnimator.SquishRight(onWallRight, onWallRightLastFrame, velocityLastFrame)
 	#squishAnimator.SquishLeft(onWallLeft, onWallLeftLastFrame, velocityLastFrame)
+	
+
+		
+	
 
 	gfx.SetFacing(frameInput.x)
 	SetFacing()

@@ -2,8 +2,16 @@ extends Node2D
 
 
 func _ready():
-	pass
+	var _err = $AnimatedSprite.connect("frame_changed",self,"OnFrameChange")
+	_err = $Bird.connect("frame_changed",self,"OnBirdFlap")
 
+func OnFrameChange():
+	if $AnimatedSprite.animation == "WALK":
+		$AnimatedSprite/WalkSound.PlayWalkSound()
+
+func OnBirdFlap():
+	if $Bird.visible:
+		$Bird/FlapSounds.PlayFlapSound()
 
 func SetFacing(dir : float):
 	dir = sign(dir)

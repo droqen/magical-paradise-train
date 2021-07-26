@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://Gabe/Shaders/Outline.shader" type="Shader" id=1]
 [ext_resource path="res://Gabe/FloatingRocks/PlayerCharacter/char_climb-sheet.png" type="Texture" id=2]
@@ -10,6 +10,9 @@
 [ext_resource path="res://Gabe/FloatingRocks/PlayerCharacter/GabeCharacterGFX.gd" type="Script" id=8]
 [ext_resource path="res://Gabe/FloatingRocks/Birds/BirdSpriteFrames.tres" type="SpriteFrames" id=9]
 [ext_resource path="res://Gabe/FloatingRocks/sfx/mouth_sound_cut-09-respawn.wav" type="AudioStream" id=10]
+[ext_resource path="res://Gabe/FloatingRocks/PlayerCharacter/WalkSound.gd" type="Script" id=11]
+[ext_resource path="res://Gabe/FloatingRocks/sfx/Jump27.wav" type="AudioStream" id=12]
+[ext_resource path="res://Gabe/FloatingRocks/PlayerCharacter/FlapSounds.gd" type="Script" id=13]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 1 )
@@ -37,20 +40,20 @@ atlas = ExtResource( 5 )
 region = Rect2( 0, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=7]
-atlas = ExtResource( 3 )
+atlas = ExtResource( 2 )
 region = Rect2( 0, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=8]
 atlas = ExtResource( 2 )
-region = Rect2( 0, 0, 64, 64 )
+region = Rect2( 64, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=9]
 atlas = ExtResource( 2 )
-region = Rect2( 64, 0, 64, 64 )
+region = Rect2( 128, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=10]
-atlas = ExtResource( 2 )
-region = Rect2( 128, 0, 64, 64 )
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 64, 64 )
 
 [sub_resource type="SpriteFrames" id=11]
 animations = [ {
@@ -64,14 +67,14 @@ animations = [ {
 "name": "JUMP",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 7 ) ],
-"loop": true,
-"name": "CROUCH",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 8 ), SubResource( 9 ), SubResource( 10 ) ],
+"frames": [ SubResource( 7 ), SubResource( 8 ), SubResource( 9 ) ],
 "loop": true,
 "name": "CLIMB",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 10 ) ],
+"loop": true,
+"name": "CROUCH",
 "speed": 5.0
 } ]
 
@@ -93,15 +96,23 @@ visible = false
 position = Vector2( 2.65625, -5.0625 )
 frames = ExtResource( 9 )
 animation = "FLY"
-frame = 1
+frame = 2
 speed_scale = 2.0
 playing = true
+
+[node name="FlapSounds" type="AudioStreamPlayer" parent="GFX/Bird"]
+volume_db = -10.706
+script = ExtResource( 13 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="GFX"]
 material = SubResource( 1 )
 frames = SubResource( 11 )
 animation = "WALK"
 frame = 2
+
+[node name="WalkSound" type="AudioStreamPlayer" parent="GFX/AnimatedSprite"]
+stream = ExtResource( 12 )
+script = ExtResource( 11 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 12 )

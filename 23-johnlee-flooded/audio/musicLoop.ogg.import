@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/musicLoop.ogg-530f439b9c2af19daa85de5744de33ee.oggstr"
+
+[deps]
+
+source_file="res://23-johnlee-flooded/audio/musicLoop.ogg"
+dest_files=[ "res://.import/musicLoop.ogg-530f439b9c2af19daa85de5744de33ee.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

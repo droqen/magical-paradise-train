@@ -35,6 +35,8 @@ func _on_right_rat_body_entered(body):
 	if(body.name=="left rat" and !endedOnce):
 		endedOnce=true
 		OnGameEnd()
+		$exitChord.play()
+		get_parent().get_parent().get_node("prompt/musicLoop").stop()
 
 
 

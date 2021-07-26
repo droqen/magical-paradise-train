@@ -8,6 +8,8 @@ export(float) var fadeDelay
 export(float) var fadeSpeed
 var timer=0.0
 var tween
+var startedMusic=false
+export(float) var  startMusicDelay
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	
@@ -15,6 +17,7 @@ func _ready():
 	tween.interpolate_property(self,"scale",Vector2(.274,.279),Vector2(.374,.379),tween.TRANS_BOUNCE,tween.EASE_IN_OUT)
 	tween.start()
 	$CPUParticles2D.emitting=true
+	$musicLoop.volume_db=linear2db(0)
 	pass # Replace with function body.
 
 
@@ -24,6 +27,9 @@ func _process(delta):
 		modulate.a-=fadeSpeed*delta
 		modulate.a=clamp(modulate.a,0,255)
 		$CPUParticles2D.emitting=false
-	else:
-		timer+=delta
+		$musicLoop.volume_db=linear2db(move_toward(db2linear($musicLoop.volume_db),.5,delta*fadeSpeed))
+	elif timer>startMusicDelay and !startedMusic:
+		startedMusic=true
+		$entranceChord.play()
+	timer+=delta
 	pass

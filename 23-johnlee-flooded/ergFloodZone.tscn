@@ -1,15 +1,12 @@
-[gd_scene load_steps=51 format=2]
+[gd_scene load_steps=49 format=2]
 
 [ext_resource path="res://23-johnlee-flooded/prefabs or whatever/fan.tscn" type="PackedScene" id=1]
 [ext_resource path="res://navdi2/Node Scripts/Board/NavdiBoardState.gd" type="Script" id=2]
 [ext_resource path="res://navdi2/Resources/fff.png" type="Texture" id=3]
 [ext_resource path="res://navdi2/Node Scripts/Cursor/NavdiCursorFollower.gd" type="Script" id=4]
-[ext_resource path="res://navdi2/Node Scripts/NavdiSheetSprite.gd" type="Script" id=5]
 [ext_resource path="res://00-core/SubwayStopBoard.gd" type="Script" id=6]
 [ext_resource path="res://23-johnlee-flooded/prefabs or whatever/genericFloater.tscn" type="PackedScene" id=7]
-[ext_resource path="res://01-droqen/when empty, win.gd" type="Script" id=8]
 [ext_resource path="res://23-johnlee-flooded/scripts/debugDraw.gd" type="Script" id=9]
-[ext_resource path="res://01-droqen/overgrown_tunnels_sheet.tres" type="Resource" id=10]
 [ext_resource path="res://23-johnlee-flooded/sprites/wall.png" type="Texture" id=11]
 [ext_resource path="res://23-johnlee-flooded/animations/waterTile.tres" type="Texture" id=12]
 [ext_resource path="res://23-johnlee-flooded/sprites/water.png" type="Texture" id=13]
@@ -40,8 +37,11 @@
 [ext_resource path="res://23-johnlee-flooded/sprites/prompt.png" type="Texture" id=38]
 [ext_resource path="res://23-johnlee-flooded/scripts/prompt.gd" type="Script" id=39]
 [ext_resource path="res://23-johnlee-flooded/audio/ambience.ogg" type="AudioStream" id=40]
+[ext_resource path="res://23-johnlee-flooded/audio/arrive chord.ogg" type="AudioStream" id=41]
+[ext_resource path="res://23-johnlee-flooded/audio/musicLoop.ogg" type="AudioStream" id=42]
+[ext_resource path="res://23-johnlee-flooded/audio/exit chord.ogg" type="AudioStream" id=43]
 
-[sub_resource type="TileSet" id=1]
+[sub_resource type="TileSet" id=2]
 0/name = "wall.png 0"
 0/texture = ExtResource( 11 )
 0/tex_offset = Vector2( 0, 0 )
@@ -169,7 +169,7 @@
 8/shapes = [  ]
 8/z_index = 0
 
-[sub_resource type="TileSet" id=2]
+[sub_resource type="TileSet" id=3]
 1/name = "water.png 1"
 1/texture = ExtResource( 13 )
 1/tex_offset = Vector2( 0, 0 )
@@ -199,7 +199,7 @@
 2/shapes = [  ]
 2/z_index = 0
 
-[sub_resource type="SpriteFrames" id=3]
+[sub_resource type="SpriteFrames" id=4]
 animations = [ {
 "frames": [ ExtResource( 24 ), ExtResource( 27 ) ],
 "loop": true,
@@ -212,16 +212,16 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="PhysicsMaterial" id=4]
+[sub_resource type="PhysicsMaterial" id=5]
 friction = 0.0
 
-[sub_resource type="RectangleShape2D" id=5]
+[sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 86.1042, 10 )
 
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 10, 102.91 )
 
-[sub_resource type="SpriteFrames" id=7]
+[sub_resource type="SpriteFrames" id=8]
 animations = [ {
 "frames": [ ExtResource( 32 ), ExtResource( 33 ) ],
 "loop": true,
@@ -233,13 +233,6 @@ animations = [ {
 "name": "appear",
 "speed": 7.0
 } ]
-
-[sub_resource type="StreamTexture" id=8]
-flags = 4
-load_path = "res://.import/overgrown_tunnels.png-01530c566b07a0e69eacef7b63746234.stex"
-
-[sub_resource type="CircleShape2D" id=9]
-radius = 2.04167
 
 [sub_resource type="Curve" id=10]
 bake_resolution = 4
@@ -263,14 +256,14 @@ texture = ExtResource( 3 )
 
 [node name="TileMap" type="TileMap" parent="State"]
 z_index = -200
-tile_set = SubResource( 1 )
+tile_set = SubResource( 2 )
 cell_size = Vector2( 16, 16 )
 format = 1
 tile_data = PoolIntArray( -262149, 0, 0, -262148, 0, 0, -262147, 0, 0, -262146, 7, 0, -262145, 0, 0, -327680, 0, 0, -327679, 7, 0, -327678, 0, 0, -327677, 0, 0, -327676, 0, 0, -196613, 0, 0, -196612, 0, 0, -196611, 0, 0, -196610, 0, 0, -196609, 0, 0, -262144, 0, 0, -262143, 7, 0, -262142, 0, 0, -262141, 0, 0, -262140, 0, 0, -131077, 7, 0, -131076, 0, 0, -131075, 0, 0, -131074, 0, 0, -131073, 0, 0, -196608, 0, 0, -196607, 7, 0, -196606, 0, 0, -196605, 0, 0, -196604, 0, 0, -65541, 7, 0, -65540, 0, 0, -65539, 0, 0, -65538, 0, 0, -65537, 0, 0, -131072, 0, 0, -131071, 0, 0, -131070, 0, 0, -131069, 0, 0, -131068, 0, 0, -5, 0, 0, -4, 8, 0, -3, 0, 0, -2, 0, 0, -1, 0, 0, -65536, 8, 0, -65535, 0, 0, -65534, 0, 0, -65533, 0, 0, -65532, 8, 0, 65531, 5, 0, 65532, 5, 0, 65533, 5, 0, 65534, 5, 0, 65535, 5, 0, 0, 5, 0, 1, 5, 0, 2, 5, 0, 3, 5, 0, 4, 5, 0, 131067, 2, 0, 131068, 2, 0, 131069, 2, 0, 131070, 2, 0, 131071, 2, 0, 65536, 2, 0, 65537, 2, 0, 65538, 2, 0, 65539, 2, 0, 65540, 2, 0, 196603, 3, 0, 196604, 3, 0, 196605, 3, 0, 196606, 3, 0, 196607, 3, 0, 131072, 3, 0, 131073, 3, 0, 131074, 3, 0, 131075, 3, 0, 131076, 3, 0, 262139, 6, 0, 262140, 4, 0, 262141, 4, 0, 262142, 6, 0, 262143, 4, 0, 196608, 4, 0, 196609, 4, 0, 196610, 4, 0, 196611, 6, 0, 196612, 4, 0, 327675, 4, 0, 327676, 6, 0, 327677, 4, 0, 327678, 4, 0, 327679, 6, 0, 262144, 4, 0, 262145, 4, 0, 262146, 4, 0, 262147, 6, 0, 262148, 6, 0, 393211, 6, 0, 393212, 4, 0, 393213, 4, 0, 393214, 4, 0, 393215, 4, 0, 327680, 4, 0, 327681, 6, 0, 327682, 4, 0, 327683, 4, 0, 327684, 6, 0, 458747, 4, 0, 458748, 4, 0, 458749, 4, 0, 458750, 4, 0, 458751, 4, 0, 393216, 4, 0, 393217, 4, 0, 393218, 4, 0, 393219, 4, 0, 393220, 4, 0 )
 
 [node name="bonus tilemap to hide shadows" type="TileMap" parent="State"]
 z_index = -199
-tile_set = SubResource( 1 )
+tile_set = SubResource( 2 )
 cell_size = Vector2( 16, 16 )
 format = 1
 tile_data = PoolIntArray( 65531, 5, 0, 65532, 5, 0, 65533, 5, 0, 65534, 5, 0, 65535, 5, 0, 0, 5, 0, 1, 5, 0, 2, 5, 0, 3, 5, 0, 4, 5, 0, 131067, 2, 0, 131068, 2, 0, 131069, 2, 0, 131070, 2, 0, 131071, 2, 0, 65536, 2, 0, 65537, 2, 0, 65538, 2, 0, 65539, 2, 0, 65540, 2, 0, 393211, 6, 0, 393212, 4, 0, 393213, 6, 0, 393214, 4, 0, 393215, 6, 0, 327680, 4, 0, 327681, 6, 0, 327682, 4, 0, 327683, 6, 0, 327684, 6, 0, 458749, 6, 0, 393216, 6, 0, 393218, 6, 0 )
@@ -288,7 +281,7 @@ texture = ExtResource( 21 )
 [node name="waterTiles" type="TileMap" parent="State"]
 modulate = Color( 1, 1, 1, 0.803922 )
 z_index = -198
-tile_set = SubResource( 2 )
+tile_set = SubResource( 3 )
 cell_size = Vector2( 16, 16 )
 format = 1
 tile_data = PoolIntArray( -5, 2, 0, -4, 2, 0, -3, 2, 0, -2, 2, 0, -1, 2, 0, -65536, 2, 0, -65535, 2, 0, -65534, 2, 0, -65533, 2, 0, -65532, 2, 0, 65531, 1, 0, 65532, 1, 0, 65533, 1, 0, 65534, 1, 0, 65535, 1, 0, 0, 1, 0, 1, 1, 0, 2, 1, 0, 3, 1, 0, 4, 1, 0, 131067, 1, 0, 131068, 1, 0, 131069, 1, 0, 131070, 1, 0, 131071, 1, 0, 65536, 1, 0, 65537, 1, 0, 65538, 1, 0, 65539, 1, 0, 65540, 1, 0, 196603, 1, 0, 196604, 1, 0, 196605, 1, 0, 196606, 1, 0, 196607, 1, 0, 131072, 1, 0, 131073, 1, 0, 131074, 1, 0, 131075, 1, 0, 131076, 1, 0, 262139, 1, 0, 262140, 1, 0, 262141, 1, 0, 262142, 1, 0, 262143, 1, 0, 196608, 1, 0, 196609, 1, 0, 196610, 1, 0, 196611, 1, 0, 196612, 1, 0, 327675, 1, 0, 327676, 1, 0, 327677, 1, 0, 327678, 1, 0, 327679, 1, 0, 262144, 1, 0, 262145, 1, 0, 262146, 1, 0, 262147, 1, 0, 262148, 1, 0 )
@@ -329,7 +322,7 @@ contacts_reported = 2
 rat = true
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="State/right rat"]
-frames = SubResource( 3 )
+frames = SubResource( 4 )
 animation = "right"
 frame = 1
 speed_scale = 0.413
@@ -340,38 +333,38 @@ position = Vector2( -59.8881, 28.4459 )
 rat = true
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="State/left rat"]
-frames = SubResource( 3 )
+frames = SubResource( 4 )
 animation = "left"
 speed_scale = 0.413
 playing = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="State"]
-physics_material_override = SubResource( 4 )
+physics_material_override = SubResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="State/StaticBody2D"]
 position = Vector2( 0.629944, 90.0844 )
-shape = SubResource( 5 )
+shape = SubResource( 6 )
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="State"]
-physics_material_override = SubResource( 4 )
+physics_material_override = SubResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="State/StaticBody2D2"]
 position = Vector2( -1.74939, -22.0976 )
-shape = SubResource( 5 )
+shape = SubResource( 6 )
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="State"]
-physics_material_override = SubResource( 4 )
+physics_material_override = SubResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="State/StaticBody2D3"]
 position = Vector2( -90.0844, -2.83484 )
-shape = SubResource( 6 )
+shape = SubResource( 7 )
 
 [node name="StaticBody2D4" type="StaticBody2D" parent="State"]
-physics_material_override = SubResource( 4 )
+physics_material_override = SubResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="State/StaticBody2D4"]
 position = Vector2( 89.7694, -3.77978 )
-shape = SubResource( 6 )
+shape = SubResource( 7 )
 
 [node name="NavdiCursorFollower" type="Node2D" parent="State"]
 z_index = 300
@@ -394,16 +387,21 @@ rat2Name = "right rat"
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="State/hearts"]
 visible = false
-frames = SubResource( 7 )
+frames = SubResource( 8 )
 animation = "idle"
 frame = 1
 playing = true
 
 [node name="Timer" type="Timer" parent="State/hearts"]
+wait_time = 2.0
 one_shot = true
 
 [node name="kissSound" type="AudioStreamPlayer" parent="State/hearts"]
 stream = ExtResource( 37 )
+
+[node name="exitChord" type="AudioStreamPlayer" parent="State/hearts"]
+stream = ExtResource( 43 )
+volume_db = -3.029
 
 [node name="bumpSounds" type="AudioStreamPlayer" parent="State"]
 stream = ExtResource( 36 )
@@ -414,74 +412,6 @@ stream = ExtResource( 40 )
 volume_db = 0.1
 autoplay = true
 
-[node name="when empty, win" type="Node2D" parent="."]
-visible = false
-script = ExtResource( 8 )
-
-[node name="rat_money" type="Area2D" parent="when empty, win"]
-position = Vector2( 53.7401, 43.6638 )
-
-[node name="NavdiSheetSprite" type="Sprite" parent="when empty, win/rat_money"]
-texture = SubResource( 8 )
-hframes = 10
-vframes = 2
-frame = 15
-script = ExtResource( 5 )
-_frames = [ 12, 13, 14, 15, 15, 15, 15, 15 ]
-_rate = 8.0
-_editor_sheet = ExtResource( 10 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="when empty, win/rat_money"]
-shape = SubResource( 9 )
-
-[node name="rat_money2" type="Area2D" parent="when empty, win"]
-position = Vector2( -57.9828, 50.2046 )
-
-[node name="NavdiSheetSprite" type="Sprite" parent="when empty, win/rat_money2"]
-texture = SubResource( 8 )
-hframes = 10
-vframes = 2
-frame = 15
-script = ExtResource( 5 )
-_frames = [ 12, 13, 14, 15, 15, 15, 15, 15 ]
-_rate = 8.0
-_editor_sheet = ExtResource( 10 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="when empty, win/rat_money2"]
-shape = SubResource( 9 )
-
-[node name="rat_money3" type="Area2D" parent="when empty, win"]
-position = Vector2( -48.7904, 35.8857 )
-
-[node name="NavdiSheetSprite" type="Sprite" parent="when empty, win/rat_money3"]
-texture = SubResource( 8 )
-hframes = 10
-vframes = 2
-frame = 15
-script = ExtResource( 5 )
-_frames = [ 12, 13, 14, 15, 15, 15, 15, 15 ]
-_rate = 8.0
-_editor_sheet = ExtResource( 10 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="when empty, win/rat_money3"]
-shape = SubResource( 9 )
-
-[node name="rat_money4" type="Area2D" parent="when empty, win"]
-position = Vector2( -41.189, -49.4975 )
-
-[node name="NavdiSheetSprite" type="Sprite" parent="when empty, win/rat_money4"]
-texture = SubResource( 8 )
-hframes = 10
-vframes = 2
-frame = 15
-script = ExtResource( 5 )
-_frames = [ 12, 13, 14, 15, 15, 15, 15, 15 ]
-_rate = 8.0
-_editor_sheet = ExtResource( 10 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="when empty, win/rat_money4"]
-shape = SubResource( 9 )
-
 [node name="prompt" type="Sprite" parent="."]
 position = Vector2( 0.536377, -56.5814 )
 scale = Vector2( 0.2739, 0.278782 )
@@ -489,6 +419,7 @@ texture = ExtResource( 38 )
 script = ExtResource( 39 )
 fadeDelay = 3.0
 fadeSpeed = 1.0
+startMusicDelay = 0.5
 
 [node name="Tween" type="Tween" parent="prompt"]
 playback_speed = 7.21
@@ -516,6 +447,14 @@ scale_amount_curve = SubResource( 10 )
 color = Color( 0.835294, 0.388235, 1, 1 )
 hue_variation = 0.02
 hue_variation_random = 1.0
+
+[node name="entranceChord" type="AudioStreamPlayer" parent="prompt"]
+stream = ExtResource( 41 )
+volume_db = -6.058
+
+[node name="musicLoop" type="AudioStreamPlayer" parent="prompt"]
+stream = ExtResource( 42 )
+autoplay = true
 
 [connection signal="body_entered" from="State/right rat" to="State/hearts" method="_on_right_rat_body_entered"]
 [connection signal="timeout" from="State/hearts/Timer" to="State/hearts" method="SendGameEnd"]

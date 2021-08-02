@@ -35,14 +35,14 @@ func InitSteps():
 		
 
 func SetVoice(newVoice):
-	print("setting voice")
+	#print("setting voice")
 	currentVoice = newVoice
 	
 	$StepButtons.DisplayVoiceSteps(sequence[currentVoice])
 			
 func OnStepButtonChanged(buttonIndex,status):
 	sequence[currentVoice][buttonIndex] = status
-	print(sequence[currentVoice])
+	#print(sequence[currentVoice])
 	
 	
 	
@@ -67,7 +67,7 @@ func TempoTimeout():
 		currentStep = 0
 		
 func OnPitchChange(value,voiceIndex):
-	print("pitch changed")
+	#print("pitch changed")
 	match(voiceIndex):
 		(VOICES.KICK):
 			$SFX/Kick.pitch_scale = value

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://23-johnlee-flooded/ergFloodZone.tscn" type="PackedScene" id=1]
+[ext_resource path="res://00-core/MicrogameMetadata.gd" type="Script" id=2]
+
+[resource]
+script = ExtResource( 2 )
+microgame_scene = ExtResource( 1 )
+microgame_name = "Reunite The Rats!"
+author_name = "johnlee_erg"

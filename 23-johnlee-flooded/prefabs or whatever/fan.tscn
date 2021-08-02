@@ -1,0 +1,90 @@
+[gd_scene load_steps=20 format=2]
+
+[ext_resource path="res://23-johnlee-flooded/scripts/rotatingSprite.gd" type="Script" id=1]
+[ext_resource path="res://23-johnlee-flooded/sprites/fanDownRight2.png" type="Texture" id=2]
+[ext_resource path="res://23-johnlee-flooded/sprites/fanDownLeft1.png" type="Texture" id=3]
+[ext_resource path="res://23-johnlee-flooded/sprites/fanLeft2.png" type="Texture" id=4]
+[ext_resource path="res://23-johnlee-flooded/sprites/fanUp1.png" type="Texture" id=5]
+[ext_resource path="res://23-johnlee-flooded/sprites/fanDown1.png" type="Texture" id=6]
+[ext_resource path="res://23-johnlee-flooded/sprites/fanDown2.png" type="Texture" id=7]
+[ext_resource path="res://23-johnlee-flooded/sprites/fanUpLeft1.png" type="Texture" id=8]
+[ext_resource path="res://23-johnlee-flooded/sprites/fanUpLeft2.png" type="Texture" id=9]
+[ext_resource path="res://23-johnlee-flooded/sprites/fanRight2.png" type="Texture" id=10]
+[ext_resource path="res://23-johnlee-flooded/sprites/fanLeft1.png" type="Texture" id=11]
+[ext_resource path="res://23-johnlee-flooded/sprites/fanUp2.png" type="Texture" id=12]
+[ext_resource path="res://23-johnlee-flooded/sprites/fanDownLeft2.png" type="Texture" id=13]
+[ext_resource path="res://23-johnlee-flooded/sprites/fanUpRight1.png" type="Texture" id=14]
+[ext_resource path="res://23-johnlee-flooded/sprites/fanUpRight2.png" type="Texture" id=15]
+[ext_resource path="res://23-johnlee-flooded/sprites/fanRight1.png" type="Texture" id=16]
+[ext_resource path="res://23-johnlee-flooded/sprites/fanDownRight1.png" type="Texture" id=17]
+[ext_resource path="res://23-johnlee-flooded/audio/fan.ogg" type="AudioStream" id=18]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 11 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "left",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 16 ), ExtResource( 10 ) ],
+"loop": true,
+"name": "right",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ), ExtResource( 12 ) ],
+"loop": true,
+"name": "up",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "down",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 8 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "upLeft",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 13 ) ],
+"loop": true,
+"name": "downLeft",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 17 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "downRight",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 14 ), ExtResource( 15 ) ],
+"loop": true,
+"name": "upRight",
+"speed": 5.0
+} ]
+
+[node name="Fan" type="Node2D"]
+script = ExtResource( 1 )
+fadeSpeed = 2.0
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+animation = "upRight"
+playing = true
+
+[node name="Particles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 17
+local_coords = false
+emission_shape = 2
+emission_rect_extents = Vector2( 8, 8 )
+direction = Vector2( 2, 0 )
+spread = 0.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 30.0
+scale_amount = 0.5
+scale_amount_random = 0.49
+color = Color( 1, 1, 1, 0.768627 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 18 )
+autoplay = true

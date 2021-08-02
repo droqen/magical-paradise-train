@@ -1,0 +1,239 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://01-droqen/mg_MurderMystery/detective_rat.gd" type="Script" id=1]
+[ext_resource path="res://01-droqen/mg_MurderMystery/levels/room1.tscn" type="PackedScene" id=2]
+[ext_resource path="res://navdi2/Resources/fff.png" type="Texture" id=3]
+[ext_resource path="res://navdi2/Node Scripts/Cursor/NavdiCursorFollower.gd" type="Script" id=4]
+[ext_resource path="res://navdi2/Node Scripts/NavdiSheetSprite.gd" type="Script" id=5]
+[ext_resource path="res://00-core/SubwayStopBoard.gd" type="Script" id=6]
+[ext_resource path="res://art/pyxeledit/overgrown_tunnels.png" type="Texture" id=7]
+[ext_resource path="res://01-droqen/overgrown_tunnels_sheet.tres" type="Resource" id=10]
+[ext_resource path="res://01-droqen/mg_MurderMystery/cursor.gd" type="Script" id=12]
+[ext_resource path="res://navdi2/Resources/roughyfive.theme" type="Theme" id=13]
+[ext_resource path="res://navdi2/Resources/src/roughyfive.tres" type="DynamicFont" id=14]
+[ext_resource path="res://01-droqen/mg_MurderMystery/mmmmaster.gd" type="Script" id=15]
+[ext_resource path="res://01-droqen/mg_MurderMystery/uinode.gd" type="Script" id=16]
+[ext_resource path="res://navdi2/Node Scripts/UI/MarchingTextContainer.tscn" type="PackedScene" id=17]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.580392, 0.290196, 0.109804, 1 )
+border_width_bottom = 1
+border_color = Color( 0.286275, 0.329412, 0.254902, 1 )
+expand_margin_top = 1.0
+expand_margin_bottom = 1.0
+
+[sub_resource type="Theme" id=2]
+default_font = ExtResource( 14 )
+Button/colors/font_color = Color( 0.988235, 0.996078, 0.988235, 1 )
+Button/colors/font_color_disabled = Color( 0.9, 0.9, 0.9, 0.2 )
+Button/colors/font_color_hover = Color( 0.94, 0.94, 0.94, 1 )
+Button/colors/font_color_pressed = Color( 1, 1, 1, 1 )
+Button/constants/hseparation = 2
+Button/fonts/font = null
+Button/styles/disabled = null
+Button/styles/focus = null
+Button/styles/hover = SubResource( 1 )
+Button/styles/normal = SubResource( 1 )
+Button/styles/pressed = null
+
+[node name="NavdiBoard" type="Node2D"]
+position = Vector2( 80, 80 )
+script = ExtResource( 6 )
+board_view_size = Vector2( 160, 160 )
+show_outline = true
+
+[node name="mmmmaster" type="Node" parent="."]
+script = ExtResource( 15 )
+
+[node name="State" parent="." instance=ExtResource( 2 )]
+
+[node name="NavdiCursorFollower" type="Node2D" parent="."]
+script = ExtResource( 4 )
+get_cursor_from_group = "SuperCursor"
+cursor_mode = 2
+
+[node name="cursor" type="Node2D" parent="."]
+position = Vector2( -13.3615, -25.4157 )
+z_index = 1
+script = ExtResource( 12 )
+
+[node name="NavdiSheetSprite" type="Sprite" parent="cursor"]
+texture = ExtResource( 7 )
+hframes = 10
+vframes = 3
+frame = 22
+script = ExtResource( 5 )
+_frames = [ 22 ]
+_editor_sheet = ExtResource( 10 )
+
+[node name="detective_rat" type="Node2D" parent="."]
+z_index = 2
+script = ExtResource( 1 )
+
+[node name="NavdiSheetSprite" type="Sprite" parent="detective_rat"]
+texture = ExtResource( 7 )
+hframes = 10
+vframes = 3
+frame = 5
+script = ExtResource( 5 )
+_frames = [ 3, 4, 5, 6 ]
+_rate = 8.0
+_editor_sheet = ExtResource( 10 )
+
+[node name="uinode" type="Node2D" parent="."]
+z_index = 4
+script = ExtResource( 16 )
+
+[node name="ui" type="Control" parent="uinode"]
+margin_right = 40.0
+margin_bottom = 40.0
+theme = ExtResource( 13 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="textwindow" type="MarginContainer" parent="uinode/ui"]
+margin_left = -71.0
+margin_top = 24.0
+margin_right = 72.0
+margin_bottom = 70.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="border" type="MarginContainer" parent="uinode/ui/textwindow"]
+margin_right = 143.0
+margin_bottom = 46.0
+custom_constants/margin_right = -1
+custom_constants/margin_top = -1
+custom_constants/margin_left = -1
+custom_constants/margin_bottom = -1
+
+[node name="ColorRect" type="ColorRect" parent="uinode/ui/textwindow/border"]
+margin_left = -1.0
+margin_top = -1.0
+margin_right = 144.0
+margin_bottom = 47.0
+color = Color( 0.580392, 0.572549, 0.298039, 1 )
+
+[node name="ColorRect" type="ColorRect" parent="uinode/ui/textwindow"]
+margin_right = 143.0
+margin_bottom = 46.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color( 0.0392157, 0.0470588, 0.0431373, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarchingTextContainer" parent="uinode/ui/textwindow" instance=ExtResource( 17 )]
+margin_right = 143.0
+margin_bottom = 46.0
+bbcode_text = "There oh there was the rat I knew, the demonspawn of rat and true! I killed a man with-
+out a flood, I feared and wept
+that he was good..."
+base_delay_dur = 0.025
+
+[node name="AdvanceTextButton" type="Button" parent="uinode/ui/textwindow"]
+modulate = Color( 1, 1, 1, 0 )
+margin_right = 143.0
+margin_bottom = 46.0
+
+[node name="choicewindow" type="MarginContainer" parent="uinode/ui"]
+margin_left = 20.0
+margin_top = -29.0
+margin_right = 72.0
+margin_bottom = 10.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="border" type="MarginContainer" parent="uinode/ui/choicewindow"]
+margin_right = 52.0
+margin_bottom = 39.0
+custom_constants/margin_right = -1
+custom_constants/margin_top = -1
+custom_constants/margin_left = -1
+custom_constants/margin_bottom = -1
+
+[node name="ColorRect" type="ColorRect" parent="uinode/ui/choicewindow/border"]
+margin_left = -1.0
+margin_top = -1.0
+margin_right = 53.0
+margin_bottom = 40.0
+color = Color( 0.580392, 0.572549, 0.298039, 1 )
+
+[node name="ColorRect" type="ColorRect" parent="uinode/ui/choicewindow"]
+margin_right = 52.0
+margin_bottom = 39.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color( 0.0392157, 0.0470588, 0.0431373, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="uinode/ui/choicewindow"]
+margin_right = 52.0
+margin_bottom = 39.0
+custom_constants/margin_right = 4
+custom_constants/margin_top = 5
+custom_constants/margin_left = 4
+custom_constants/margin_bottom = 5
+
+[node name="CenterContainer" type="CenterContainer" parent="uinode/ui/choicewindow/MarginContainer"]
+margin_left = 4.0
+margin_top = 5.0
+margin_right = 48.0
+margin_bottom = 34.0
+
+[node name="buttonmaster" type="VBoxContainer" parent="uinode/ui/choicewindow/MarginContainer/CenterContainer"]
+margin_right = 44.0
+margin_bottom = 29.0
+rect_min_size = Vector2( 44, 0 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = SubResource( 2 )
+
+[node name="Button" type="Button" parent="uinode/ui/choicewindow/MarginContainer/CenterContainer/buttonmaster"]
+margin_right = 44.0
+margin_bottom = 7.0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+text = "threaten"
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button2" type="Button" parent="uinode/ui/choicewindow/MarginContainer/CenterContainer/buttonmaster"]
+margin_top = 11.0
+margin_right = 44.0
+margin_bottom = 18.0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+text = "shoot"
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button3" type="Button" parent="uinode/ui/choicewindow/MarginContainer/CenterContainer/buttonmaster"]
+margin_top = 22.0
+margin_right = 44.0
+margin_bottom = 29.0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+text = "leave"
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NavdiCursorFollower" type="Node2D" parent="uinode"]
+script = ExtResource( 4 )
+get_cursor_from_group = "SuperCursor"
+
+[node name="fff" type="Sprite" parent="uinode/NavdiCursorFollower"]
+visible = false
+texture = ExtResource( 3 )

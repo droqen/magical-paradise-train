@@ -38,8 +38,9 @@ func _physics_process(_delta):
 	if currentPoint != null:
 		moveDir = global_position.direction_to(currentPoint.global_position)
 	
-	
-		var _vel =move_and_slide(moveDir * moveSpeed)
+
+		var _vel = move_and_slide(moveDir * moveSpeed)
+
 		
 		if global_position.distance_to(currentPoint.global_position) < minDistance:
 			if currentPoint.get_child_count() > 0:

@@ -1,0 +1,59 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://00-core/SubwayStopBoard.gd" type="Script" id=1]
+[ext_resource path="res://Gabe/TooManyDoors/DoorSet1.tscn" type="PackedScene" id=3]
+[ext_resource path="res://art/images/beachwater-small.png" type="Texture" id=5]
+[ext_resource path="res://Gabe/TooManyDoors/TooManyDoorsController.gd" type="Script" id=6]
+[ext_resource path="res://navdi2/Node Scripts/Board/NavdiBoardState.gd" type="Script" id=7]
+
+[node name="TooManyDoors" type="Node2D"]
+position = Vector2( 80, 80 )
+script = ExtResource( 1 )
+board_view_size = Vector2( 160, 160 )
+tiled_manager_path = NodePath("../RatLemmingsGame/TiledManager")
+show_outline = true
+
+[node name="TooManyDoorsController" type="Node2D" parent="."]
+script = ExtResource( 6 )
+
+[node name="beachwater-small" type="Sprite" parent="TooManyDoorsController"]
+position = Vector2( -2.5415, 32.2719 )
+scale = Vector2( 1.04961, 0.984882 )
+texture = ExtResource( 5 )
+
+[node name="beachwater-small2" type="Sprite" parent="TooManyDoorsController"]
+position = Vector2( 1.45534, -27.1552 )
+rotation = 3.12372
+scale = Vector2( 1.24799, 1.0305 )
+texture = ExtResource( 5 )
+
+[node name="Doors" type="Node2D" parent="TooManyDoorsController"]
+
+[node name="DoorSet1" parent="TooManyDoorsController/Doors" instance=ExtResource( 3 )]
+position = Vector2( 50, 100 )
+z_index = 0
+
+[node name="DoorSet2" parent="TooManyDoorsController/Doors" instance=ExtResource( 3 )]
+position = Vector2( 50, 110 )
+z_index = 1
+
+[node name="DoorSet3" parent="TooManyDoorsController/Doors" instance=ExtResource( 3 )]
+position = Vector2( 50, 110 )
+z_index = 2
+
+[node name="DoorSet4" parent="TooManyDoorsController/Doors" instance=ExtResource( 3 )]
+position = Vector2( 40, 110 )
+z_index = 3
+
+[node name="DoorSet5" parent="TooManyDoorsController/Doors" instance=ExtResource( 3 )]
+position = Vector2( 50, 110 )
+z_index = 4
+
+[node name="DoorSet6" parent="TooManyDoorsController/Doors" instance=ExtResource( 3 )]
+position = Vector2( 50, 110 )
+
+[node name="Timer" type="Timer" parent="TooManyDoorsController"]
+autostart = true
+
+[node name="State" type="Node2D" parent="."]
+script = ExtResource( 7 )

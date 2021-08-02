@@ -8,8 +8,9 @@ extends Area2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var _err = connect("body_entered",self,"OnBodyEnter")
+	var _err = connect("body_entered",self,"OnEntered")
 
 
-func OnBodyEnter(_body):
+func OnEntered(_body):
 	get_parent().emit_signal("player_won")
+	

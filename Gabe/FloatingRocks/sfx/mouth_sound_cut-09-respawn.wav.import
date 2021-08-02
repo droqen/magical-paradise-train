@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/mouth_sound_cut-09-respawn.wav-c37a96db23c2f3096cee174a3878d073.sample"
+
+[deps]
+
+source_file="res://Gabe/FloatingRocks/sfx/mouth_sound_cut-09-respawn.wav"
+dest_files=[ "res://.import/mouth_sound_cut-09-respawn.wav-c37a96db23c2f3096cee174a3878d073.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

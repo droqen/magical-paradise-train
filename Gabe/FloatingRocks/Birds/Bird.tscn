@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Gabe/FloatingRocks/Birds/BirdSpriteFrames.tres" type="SpriteFrames" id=1]
+[ext_resource path="res://Gabe/FloatingRocks/Birds/Bird.gd" type="Script" id=3]
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 4.72861, 4.64342 )
+
+[node name="Bird" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = ExtResource( 1 )
+animation = "IDLE"
+speed_scale = 0.2
+playing = true
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 7 )
+
+[node name="DestroyTimer" type="Timer" parent="."]
+wait_time = 0.15
+
+[connection signal="timeout" from="DestroyTimer" to="." method="queue_free"]

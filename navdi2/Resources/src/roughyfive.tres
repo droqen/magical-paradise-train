@@ -2,7 +2,6 @@
 
 [ext_resource path="res://navdi2/Resources/src/roughyFIVEbySIX.ttf" type="DynamicFontData" id=1]
 
-
 [resource]
 size = 8
 extra_spacing_bottom = -2

@@ -1,4 +1,4 @@
-extends Area2D
+extends KinematicBody2D
 
 
 # Declare member variables here. Examples:
@@ -8,8 +8,8 @@ extends Area2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var _err = connect("body_entered",self,"OnBodyEnter")
+	pass # Replace with function body.
 
 
-func OnBodyEnter(_body):
-	get_parent().emit_signal("player_won")
+func SetSprite():
+	$AnimatedSprite.frame = int(rand_range(0,4))

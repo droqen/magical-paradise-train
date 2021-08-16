@@ -1,0 +1,229 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://00-core/SubwayStopBoard.gd" type="Script" id=1]
+[ext_resource path="res://02-ashk/RatPattycake/rat.gd" type="Script" id=2]
+[ext_resource path="res://navdi2/Node Scripts/Board/NavdiBoardState.gd" type="Script" id=3]
+[ext_resource path="res://02-ashk/RatPattycake/rat.png" type="Texture" id=4]
+[ext_resource path="res://02-ashk/RatPattycake/Game.gd" type="Script" id=5]
+[ext_resource path="res://02-ashk/RatPattycake/404543__inspectorj__clap-single-16.wav" type="AudioStream" id=6]
+[ext_resource path="res://02-ashk/RatPattycake/415764__thebuilder15__wrong.wav" type="AudioStream" id=7]
+[ext_resource path="res://02-ashk/RatPattycake/other side.png" type="Texture" id=8]
+[ext_resource path="res://02-ashk/RatPattycake/front.png" type="Texture" id=9]
+[ext_resource path="res://02-ashk/RatPattycake/side.png" type="Texture" id=10]
+[ext_resource path="res://02-ashk/RatPattycake/back.png" type="Texture" id=11]
+[ext_resource path="res://22-joeri/Pachinksnow/assets/slapface.ttf" type="DynamicFontData" id=12]
+
+[sub_resource type="DynamicFont" id=1]
+size = 13
+extra_spacing_top = -6
+font_data = ExtResource( 12 )
+
+[node name="NavdiBoard" type="Node2D"]
+position = Vector2( 80, 80 )
+script = ExtResource( 1 )
+board_view_size = Vector2( 160, 160 )
+show_outline = true
+
+[node name="State" type="Node2D" parent="."]
+script = ExtResource( 3 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = -102.0
+margin_top = -97.0
+margin_right = 102.0
+margin_bottom = 103.0
+color = Color( 1, 0.968627, 0.968627, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Game" type="Node2D" parent="."]
+script = ExtResource( 5 )
+
+[node name="Clap" type="AudioStreamPlayer" parent="Game"]
+stream = ExtResource( 6 )
+
+[node name="Wrong" type="AudioStreamPlayer" parent="Game"]
+stream = ExtResource( 7 )
+volume_db = -11.153
+
+[node name="YourHands" type="Node2D" parent="Game"]
+z_index = 2
+
+[node name="left" type="Node2D" parent="Game/YourHands"]
+position = Vector2( -49, 79 )
+
+[node name="back" type="Sprite" parent="Game/YourHands/left"]
+rotation = 3.14159
+scale = Vector2( 1.851, -1.384 )
+texture = ExtResource( 11 )
+offset = Vector2( -6.89777, -7.79279 )
+
+[node name="side" type="Sprite" parent="Game/YourHands/left"]
+rotation = 3.14159
+scale = Vector2( 1, -1 )
+texture = ExtResource( 10 )
+offset = Vector2( 0, -17 )
+
+[node name="right" type="Node2D" parent="Game/YourHands"]
+position = Vector2( 43, 79 )
+
+[node name="back" type="Sprite" parent="Game/YourHands/right"]
+scale = Vector2( 1.85128, 1.38354 )
+texture = ExtResource( 11 )
+offset = Vector2( -5.94184, -7.22785 )
+
+[node name="side" type="Sprite" parent="Game/YourHands/right"]
+texture = ExtResource( 10 )
+offset = Vector2( 0, -17 )
+
+[node name="down_left" type="Position2D" parent="Game/YourHands"]
+position = Vector2( -11, 79 )
+
+[node name="left_idle" type="Position2D" parent="Game/YourHands"]
+position = Vector2( -41, 73 )
+
+[node name="right_idle" type="Position2D" parent="Game/YourHands"]
+position = Vector2( 43, 73 )
+
+[node name="down_right" type="Position2D" parent="Game/YourHands"]
+position = Vector2( 3, 79 )
+
+[node name="up_left" type="Position2D" parent="Game/YourHands"]
+position = Vector2( -41, 23 )
+
+[node name="up_right" type="Position2D" parent="Game/YourHands"]
+position = Vector2( 36, 23 )
+
+[node name="left_left" type="Position2D" parent="Game/YourHands"]
+position = Vector2( -11, 23 )
+
+[node name="left_right" type="Position2D" parent="Game/YourHands"]
+position = Vector2( 86, 65 )
+
+[node name="right_right" type="Position2D" parent="Game/YourHands"]
+position = Vector2( 3, 13 )
+
+[node name="right_left" type="Position2D" parent="Game/YourHands"]
+position = Vector2( -64, 65 )
+
+[node name="Rat" type="Sprite" parent="Game"]
+position = Vector2( 3, 19 )
+scale = Vector2( 0.409905, 0.413694 )
+texture = ExtResource( 4 )
+offset = Vector2( -10.2052, -91.8462 )
+script = ExtResource( 2 )
+
+[node name="left" type="Node2D" parent="Game/Rat"]
+position = Vector2( -156.134, -45.9277 )
+
+[node name="side" type="Sprite" parent="Game/Rat/left"]
+rotation = 0.261799
+scale = Vector2( 1.64331, 1.64331 )
+texture = ExtResource( 8 )
+offset = Vector2( -2.96911, -22.0644 )
+
+[node name="front" type="Sprite" parent="Game/Rat/left"]
+scale = Vector2( 1, 1 )
+texture = ExtResource( 9 )
+offset = Vector2( 12.198, -26.5897 )
+
+[node name="right" type="Node2D" parent="Game/Rat"]
+position = Vector2( 131.738, -89.4382 )
+
+[node name="side" type="Sprite" parent="Game/Rat/right"]
+rotation = 2.87979
+scale = Vector2( 1.643, -1.643 )
+texture = ExtResource( 8 )
+offset = Vector2( -2.96911, -22.0644 )
+
+[node name="front" type="Sprite" parent="Game/Rat/right"]
+rotation = 3.14159
+scale = Vector2( 1, -1 )
+texture = ExtResource( 9 )
+offset = Vector2( 14.9425, -25.0789 )
+
+[node name="down_left" type="Position2D" parent="Game/Rat"]
+position = Vector2( -2.43959, -58.014 )
+
+[node name="down_right" type="Position2D" parent="Game/Rat"]
+position = Vector2( 19.5167, -58.014 )
+scale = Vector2( 1, 1 )
+
+[node name="up_left" type="Position2D" parent="Game/Rat"]
+position = Vector2( -100.023, 9.66901 )
+
+[node name="up_right" type="Position2D" parent="Game/Rat"]
+position = Vector2( 78.0669, 9.66901 )
+
+[node name="left_left" type="Position2D" parent="Game/Rat"]
+position = Vector2( 0, 9.66901 )
+
+[node name="left_right" type="Position2D" parent="Game/Rat"]
+position = Vector2( 151.255, -89.4382 )
+
+[node name="right_right" type="Position2D" parent="Game/Rat"]
+position = Vector2( -14.6376, 9.66901 )
+
+[node name="right_left" type="Position2D" parent="Game/Rat"]
+position = Vector2( -156.134, -89.4382 )
+
+[node name="anticipation" type="Node2D" parent="Game/Rat"]
+
+[node name="down_left" type="Position2D" parent="Game/Rat/anticipation"]
+position = Vector2( -43.9127, -58.0139 )
+
+[node name="down_right" type="Position2D" parent="Game/Rat/anticipation"]
+position = Vector2( 58.5502, -58.014 )
+scale = Vector2( 1, 1 )
+
+[node name="up_left" type="Position2D" parent="Game/Rat/anticipation"]
+position = Vector2( -68.3086, -33.8415 )
+
+[node name="up_right" type="Position2D" parent="Game/Rat/anticipation"]
+position = Vector2( 78.0669, -33.8415 )
+
+[node name="left_left" type="Position2D" parent="Game/Rat/anticipation"]
+position = Vector2( -26.8355, -24.1725 )
+
+[node name="left_right" type="Position2D" parent="Game/Rat/anticipation"]
+position = Vector2( 119.54, -72.5174 )
+
+[node name="right_right" type="Position2D" parent="Game/Rat/anticipation"]
+position = Vector2( 36.5939, -24.1725 )
+
+[node name="right_left" type="Position2D" parent="Game/Rat/anticipation"]
+position = Vector2( -121.98, -72.5174 )
+
+[node name="Label" type="Label" parent="Game"]
+visible = false
+self_modulate = Color( 0, 0, 0, 1 )
+margin_left = -57.0
+margin_top = -75.0
+margin_right = 54.0
+margin_bottom = -61.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "tststststststststw"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Copy my moves" type="Label" parent="Game"]
+self_modulate = Color( 0, 0, 0, 1 )
+margin_left = -57.0
+margin_top = -79.0
+margin_right = 54.0
+margin_bottom = -44.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_fonts/font = SubResource( 1 )
+text = "copy my moves
+use arrow keys"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

@@ -298,6 +298,8 @@ window/size/width=1000
 window/size/height=800
 window/size/test_width=1000
 window/size/test_height=800
+window/stretch/mode="viewport"
+window/stretch/aspect="keep"
 
 [dynamic_fonts]
 

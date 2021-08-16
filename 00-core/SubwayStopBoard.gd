@@ -13,3 +13,4 @@ func on_game_start():
 	#print("micro game starting")
 	
 	emit_signal("game_start")
+#emit_signal("player_won")

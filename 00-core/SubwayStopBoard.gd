@@ -14,3 +14,6 @@ func on_game_start():
 	
 	emit_signal("game_start")
 #emit_signal("player_won")
+
+func done():
+	emit_signal("player_won")

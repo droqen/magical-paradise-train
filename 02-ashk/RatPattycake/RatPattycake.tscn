@@ -124,7 +124,6 @@ texture = ExtResource( 8 )
 offset = Vector2( -2.96911, -22.0644 )
 
 [node name="front" type="Sprite" parent="Game/Rat/left"]
-scale = Vector2( 1, 1 )
 texture = ExtResource( 9 )
 offset = Vector2( 12.198, -26.5897 )
 
@@ -148,7 +147,6 @@ position = Vector2( -2.43959, -58.014 )
 
 [node name="down_right" type="Position2D" parent="Game/Rat"]
 position = Vector2( 19.5167, -58.014 )
-scale = Vector2( 1, 1 )
 
 [node name="up_left" type="Position2D" parent="Game/Rat"]
 position = Vector2( -100.023, 9.66901 )
@@ -175,7 +173,6 @@ position = Vector2( -43.9127, -58.0139 )
 
 [node name="down_right" type="Position2D" parent="Game/Rat/anticipation"]
 position = Vector2( 58.5502, -58.014 )
-scale = Vector2( 1, 1 )
 
 [node name="up_left" type="Position2D" parent="Game/Rat/anticipation"]
 position = Vector2( -68.3086, -33.8415 )

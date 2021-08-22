@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://44-jackk-lizard/main.tscn" type="PackedScene" id=1]
+[ext_resource path="res://00-core/SubwayStopBoard.gd" type="Script" id=2]
+[ext_resource path="res://navdi2/Node Scripts/Board/NavdiBoardState.gd" type="Script" id=3]
+[ext_resource path="res://44-jackk-lizard/wincheck.gd" type="Script" id=4]
+
+[node name="NavdiBoard" type="Node2D"]
+position = Vector2( 80, 80 )
+script = ExtResource( 2 )
+board_view_size = Vector2( 160, 160 )
+show_outline = true
+
+[node name="State" type="Node2D" parent="."]
+script = ExtResource( 3 )
+
+[node name="main" parent="." instance=ExtResource( 1 )]
+position = Vector2( -80, -80 )
+
+[node name="wincheck" type="Node" parent="."]
+script = ExtResource( 4 )
+
+[connection signal="lizard_win" from="main" to="wincheck" method="_on_main_lizard_win"]

@@ -1,0 +1,173 @@
+[gd_scene load_steps=27 format=2]
+
+[ext_resource path="res://44-jackk-lizard/art/lizard.png" type="Texture" id=1]
+[ext_resource path="res://44-jackk-lizard/art/gardenbg.png" type="Texture" id=2]
+[ext_resource path="res://44-jackk-lizard/lizard.gd" type="Script" id=3]
+[ext_resource path="res://44-jackk-lizard/state_machine.gd" type="Script" id=4]
+[ext_resource path="res://44-jackk-lizard/skeleton_lizard.tscn" type="PackedScene" id=5]
+[ext_resource path="res://44-jackk-lizard/sun.gd" type="Script" id=6]
+[ext_resource path="res://44-jackk-lizard/art/moon.png" type="Texture" id=7]
+[ext_resource path="res://44-jackk-lizard/art/sun2.png" type="Texture" id=8]
+[ext_resource path="res://44-jackk-lizard/art/lizardwalk.png" type="Texture" id=9]
+[ext_resource path="res://44-jackk-lizard/Input/input_filter.gd" type="Script" id=10]
+[ext_resource path="res://44-jackk-lizard/main.gd" type="Script" id=11]
+[ext_resource path="res://44-jackk-lizard/Input/SwipeGesture.tscn" type="PackedScene" id=12]
+[ext_resource path="res://44-jackk-lizard/art/nightsounds.wav" type="AudioStream" id=13]
+[ext_resource path="res://44-jackk-lizard/lizard_control.gd" type="Script" id=14]
+[ext_resource path="res://44-jackk-lizard/dynamic_sky.gd" type="Script" id=15]
+[ext_resource path="res://44-jackk-lizard/Sprite.gd" type="Script" id=16]
+[ext_resource path="res://44-jackk-lizard/daylightcurve.tres" type="Curve" id=17]
+[ext_resource path="res://44-jackk-lizard/art/daysounds.wav" type="AudioStream" id=18]
+[ext_resource path="res://44-jackk-lizard/soundmixer.gd" type="Script" id=19]
+
+[sub_resource type="Curve" id=1]
+_data = [ Vector2( 0, 0 ), 0.0, 0.859262, 0, 0, Vector2( 0.82337, 0.641104 ), 0.801108, 0.801108, 0, 0, Vector2( 1, 1 ), 2.7637, 0.0, 0, 0 ]
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 100, 50 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 1 )
+region = Rect2( 100, 0, 100, 50 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 9 )
+region = Rect2( 0, 0, 100, 50 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 9 )
+region = Rect2( 100, 0, 100, 50 )
+
+[sub_resource type="SpriteFrames" id=6]
+animations = [ {
+"frames": [ SubResource( 2 ), SubResource( 3 ) ],
+"loop": true,
+"name": "pushup",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 4 ), SubResource( 5 ) ],
+"loop": true,
+"name": "walk",
+"speed": 5.0
+} ]
+
+[sub_resource type="Curve" id=7]
+_data = [ Vector2( 0, 0.506135 ), 0.0, -5.02518, 0, 0, Vector2( 0.0720663, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.359056, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.499362, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.939413, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.5 ), -4.95857, 0.0, 0, 0 ]
+
+[node name="main" type="Node2D"]
+script = ExtResource( 11 )
+__meta__ = {
+"_edit_horizontal_guides_": [ 159.618, 79.8345 ],
+"_edit_vertical_guides_": [ 80.1945, 159.84 ]
+}
+
+[node name="sunmoon" type="Node2D" parent="."]
+position = Vector2( 80.4713, 79.8413 )
+rotation = -0.0174533
+scale = Vector2( 0.8, 0.8 )
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="dynamic_sky" type="Polygon2D" parent="sunmoon"]
+color = Color( 0.247059, 0.247059, 0.454902, 1 )
+polygon = PoolVector2Array( -147.814, -169.8, -147.03, 150.434, 173.863, 150.731, 174.202, -172.519 )
+script = ExtResource( 15 )
+light_curve = ExtResource( 17 )
+
+[node name="sun" type="Sprite" parent="sunmoon"]
+position = Vector2( 1.51093, -99.8191 )
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 8 )
+
+[node name="moon" type="Sprite" parent="sunmoon"]
+position = Vector2( 0, 100 )
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 7 )
+
+[node name="bg" type="Node2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="bg"]
+modulate = Color( 0.247059, 0.247059, 0.454902, 1 )
+texture = ExtResource( 2 )
+centered = false
+script = ExtResource( 16 )
+light_curve = ExtResource( 17 )
+
+[node name="lizard_control" type="Node2D" parent="."]
+script = ExtResource( 14 )
+tween = SubResource( 1 )
+
+[node name="lizard_feel" parent="lizard_control" instance=ExtResource( 5 )]
+position = Vector2( 22.1687, 141.524 )
+
+[node name="Tween" type="Tween" parent="lizard_control"]
+
+[node name="lizard" type="AnimatedSprite" parent="."]
+visible = false
+position = Vector2( 49.2621, 127.613 )
+frames = SubResource( 6 )
+animation = "pushup"
+script = ExtResource( 3 )
+
+[node name="bush_tween" type="Tween" parent="lizard"]
+
+[node name="stump_tween" type="Tween" parent="lizard"]
+
+[node name="bush_point" type="Position2D" parent="."]
+position = Vector2( 124.893, 99.9768 )
+scale = Vector2( 0.8, 0.8 )
+
+[node name="state_machine" type="Node" parent="."]
+script = ExtResource( 4 )
+
+[node name="input_filter" type="Node" parent="."]
+script = ExtResource( 10 )
+
+[node name="SwipeUp" parent="input_filter" instance=ExtResource( 12 )]
+
+[node name="SwipeDown" parent="input_filter" instance=ExtResource( 12 )]
+direction = Vector2( 0, 1 )
+start_on_click = false
+
+[node name="soundmixer" type="Node" parent="."]
+script = ExtResource( 19 )
+light_curve = SubResource( 7 )
+
+[node name="daysounds" type="AudioStreamPlayer" parent="soundmixer"]
+stream = ExtResource( 18 )
+volume_db = -80.0
+autoplay = true
+
+[node name="nightsounds" type="AudioStreamPlayer" parent="soundmixer"]
+stream = ExtResource( 13 )
+volume_db = -80.0
+autoplay = true
+
+[connection signal="job_done" from="sunmoon" to="lizard" method="_on_sunmoon_job_done"]
+[connection signal="job_ready" from="sunmoon" to="lizard" method="_on_sunmoon_job_ready"]
+[connection signal="rot_changed" from="sunmoon" to="soundmixer" method="_on_sunmoon_rot_changed"]
+[connection signal="rot_changed" from="sunmoon" to="sunmoon/dynamic_sky" method="_on_sunmoon_rot_changed"]
+[connection signal="rot_changed" from="sunmoon" to="bg/Sprite" method="_on_sunmoon_rot_changed"]
+[connection signal="left_pushup_post" from="lizard" to="lizard_control" method="_on_lizard_left_pushup_post"]
+[connection signal="left_pushup_post" from="lizard" to="state_machine" method="_on_lizard_left_pushup_post"]
+[connection signal="left_pushup_post" from="lizard" to="input_filter" method="_on_lizard_left_pushup_post"]
+[connection signal="ready_for_pushups" from="lizard" to="lizard_control" method="_on_lizard_ready_for_pushups"]
+[connection signal="ready_for_pushups" from="lizard" to="state_machine" method="_on_lizard_ready_for_pushups"]
+[connection signal="ready_for_pushups" from="lizard" to="input_filter" method="_on_lizard_ready_for_pushups"]
+[connection signal="tween_completed" from="lizard/bush_tween" to="lizard" method="_on_bush_tween_tween_completed"]
+[connection signal="tween_completed" from="lizard/stump_tween" to="lizard" method="_on_stump_tween_tween_completed"]
+[connection signal="do_kick" from="state_machine" to="." method="_on_state_machine_do_kick"]
+[connection signal="do_kick" from="state_machine" to="sunmoon" method="_on_state_machine_do_kick"]
+[connection signal="state_changed" from="state_machine" to="lizard_control" method="_on_state_machine_state_changed"]
+[connection signal="state_changed" from="state_machine" to="lizard" method="_on_state_machine_state_changed"]
+[connection signal="detected" from="input_filter/SwipeUp" to="state_machine" method="_on_SwipeUp_detected"]
+[connection signal="failed" from="input_filter/SwipeUp" to="state_machine" method="_on_SwipeUp_failed"]
+[connection signal="gesture_progress" from="input_filter/SwipeUp" to="lizard_control" method="_on_SwipeUp_gesture_progress"]
+[connection signal="initiated" from="input_filter/SwipeUp" to="state_machine" method="_on_SwipeUp_initiated"]
+[connection signal="detected" from="input_filter/SwipeDown" to="state_machine" method="_on_SwipeDown_detected"]
+[connection signal="failed" from="input_filter/SwipeDown" to="state_machine" method="_on_SwipeDown_failed"]
+[connection signal="gesture_progress" from="input_filter/SwipeDown" to="lizard_control" method="_on_SwipeDown_gesture_progress"]
+[connection signal="initiated" from="input_filter/SwipeDown" to="state_machine" method="_on_SwipeDown_initiated"]

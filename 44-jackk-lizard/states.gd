@@ -1,0 +1,12 @@
+extends Node
+
+enum State {
+	READY,
+	UP,
+	RELEASING,
+	IDLE,
+	IDLE_CHAIN,
+	FALL,
+	STRESSED,
+	STRESSED_FALL,
+}

@@ -29,6 +29,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://navdi2/Utility Scripts/NavdiTILEDFlatLevelData.gd"
 }, {
+"base": "Node",
+"class": "GraphicUtil",
+"language": "GDScript",
+"path": "res://44-jackk-lizard/GraphicUtil.gd"
+}, {
 "base": "NavdiMazeNobody",
 "class": "Interest",
 "language": "GDScript",
@@ -239,6 +244,7 @@ _global_script_class_icons={
 "ChoiceStack": "",
 "EdTiledLoadToMap": "",
 "FlatLevelData": "",
+"GraphicUtil": "",
 "Interest": "",
 "LumpyDictionary": "",
 "MarchingTextContainer": "",
@@ -287,6 +293,10 @@ _global_script_class_icons={
 config/name="magical-paradise-train"
 run/main_scene="res://00-core/coreAll.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+States="*res://44-jackk-lizard/states.gd"
 
 [debug]
 

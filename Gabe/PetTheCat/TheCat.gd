@@ -29,7 +29,7 @@ func OnStartTimeout():
 	
 func OnGameStart():
 	canPet = true
-	print("pet the cat game start")
+
 	$ClosedEyes.hide()
 
 func MoveCatButt(moveAmount):

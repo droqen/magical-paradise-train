@@ -1,0 +1,129 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://pause-screen/pause-screen.gd" type="Script" id=1]
+[ext_resource path="res://Gabe/Font/ChevyRay - Little League Mono.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 64
+outline_size = 8
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 28
+outline_size = 4
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 20
+outline_size = 4
+font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxEmpty" id=7]
+
+[sub_resource type="DynamicFont" id=4]
+outline_size = 4
+font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxEmpty" id=5]
+
+[sub_resource type="DynamicFont" id=6]
+font_data = ExtResource( 2 )
+
+[node name="PauseScreen" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.133333, 0.133333, 0.133333, 0.694118 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PausedLabel" type="Label" parent="ColorRect"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -308.0
+margin_top = -300.764
+margin_right = 308.0
+margin_bottom = -210.764
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+text = "-PAUSED-"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/PausedLabel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -371.0
+margin_top = 89.0
+margin_right = 371.0
+margin_bottom = 482.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TitleLabel" type="Label" parent="ColorRect/PausedLabel/VBoxContainer"]
+margin_right = 742.0
+margin_bottom = 40.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+text = "MY COOLEST GAME YET"
+align = 1
+autowrap = true
+
+[node name="AuthorLabel" type="Label" parent="ColorRect/PausedLabel/VBoxContainer"]
+margin_top = 44.0
+margin_right = 742.0
+margin_bottom = 72.0
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+text = "By: Author"
+align = 1
+
+[node name="HSeparator2" type="HSeparator" parent="ColorRect/PausedLabel/VBoxContainer"]
+margin_top = 76.0
+margin_right = 742.0
+margin_bottom = 106.0
+custom_styles/separator = SubResource( 7 )
+custom_constants/separation = 30
+
+[node name="DescriptionLabel" type="Label" parent="ColorRect/PausedLabel/VBoxContainer"]
+margin_top = 110.0
+margin_right = 742.0
+margin_bottom = 215.0
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+text = "In this very cool game you play as a dude that shoots stuff.
+Press X to jump.
+Y. To backflip"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="HSeparator" type="HSeparator" parent="ColorRect/PausedLabel/VBoxContainer"]
+margin_top = 219.0
+margin_right = 742.0
+margin_bottom = 269.0
+custom_styles/separator = SubResource( 5 )
+custom_constants/separation = 50
+
+[node name="NextGameButton" type="Button" parent="ColorRect/PausedLabel/VBoxContainer"]
+margin_left = 280.0
+margin_top = 273.0
+margin_right = 462.0
+margin_bottom = 303.0
+size_flags_horizontal = 4
+custom_fonts/font = SubResource( 6 )
+text = "NEXT GAME"

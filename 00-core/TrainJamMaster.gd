@@ -31,6 +31,8 @@ func _ready():
 	randomize()
 	load_first_game()
 	
+	var _err = Global.connect("SKIP_REQUESTED",self,"skip_microgame")
+	
 func preload_games():
 	var directory = Directory.new()
 	var error = directory.open("res://00-core/metromap")
@@ -42,7 +44,7 @@ func preload_games():
 				
 				var minigame = load(directory.get_current_dir()+"/"+file_name)
 				all_microgames.push_back(minigame)
-				print(str(all_microgames))
+				#print(str(all_microgames))
 			file_name = directory.get_next()
 
 func load_first_game():
@@ -88,6 +90,9 @@ func unload_current_scene():
 
 func set_current_microgame(mg: MicrogameMetadata):
 	unload_current_scene()
+	
+	Global.current_microgame_md = mg
+	
 	self.current_microgame = mg
 	var nvw = $"../MarginContainer/NavdiViewerWindow"
 	var vpc = $"../MarginContainer/NavdiViewerWindow/ViewportContainer"
@@ -111,6 +116,7 @@ func _process(delta):
 			if stateTimer > stateDuration:
 				load_next_microgame()
 				set_microgame_state(MgState.GameSlidingIn)
+			
 		MgState.GameSlidingIn:
 			get_tree().paused = true
 			_update_slide_position()
@@ -123,8 +129,11 @@ func _process(delta):
 				set_microgame_state(MgState.PlayingTheGame)
 				print(microgame_instance.name)
 				microgame_instance.on_game_start()
+				
+				
+				
 		MgState.PlayingTheGame:
-			get_tree().paused = false
+			
 			# do nothing. wait for the game to end itself.
 			pass
 		MgState.DoorsClosing:
@@ -172,8 +181,11 @@ func set_microgame_state(state):
 			train_car.open_doors();
 			stateDuration = 0.6 # time before game starts
 		MgState.PlayingTheGame:
+			Global.is_microgame_playing = true
+			get_tree().paused = false
 			stateDuration = -1
 		MgState.DoorsClosing:
+			Global.is_microgame_playing = false
 			train_car.close_doors();
 			stateDuration = 1.0 # how long is the animation?
 		MgState.GameSlidingOut:
@@ -181,3 +193,7 @@ func set_microgame_state(state):
 		MgState.ChillingABit:
 			stateDuration = 2.0
 	_update_slide_position()
+	
+	
+func skip_microgame():
+	set_microgame_state(MgState.DoorsClosing)

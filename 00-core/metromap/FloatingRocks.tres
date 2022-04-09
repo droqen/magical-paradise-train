@@ -6,5 +6,6 @@
 [resource]
 script = ExtResource( 2 )
 microgame_scene = ExtResource( 1 )
-microgame_name = "Floating Rocks"
+microgame_name = "Bird Chaser"
 author_name = "Gab"
+microgame_description = ""

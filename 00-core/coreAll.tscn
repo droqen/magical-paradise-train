@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://navdi2/AllSeeingControl/AllSeeingControl.gd" type="Script" id=1]
 [ext_resource path="res://navdi2/Node Scripts/NavdiSettings.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://navdi2/Node Scripts/Cursor/NavdiCursorFollower.gd" type="Script" id=7]
 [ext_resource path="res://art/temp_cursor.png" type="Texture" id=8]
 [ext_resource path="res://00-core/TrainJamMaster.gd" type="Script" id=9]
+[ext_resource path="res://pause-screen/pause-screen.tscn" type="PackedScene" id=10]
 
 [sub_resource type="Curve" id=1]
 _data = [ Vector2( 0, 1 ), 0.0, -5.93296, 0, 0, Vector2( 0.431718, 0.0272727 ), 0.0, 0.0, 0, 0, Vector2( 0.773128, 0.0272727 ), -0.42331, -0.42331, 0, 0, Vector2( 1, 0 ), -0.20133, 0.0, 0, 0 ]
@@ -54,6 +55,7 @@ viewport_slide_in = SubResource( 1 )
 viewport_slide_out = SubResource( 2 )
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
+pause_mode = 1
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_constants/margin_right = 50
@@ -88,7 +90,7 @@ margin_left = -1.0
 margin_top = -1.0
 margin_right = 641.0
 margin_bottom = 577.0
-color = Color( 0.894118, 0.811765, 0.0745098, 1 )
+color = Color( 0.785156, 0.706265, 0, 1 )
 
 [node name="ViewportContainer" type="ViewportContainer" parent="MarginContainer/NavdiViewerWindow"]
 margin_left = 130.0
@@ -150,3 +152,6 @@ script = SubResource( 4 )
 "SuperCursorUnpausable",
 ]]
 script = ExtResource( 6 )
+
+[node name="PauseScreen" parent="." instance=ExtResource( 10 )]
+pause_mode = 2

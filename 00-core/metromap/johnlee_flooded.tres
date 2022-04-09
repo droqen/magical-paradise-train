@@ -8,3 +8,4 @@ script = ExtResource( 2 )
 microgame_scene = ExtResource( 1 )
 microgame_name = "Reunite The Rats!"
 author_name = "johnlee_erg"
+microgame_description = ""

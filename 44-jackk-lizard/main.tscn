@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://44-jackk-lizard/art/lizard.png" type="Texture" id=1]
 [ext_resource path="res://44-jackk-lizard/art/gardenbg.png" type="Texture" id=2]
@@ -19,17 +19,10 @@
 [ext_resource path="res://44-jackk-lizard/daylightcurve.tres" type="Curve" id=17]
 [ext_resource path="res://44-jackk-lizard/art/daysounds.wav" type="AudioStream" id=18]
 [ext_resource path="res://44-jackk-lizard/soundmixer.gd" type="Script" id=19]
+[ext_resource path="res://44-jackk-lizard/art/guide.png" type="Texture" id=20]
 
 [sub_resource type="Curve" id=1]
 _data = [ Vector2( 0, 0 ), 0.0, 0.859262, 0, 0, Vector2( 0.82337, 0.641104 ), 0.801108, 0.801108, 0, 0, Vector2( 1, 1 ), 2.7637, 0.0, 0, 0 ]
-
-[sub_resource type="AtlasTexture" id=2]
-atlas = ExtResource( 1 )
-region = Rect2( 0, 0, 100, 50 )
-
-[sub_resource type="AtlasTexture" id=3]
-atlas = ExtResource( 1 )
-region = Rect2( 100, 0, 100, 50 )
 
 [sub_resource type="AtlasTexture" id=4]
 atlas = ExtResource( 9 )
@@ -39,16 +32,24 @@ region = Rect2( 0, 0, 100, 50 )
 atlas = ExtResource( 9 )
 region = Rect2( 100, 0, 100, 50 )
 
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 100, 50 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 1 )
+region = Rect2( 100, 0, 100, 50 )
+
 [sub_resource type="SpriteFrames" id=6]
 animations = [ {
-"frames": [ SubResource( 2 ), SubResource( 3 ) ],
-"loop": true,
-"name": "pushup",
-"speed": 5.0
-}, {
 "frames": [ SubResource( 4 ), SubResource( 5 ) ],
 "loop": true,
 "name": "walk",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 2 ), SubResource( 3 ) ],
+"loop": true,
+"name": "pushup",
 "speed": 5.0
 } ]
 
@@ -123,6 +124,11 @@ scale = Vector2( 0.8, 0.8 )
 [node name="state_machine" type="Node" parent="."]
 script = ExtResource( 4 )
 
+[node name="Sprite" type="Sprite" parent="state_machine"]
+texture = ExtResource( 20 )
+
+[node name="Tween" type="Tween" parent="state_machine"]
+
 [node name="input_filter" type="Node" parent="."]
 script = ExtResource( 10 )
 
@@ -148,9 +154,9 @@ autoplay = true
 
 [connection signal="job_done" from="sunmoon" to="lizard" method="_on_sunmoon_job_done"]
 [connection signal="job_ready" from="sunmoon" to="lizard" method="_on_sunmoon_job_ready"]
-[connection signal="rot_changed" from="sunmoon" to="soundmixer" method="_on_sunmoon_rot_changed"]
 [connection signal="rot_changed" from="sunmoon" to="sunmoon/dynamic_sky" method="_on_sunmoon_rot_changed"]
 [connection signal="rot_changed" from="sunmoon" to="bg/Sprite" method="_on_sunmoon_rot_changed"]
+[connection signal="rot_changed" from="sunmoon" to="soundmixer" method="_on_sunmoon_rot_changed"]
 [connection signal="left_pushup_post" from="lizard" to="lizard_control" method="_on_lizard_left_pushup_post"]
 [connection signal="left_pushup_post" from="lizard" to="state_machine" method="_on_lizard_left_pushup_post"]
 [connection signal="left_pushup_post" from="lizard" to="input_filter" method="_on_lizard_left_pushup_post"]

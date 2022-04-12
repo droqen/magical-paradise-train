@@ -8,13 +8,18 @@ var state = States.State.IDLE
 
 var enabled = true
 
+func _ready():
+	$Sprite.visible = false
+
 func _on_lizard_ready_for_pushups():
 	enabled = true
 	switch_to_state(States.State.IDLE)
+	$Sprite.visible = false
 
 
 func _on_lizard_left_pushup_post():
 	enabled = false
+	$Sprite.visible = false
 
 
 func print_state(to_print):
@@ -47,15 +52,25 @@ func switch_to_state(new_state):
 
 
 func _on_SwipeUp_initiated(_pos):
+	if not enabled:
+		return
+		
 	match state:
 		States.State.IDLE, States.State.IDLE_CHAIN:
 			switch_to_state(States.State.READY)
+			if not $Sprite.visible:
+				$Sprite.visible = true
+				$Sprite.position = Vector2(_pos.x, _pos.y - 25)
+			else:
+				$Tween.interpolate_property($Sprite, "position", $Sprite.position, Vector2(_pos.x, _pos.y-25), .1, Tween.TRANS_CUBIC, Tween.EASE_OUT)
+				$Tween.start()
 
 func _on_SwipeUp_detected():
 	match state:
 		States.State.READY:
 			emit_signal("do_kick")
 			switch_to_state(States.State.UP)
+			
 
 
 func _on_SwipeUp_failed(_detected):
@@ -64,6 +79,7 @@ func _on_SwipeUp_failed(_detected):
 			switch_to_state(States.State.STRESSED)
 		States.State.UP:
 			switch_to_state(States.State.STRESSED_FALL)
+	$Sprite.visible = false
 
 
 func _on_SwipeDown_initiated(_pos):
@@ -81,11 +97,13 @@ func _on_SwipeDown_detected():
 		States.State.RELEASING:
 			emit_signal("do_kick")
 			switch_to_state(States.State.IDLE_CHAIN)
+			
 
 func _on_SwipeDown_failed(_detected):
 	match state:
 		States.State.RELEASING, States.State.IDLE_CHAIN:
 			switch_to_state(States.State.FALL)
+	$Sprite.visible = false
 
 func _process(_delta):
 	match state:

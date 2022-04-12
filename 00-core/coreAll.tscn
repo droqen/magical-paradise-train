@@ -45,9 +45,6 @@ pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="TrainJamMaster" type="Node" parent="."]
 script = ExtResource( 9 )
@@ -124,9 +121,7 @@ UI_stretch_mode = true
 [node name="NavdiPinSetup" type="Node" parent="."]
 script = ExtResource( 5 )
 
-[node name="NavdiSuperCursor" type="Node" parent="." groups=[
-"SuperCursor",
-]]
+[node name="NavdiSuperCursor" type="Node" parent="." groups=["SuperCursor"]]
 pause_mode = 1
 script = ExtResource( 6 )
 
@@ -148,9 +143,7 @@ script = SubResource( 3 )
 [node name="hide_curso" type="Node" parent="."]
 script = SubResource( 4 )
 
-[node name="NavdiSuperCursor(Unpausable)" type="Node" parent="." groups=[
-"SuperCursorUnpausable",
-]]
+[node name="NavdiSuperCursor(Unpausable)" type="Node" parent="." groups=["SuperCursorUnpausable"]]
 script = ExtResource( 6 )
 
 [node name="PauseScreen" parent="." instance=ExtResource( 10 )]

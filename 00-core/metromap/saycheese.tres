@@ -8,4 +8,4 @@ script = ExtResource( 1 )
 microgame_scene = ExtResource( 2 )
 microgame_name = "say cheeese!"
 author_name = "ash k"
-microgame_description = ""
+microgame_description = "Pose for a picture!"

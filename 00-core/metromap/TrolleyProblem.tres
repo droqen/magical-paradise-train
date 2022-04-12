@@ -8,4 +8,4 @@ script = ExtResource( 1 )
 microgame_scene = ExtResource( 2 )
 microgame_name = "Trolley Problem"
 author_name = "Gab"
-microgame_description = ""
+microgame_description = "Use mouse to make a decision!"

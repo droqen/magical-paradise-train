@@ -8,4 +8,4 @@ script = ExtResource( 1 )
 microgame_scene = ExtResource( 2 )
 microgame_name = "Where's my card?"
 author_name = "Delleloper and Mer"
-microgame_description = ""
+microgame_description = "Find your metro card!"

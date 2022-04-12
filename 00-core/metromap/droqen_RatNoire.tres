@@ -8,4 +8,4 @@ script = ExtResource( 1 )
 microgame_scene = ExtResource( 2 )
 microgame_name = "R.A.t Noire"
 author_name = "droqen"
-microgame_description = ""
+microgame_description = "Use mouse to determine if the rat is guilty!"

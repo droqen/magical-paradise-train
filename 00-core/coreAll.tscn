@@ -126,7 +126,7 @@ pause_mode = 1
 script = ExtResource( 6 )
 
 [node name="TrainCar" parent="." instance=ExtResource( 4 )]
-position = Vector2( 512, 400 )
+position = Vector2( 500, 400 )
 
 [node name="NavdiCursorFollower" type="Node2D" parent="."]
 script = ExtResource( 7 )

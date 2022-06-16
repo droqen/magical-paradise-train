@@ -1,0 +1,182 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://02-ashk/new_dynamicfont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://02-ashk/MainMenu.gd" type="Script" id=2]
+[ext_resource path="res://art/cutaway_door_right.png" type="Texture" id=3]
+[ext_resource path="res://art/cutaway_door_left.png" type="Texture" id=4]
+[ext_resource path="res://art/cutaway_train_car.png" type="Texture" id=5]
+[ext_resource path="res://02-ashk/Node2D.gd" type="Script" id=6]
+[ext_resource path="res://art/leave.webp" type="Texture" id=7]
+[ext_resource path="res://fonts/Aubergine-1Gqzg.otf" type="DynamicFontData" id=8]
+[ext_resource path="res://02-ashk/Lol.gd" type="Script" id=9]
+
+[sub_resource type="DynamicFont" id=2]
+size = 64
+outline_size = 7
+outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
+font_data = ExtResource( 8 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+content_margin_top = 0.0
+bg_color = Color( 1, 1, 1, 1 )
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color( 0, 0, 0, 1 )
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 32
+expand_margin_top = 4.0
+
+[sub_resource type="StyleBoxFlat" id=4]
+content_margin_bottom = 0.0
+bg_color = Color( 1, 1, 1, 1 )
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color( 0, 0, 0, 1 )
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 32
+expand_margin_top = 4.0
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 1, 1, 1, 1 )
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color( 0, 0, 0, 1 )
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 32
+expand_margin_top = 4.0
+
+[sub_resource type="DynamicFont" id=1]
+size = 100
+outline_size = 8
+use_filter = true
+font_data = ExtResource( 8 )
+
+[node name="MainMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Node2D2" type="Node2D" parent="."]
+position = Vector2( -1580.43, -957.052 )
+z_index = -60
+
+[node name="ColorRect" type="ColorRect" parent="Node2D2"]
+margin_right = 4072.0
+margin_bottom = 2806.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2( 514.237, 395.381 )
+scale = Vector2( 1.14928, 1.14928 )
+z_index = -50
+script = ExtResource( 6 )
+door_count = 15
+
+[node name="CutawayTrainCar" type="Sprite" parent="Node2D"]
+position = Vector2( 98.7247, -57.3634 )
+texture = ExtResource( 5 )
+
+[node name="CutawayDoorRight" type="Sprite" parent="Node2D/CutawayTrainCar"]
+show_behind_parent = true
+position = Vector2( 45.8647, 29.0895 )
+texture = ExtResource( 3 )
+
+[node name="DoorLeft" type="Sprite" parent="Node2D/CutawayTrainCar"]
+show_behind_parent = true
+position = Vector2( -268.044, 24.1586 )
+texture = ExtResource( 4 )
+
+[node name="Button" type="Button" parent="."]
+margin_left = 41.5636
+margin_top = 652.127
+margin_right = 570.564
+margin_bottom = 765.127
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 2 )
+custom_styles/hover = SubResource( 3 )
+custom_styles/pressed = SubResource( 4 )
+custom_styles/normal = SubResource( 5 )
+text = "board the train"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Particles2D" type="CPUParticles2D" parent="."]
+visible = false
+position = Vector2( 608.663, -884.638 )
+z_index = 50
+amount = 51
+lifetime = 5.06
+draw_order = 1
+texture = ExtResource( 7 )
+emission_shape = 2
+emission_rect_extents = Vector2( 1000, 600 )
+gravity = Vector2( 0, 300 )
+angular_velocity = 50.0
+angular_velocity_random = 1.0
+damping = 100.0
+angle = 720.0
+angle_random = 1.0
+scale_amount = 0.57
+scale_amount_random = 0.74
+color = Color( 0.800781, 0.800781, 0.800781, 1 )
+hue_variation = -1.0
+hue_variation_random = 0.06
+
+[node name="Title" type="Label" parent="."]
+margin_left = 48.7753
+margin_top = 31.9831
+margin_right = 933.775
+margin_bottom = 181.983
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+custom_colors/font_color_shadow = Color( 0.815686, 0.141176, 0.505882, 1 )
+custom_constants/shadow_offset_x = -3
+custom_constants/shadow_offset_y = 3
+custom_fonts/font = SubResource( 1 )
+text = "Magical Paradise Train"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Lol" type="Node2D" parent="."]
+position = Vector2( 68.5646, 184.663 )
+scale = Vector2( 0.776832, 0.776832 )
+script = ExtResource( 9 )
+
+[node name="Text" type="Label" parent="Lol"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -22.1822
+margin_top = -11.357
+margin_right = 381.818
+margin_bottom = 188.643
+rect_scale = Vector2( 3, 3 )
+custom_fonts/font = ExtResource( 1 )
+text = "Collection of small games from paradise :)
+"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]

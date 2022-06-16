@@ -291,7 +291,7 @@ _global_script_class_icons={
 [application]
 
 config/name="magical-paradise-train"
-run/main_scene="res://00-core/coreAll.tscn"
+run/main_scene="res://02-ashk/MainMenu.tscn"
 config/icon="res://icon.png"
 
 [autoload]
